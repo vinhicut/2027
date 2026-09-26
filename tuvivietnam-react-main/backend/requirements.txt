@@ -1,0 +1,4 @@
+# requirements.txt
+# Hệ thống tính toán và máy chủ API sử dụng 100% Python Standard Library (Python 3.9+)
+# Package hỗ trợ mã hóa bảo mật chuẩn AES-256 (Tùy chọn - module bảo mật có sẵn fallback):
+cryptography>=41.0.0

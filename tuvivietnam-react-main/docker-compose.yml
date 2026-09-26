@@ -1,0 +1,13 @@
+services:
+  tuvi-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tuvi_hongan_app
+    restart: unless-stopped
+    ports:
+      - "2026:2026"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 2026
+      CORS_ORIGIN: "*"

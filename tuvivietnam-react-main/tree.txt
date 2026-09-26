@@ -1,0 +1,1539 @@
+Folder PATH listing
+Volume serial number is A823-077B
+C:.
+|   .env
+|   .gitignore
+|   README.md
+|   start.bat
+|   start_local.py
+|   tree.txt
+|   TÁI CẤU TRÚC THƯ MỤC PHÁT TRIỂN.md
+|   
++---.github
+|   \---workflows
+|           ci.yml
+|           
++---backend
+|   |   .env
+|   |   .env.example
+|   |   requirements.txt
+|   |   
+|   +---src
+|   |   |   server.py
+|   |   |   
+|   |   +---core
+|   |   |   |   config.py
+|   |   |   |   db.py
+|   |   |   |   firebase_db.py
+|   |   |   |   migrate_to_firebase.py
+|   |   |   |   
+|   |   |   \---__pycache__
+|   |   |           config.cpython-313.pyc
+|   |   |           db.cpython-313.pyc
+|   |   |           firebase_db.cpython-313.pyc
+|   |   |           
+|   |   +---data
+|   |   |       tuvi.db
+|   |   |       
+|   |   \---modules
+|   |       +---admin
+|   |       |   |   routes_admin.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           routes_admin.cpython-313.pyc
+|   |       |           
+|   |       +---articles
+|   |       +---astrology
+|   |       |   |   routes_charts.py
+|   |       |   |   
+|   |       |   +---tuvi_engine
+|   |       |   |   |   constants.py
+|   |       |   |   |   core.py
+|   |       |   |   |   han_van.py
+|   |       |   |   |   lunar_calendar.py
+|   |       |   |   |   models.py
+|   |       |   |   |   sao_chinh.py
+|   |       |   |   |   sao_phu.py
+|   |       |   |   |   thien_ban.py
+|   |       |   |   |   __init__.py
+|   |       |   |   |   
+|   |       |   |   \---__pycache__
+|   |       |   |           constants.cpython-313.pyc
+|   |       |   |           constants.cpython-314.pyc
+|   |       |   |           core.cpython-313.pyc
+|   |       |   |           core.cpython-314.pyc
+|   |       |   |           han_van.cpython-313.pyc
+|   |       |   |           han_van.cpython-314.pyc
+|   |       |   |           lunar_calendar.cpython-313.pyc
+|   |       |   |           lunar_calendar.cpython-314.pyc
+|   |       |   |           models.cpython-313.pyc
+|   |       |   |           models.cpython-314.pyc
+|   |       |   |           sao_chinh.cpython-313.pyc
+|   |       |   |           sao_chinh.cpython-314.pyc
+|   |       |   |           sao_phu.cpython-313.pyc
+|   |       |   |           sao_phu.cpython-314.pyc
+|   |       |   |           thien_ban.cpython-313.pyc
+|   |       |   |           thien_ban.cpython-314.pyc
+|   |       |   |           __init__.cpython-313.pyc
+|   |       |   |           __init__.cpython-314.pyc
+|   |       |   |           
+|   |       |   \---__pycache__
+|   |       |           routes_charts.cpython-313.pyc
+|   |       |           
+|   |       +---auth
+|   |       |   |   auth.py
+|   |       |   |   routes_auth.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           auth.cpython-313.pyc
+|   |       |           routes_auth.cpython-313.pyc
+|   |       |           
+|   |       +---contact
+|   |       +---courses
+|   |       +---feng_shui
+|   |       +---forum
+|   |       +---lunar_calendar
+|   |       +---numerology
+|   |       +---qimen_dunjia
+|   |       +---shop
+|   |       \---tarot_kieu
+|   \---__pycache__
+|           auth.cpython-313.pyc
+|           config.cpython-313.pyc
+|           db.cpython-313.pyc
+|           firebase_db.cpython-313.pyc
+|           routes_admin.cpython-313.pyc
+|           routes_auth.cpython-313.pyc
+|           routes_charts.cpython-313.pyc
+|           server.cpython-313.pyc
+|           
++---clients
++---deployment
+|   +---docker
+|   |       docker-compose.yml
+|   |       Dockerfile
+|   |       
+|   +---nginx
+|   |       nginx.conf
+|   |       
+|   +---scripts
+|   |       start.bat
+|   |       start.sh
+|   |       start_local.py
+|   |       
+|   \---terraform
++---frontend
+|   |   .oxlintrc.json
+|   |   index.html
+|   |   package-lock.json
+|   |   package.json
+|   |   vite.config.js
+|   |   
+|   +---node_modules
+|   |   |   .package-lock.json
+|   |   |   
+|   |   +---.bin
+|   |   |       nanoid
+|   |   |       nanoid.cmd
+|   |   |       nanoid.ps1
+|   |   |       oxlint
+|   |   |       oxlint.cmd
+|   |   |       oxlint.ps1
+|   |   |       rolldown
+|   |   |       rolldown.cmd
+|   |   |       rolldown.ps1
+|   |   |       vite
+|   |   |       vite.cmd
+|   |   |       vite.ps1
+|   |   |       
+|   |   +---.vite
+|   |   |   \---deps
+|   |   |           package.json
+|   |   |           react-dom.js
+|   |   |           react-dom.js.map
+|   |   |           react-dom_client.js
+|   |   |           react-dom_client.js.map
+|   |   |           react-router-dom.js
+|   |   |           react-router-dom.js.map
+|   |   |           react.js
+|   |   |           react.js.map
+|   |   |           react_jsx-dev-runtime.js
+|   |   |           react_jsx-dev-runtime.js.map
+|   |   |           react_jsx-runtime.js
+|   |   |           react_jsx-runtime.js.map
+|   |   |           rolldown-runtime-BPOCksWG.js
+|   |   |           _metadata.json
+|   |   |           
+|   |   +---.vite-temp
+|   |   +---@oxc-project
+|   |   |   \---types
+|   |   |           LICENSE
+|   |   |           package.json
+|   |   |           README.md
+|   |   |           types.d.ts
+|   |   |           
+|   |   +---@oxlint
+|   |   |   \---binding-win32-x64-msvc
+|   |   |           oxlint.win32-x64-msvc.node
+|   |   |           package.json
+|   |   |           README.md
+|   |   |           
+|   |   +---@rolldown
+|   |   |   +---binding-win32-x64-msvc
+|   |   |   |       package.json
+|   |   |   |       README.md
+|   |   |   |       rolldown-binding.win32-x64-msvc.node
+|   |   |   |       
+|   |   |   \---pluginutils
+|   |   |       |   LICENSE
+|   |   |       |   package.json
+|   |   |       |   README.md
+|   |   |       |   
+|   |   |       \---dist
+|   |   |           |   filter-B_mD-HGz.mjs
+|   |   |           |   index.d.mts
+|   |   |           |   index.mjs
+|   |   |           |   
+|   |   |           \---filter
+|   |   |                   index.d.mts
+|   |   |                   index.mjs
+|   |   |                   
+|   |   +---@types
+|   |   |   +---react
+|   |   |   |   |   canary.d.ts
+|   |   |   |   |   compiler-runtime.d.ts
+|   |   |   |   |   experimental.d.ts
+|   |   |   |   |   global.d.ts
+|   |   |   |   |   index.d.ts
+|   |   |   |   |   jsx-dev-runtime.d.ts
+|   |   |   |   |   jsx-runtime.d.ts
+|   |   |   |   |   LICENSE
+|   |   |   |   |   package.json
+|   |   |   |   |   README.md
+|   |   |   |   |   
+|   |   |   |   \---ts5.0
+|   |   |   |           canary.d.ts
+|   |   |   |           experimental.d.ts
+|   |   |   |           global.d.ts
+|   |   |   |           index.d.ts
+|   |   |   |           jsx-dev-runtime.d.ts
+|   |   |   |           jsx-runtime.d.ts
+|   |   |   |           
+|   |   |   \---react-dom
+|   |   |       |   canary.d.ts
+|   |   |       |   client.d.ts
+|   |   |       |   experimental.d.ts
+|   |   |       |   index.d.ts
+|   |   |       |   LICENSE
+|   |   |       |   package.json
+|   |   |       |   README.md
+|   |   |       |   server.browser.d.ts
+|   |   |       |   server.bun.d.ts
+|   |   |       |   server.d.ts
+|   |   |       |   server.edge.d.ts
+|   |   |       |   server.node.d.ts
+|   |   |       |   static.browser.d.ts
+|   |   |       |   static.d.ts
+|   |   |       |   static.edge.d.ts
+|   |   |       |   static.node.d.ts
+|   |   |       |   
+|   |   |       \---test-utils
+|   |   |               index.d.ts
+|   |   |               
+|   |   +---@vitejs
+|   |   |   \---plugin-react
+|   |   |       |   LICENSE
+|   |   |       |   package.json
+|   |   |       |   README.md
+|   |   |       |   
+|   |   |       +---dist
+|   |   |       |       index.d.ts
+|   |   |       |       index.js
+|   |   |       |       refresh-runtime.js
+|   |   |       |       
+|   |   |       \---types
+|   |   |               optionalTypes.d.ts
+|   |   |               preamble.d.ts
+|   |   |               
+|   |   +---cookie
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---dist
+|   |   |           index.d.ts
+|   |   |           index.js
+|   |   |           index.js.map
+|   |   |           
+|   |   +---csstype
+|   |   |       index.d.ts
+|   |   |       index.js.flow
+|   |   |       LICENSE
+|   |   |       package.json
+|   |   |       README.md
+|   |   |       
+|   |   +---detect-libc
+|   |   |   |   index.d.ts
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---lib
+|   |   |           detect-libc.js
+|   |   |           elf.js
+|   |   |           filesystem.js
+|   |   |           process.js
+|   |   |           
+|   |   +---fdir
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---dist
+|   |   |           index.cjs
+|   |   |           index.d.cts
+|   |   |           index.d.mts
+|   |   |           index.mjs
+|   |   |           
+|   |   +---lightningcss
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---node
+|   |   |           ast.d.ts
+|   |   |           ast.js.flow
+|   |   |           browserslistToTargets.js
+|   |   |           composeVisitors.js
+|   |   |           flags.js
+|   |   |           index.d.ts
+|   |   |           index.js
+|   |   |           index.js.flow
+|   |   |           index.mjs
+|   |   |           targets.d.ts
+|   |   |           targets.js.flow
+|   |   |           
+|   |   +---lightningcss-win32-x64-msvc
+|   |   |       LICENSE
+|   |   |       lightningcss.win32-x64-msvc.node
+|   |   |       package.json
+|   |   |       README.md
+|   |   |       
+|   |   +---nanoid
+|   |   |   |   index.browser.cjs
+|   |   |   |   index.browser.js
+|   |   |   |   index.cjs
+|   |   |   |   index.d.cts
+|   |   |   |   index.d.ts
+|   |   |   |   index.js
+|   |   |   |   LICENSE
+|   |   |   |   nanoid.js
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   +---async
+|   |   |   |       index.browser.cjs
+|   |   |   |       index.browser.js
+|   |   |   |       index.cjs
+|   |   |   |       index.d.ts
+|   |   |   |       index.js
+|   |   |   |       index.native.js
+|   |   |   |       package.json
+|   |   |   |       
+|   |   |   +---bin
+|   |   |   |       nanoid.cjs
+|   |   |   |       
+|   |   |   +---non-secure
+|   |   |   |       index.cjs
+|   |   |   |       index.d.ts
+|   |   |   |       index.js
+|   |   |   |       package.json
+|   |   |   |       
+|   |   |   \---url-alphabet
+|   |   |           index.cjs
+|   |   |           index.js
+|   |   |           package.json
+|   |   |           
+|   |   +---oxlint
+|   |   |   |   configuration_schema.json
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   +---bin
+|   |   |   |       oxlint
+|   |   |   |       
+|   |   |   \---dist
+|   |   |           bindings.js
+|   |   |           cli.js
+|   |   |           index.d.ts
+|   |   |           index.js
+|   |   |           js_config.js
+|   |   |           lint.js
+|   |   |           plugins-dev.d.ts
+|   |   |           plugins-dev.js
+|   |   |           plugins.js
+|   |   |           utils.js
+|   |   |           workspace.js
+|   |   |           workspace2.js
+|   |   |           
+|   |   +---picocolors
+|   |   |       LICENSE
+|   |   |       package.json
+|   |   |       picocolors.browser.js
+|   |   |       picocolors.d.ts
+|   |   |       picocolors.js
+|   |   |       README.md
+|   |   |       types.d.ts
+|   |   |       
+|   |   +---picomatch
+|   |   |   |   index.js
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   posix.js
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---lib
+|   |   |           constants.js
+|   |   |           parse.js
+|   |   |           picomatch.js
+|   |   |           scan.js
+|   |   |           utils.js
+|   |   |           
+|   |   +---postcss
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---lib
+|   |   |           at-rule.d.ts
+|   |   |           at-rule.js
+|   |   |           comment.d.ts
+|   |   |           comment.js
+|   |   |           container.d.ts
+|   |   |           container.js
+|   |   |           css-syntax-error.d.ts
+|   |   |           css-syntax-error.js
+|   |   |           declaration.d.ts
+|   |   |           declaration.js
+|   |   |           document.d.ts
+|   |   |           document.js
+|   |   |           fromJSON.d.ts
+|   |   |           fromJSON.js
+|   |   |           input.d.ts
+|   |   |           input.js
+|   |   |           lazy-result.d.ts
+|   |   |           lazy-result.js
+|   |   |           list.d.ts
+|   |   |           list.js
+|   |   |           map-generator.js
+|   |   |           no-work-result.d.ts
+|   |   |           no-work-result.js
+|   |   |           node.d.ts
+|   |   |           node.js
+|   |   |           parse.d.ts
+|   |   |           parse.js
+|   |   |           parser.js
+|   |   |           postcss.d.mts
+|   |   |           postcss.d.ts
+|   |   |           postcss.js
+|   |   |           postcss.mjs
+|   |   |           previous-map.d.ts
+|   |   |           previous-map.js
+|   |   |           processor.d.ts
+|   |   |           processor.js
+|   |   |           result.d.ts
+|   |   |           result.js
+|   |   |           root.d.ts
+|   |   |           root.js
+|   |   |           rule.d.ts
+|   |   |           rule.js
+|   |   |           stringifier.d.ts
+|   |   |           stringifier.js
+|   |   |           stringify.d.ts
+|   |   |           stringify.js
+|   |   |           symbols.js
+|   |   |           terminal-highlight.js
+|   |   |           tokenize.js
+|   |   |           warn-once.js
+|   |   |           warning.d.ts
+|   |   |           warning.js
+|   |   |           
+|   |   +---react
+|   |   |   |   compiler-runtime.js
+|   |   |   |   index.js
+|   |   |   |   jsx-dev-runtime.js
+|   |   |   |   jsx-dev-runtime.react-server.js
+|   |   |   |   jsx-runtime.js
+|   |   |   |   jsx-runtime.react-server.js
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   react.react-server.js
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---cjs
+|   |   |           react-compiler-runtime.development.js
+|   |   |           react-compiler-runtime.production.js
+|   |   |           react-compiler-runtime.profiling.js
+|   |   |           react-jsx-dev-runtime.development.js
+|   |   |           react-jsx-dev-runtime.production.js
+|   |   |           react-jsx-dev-runtime.profiling.js
+|   |   |           react-jsx-dev-runtime.react-server.development.js
+|   |   |           react-jsx-dev-runtime.react-server.production.js
+|   |   |           react-jsx-runtime.development.js
+|   |   |           react-jsx-runtime.production.js
+|   |   |           react-jsx-runtime.profiling.js
+|   |   |           react-jsx-runtime.react-server.development.js
+|   |   |           react-jsx-runtime.react-server.production.js
+|   |   |           react.development.js
+|   |   |           react.production.js
+|   |   |           react.react-server.development.js
+|   |   |           react.react-server.production.js
+|   |   |           
+|   |   +---react-dom
+|   |   |   |   client.js
+|   |   |   |   client.react-server.js
+|   |   |   |   index.js
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   profiling.js
+|   |   |   |   profiling.react-server.js
+|   |   |   |   react-dom.react-server.js
+|   |   |   |   README.md
+|   |   |   |   server.browser.js
+|   |   |   |   server.bun.js
+|   |   |   |   server.edge.js
+|   |   |   |   server.js
+|   |   |   |   server.node.js
+|   |   |   |   server.react-server.js
+|   |   |   |   static.browser.js
+|   |   |   |   static.edge.js
+|   |   |   |   static.js
+|   |   |   |   static.node.js
+|   |   |   |   static.react-server.js
+|   |   |   |   test-utils.js
+|   |   |   |   
+|   |   |   \---cjs
+|   |   |           react-dom-client.development.js
+|   |   |           react-dom-client.production.js
+|   |   |           react-dom-profiling.development.js
+|   |   |           react-dom-profiling.profiling.js
+|   |   |           react-dom-server-legacy.browser.development.js
+|   |   |           react-dom-server-legacy.browser.production.js
+|   |   |           react-dom-server-legacy.node.development.js
+|   |   |           react-dom-server-legacy.node.production.js
+|   |   |           react-dom-server.browser.development.js
+|   |   |           react-dom-server.browser.production.js
+|   |   |           react-dom-server.bun.development.js
+|   |   |           react-dom-server.bun.production.js
+|   |   |           react-dom-server.edge.development.js
+|   |   |           react-dom-server.edge.production.js
+|   |   |           react-dom-server.node.development.js
+|   |   |           react-dom-server.node.production.js
+|   |   |           react-dom-test-utils.development.js
+|   |   |           react-dom-test-utils.production.js
+|   |   |           react-dom.development.js
+|   |   |           react-dom.production.js
+|   |   |           react-dom.react-server.development.js
+|   |   |           react-dom.react-server.production.js
+|   |   |           
+|   |   +---react-router
+|   |   |   |   CHANGELOG.md
+|   |   |   |   LICENSE.md
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   +---dist
+|   |   |   |   +---development
+|   |   |   |   |   |   browser-BR5QG7ZC.d.mts
+|   |   |   |   |   |   browser-eq4RgLsD.d.ts
+|   |   |   |   |   |   chunk-GR4NQCSD.js
+|   |   |   |   |   |   chunk-H4DAEOV7.mjs
+|   |   |   |   |   |   chunk-HQO5H5CC.js
+|   |   |   |   |   |   chunk-LVPI3KDG.js
+|   |   |   |   |   |   chunk-OB3PAWPO.mjs
+|   |   |   |   |   |   context-nqAapj74.d.mts
+|   |   |   |   |   |   data-CjO11-hU.d.ts
+|   |   |   |   |   |   data-DEjBmEfD.d.mts
+|   |   |   |   |   |   dom-export.d.mts
+|   |   |   |   |   |   dom-export.d.ts
+|   |   |   |   |   |   dom-export.js
+|   |   |   |   |   |   dom-export.mjs
+|   |   |   |   |   |   index-react-server-client-BjY-eKuf.d.ts
+|   |   |   |   |   |   index-react-server-client-K63fpMH4.d.mts
+|   |   |   |   |   |   index-react-server-client.d.mts
+|   |   |   |   |   |   index-react-server-client.d.ts
+|   |   |   |   |   |   index-react-server-client.js
+|   |   |   |   |   |   index-react-server-client.mjs
+|   |   |   |   |   |   index-react-server.d.mts
+|   |   |   |   |   |   index-react-server.d.ts
+|   |   |   |   |   |   index-react-server.js
+|   |   |   |   |   |   index-react-server.mjs
+|   |   |   |   |   |   index.d.mts
+|   |   |   |   |   |   index.d.ts
+|   |   |   |   |   |   index.js
+|   |   |   |   |   |   index.mjs
+|   |   |   |   |   |   instrumentation-B7w3_Eo9.d.ts
+|   |   |   |   |   |   register-CmkRspdl.d.mts
+|   |   |   |   |   |   register-roq_0qYo.d.ts
+|   |   |   |   |   |   
+|   |   |   |   |   \---lib
+|   |   |   |   |       \---types
+|   |   |   |   |               internal.d.mts
+|   |   |   |   |               internal.d.ts
+|   |   |   |   |               internal.js
+|   |   |   |   |               internal.mjs
+|   |   |   |   |               
+|   |   |   |   \---production
+|   |   |   |       |   browser-BR5QG7ZC.d.mts
+|   |   |   |       |   browser-eq4RgLsD.d.ts
+|   |   |   |       |   chunk-AOOKMWND.js
+|   |   |   |       |   chunk-G2MPF4YY.mjs
+|   |   |   |       |   chunk-Q34X6AWR.mjs
+|   |   |   |       |   chunk-QURBR4FZ.js
+|   |   |   |       |   chunk-YNGRUB6F.js
+|   |   |   |       |   context-nqAapj74.d.mts
+|   |   |   |       |   data-CjO11-hU.d.ts
+|   |   |   |       |   data-DEjBmEfD.d.mts
+|   |   |   |       |   dom-export.d.mts
+|   |   |   |       |   dom-export.d.ts
+|   |   |   |       |   dom-export.js
+|   |   |   |       |   dom-export.mjs
+|   |   |   |       |   index-react-server-client-BjY-eKuf.d.ts
+|   |   |   |       |   index-react-server-client-K63fpMH4.d.mts
+|   |   |   |       |   index-react-server-client.d.mts
+|   |   |   |       |   index-react-server-client.d.ts
+|   |   |   |       |   index-react-server-client.js
+|   |   |   |       |   index-react-server-client.mjs
+|   |   |   |       |   index-react-server.d.mts
+|   |   |   |       |   index-react-server.d.ts
+|   |   |   |       |   index-react-server.js
+|   |   |   |       |   index-react-server.mjs
+|   |   |   |       |   index.d.mts
+|   |   |   |       |   index.d.ts
+|   |   |   |       |   index.js
+|   |   |   |       |   index.mjs
+|   |   |   |       |   instrumentation-B7w3_Eo9.d.ts
+|   |   |   |       |   register-CmkRspdl.d.mts
+|   |   |   |       |   register-roq_0qYo.d.ts
+|   |   |   |       |   
+|   |   |   |       \---lib
+|   |   |   |           \---types
+|   |   |   |                   internal.d.mts
+|   |   |   |                   internal.d.ts
+|   |   |   |                   internal.js
+|   |   |   |                   internal.mjs
+|   |   |   |                   
+|   |   |   \---docs
+|   |   |       |   index.md
+|   |   |       |   
+|   |   |       +---explanation
+|   |   |       |       backend-for-frontend.md
+|   |   |       |       code-splitting.md
+|   |   |       |       concurrency.md
+|   |   |       |       form-vs-fetcher.md
+|   |   |       |       hot-module-replacement.md
+|   |   |       |       hydration.md
+|   |   |       |       index-query-param.md
+|   |   |       |       index.md
+|   |   |       |       lazy-route-discovery.md
+|   |   |       |       location.md
+|   |   |       |       progressive-enhancement.md
+|   |   |       |       race-conditions.md
+|   |   |       |       react-transitions.md
+|   |   |       |       route-matching.md
+|   |   |       |       server-client-execution.md
+|   |   |       |       sessions-and-cookies.md
+|   |   |       |       special-files.md
+|   |   |       |       state-management.md
+|   |   |       |       styling.md
+|   |   |       |       type-safety.md
+|   |   |       |       
+|   |   |       +---how-to
+|   |   |       |       accessibility.md
+|   |   |       |       client-data.md
+|   |   |       |       data-strategy.md
+|   |   |       |       error-boundary.md
+|   |   |       |       error-reporting.md
+|   |   |       |       fetchers.md
+|   |   |       |       file-route-conventions.md
+|   |   |       |       file-uploads.md
+|   |   |       |       form-validation.md
+|   |   |       |       headers.md
+|   |   |       |       index.md
+|   |   |       |       instrumentation.md
+|   |   |       |       meta.md
+|   |   |       |       middleware.md
+|   |   |       |       navigation-blocking.md
+|   |   |       |       optimize-revalidation.md
+|   |   |       |       pre-rendering.md
+|   |   |       |       presets.md
+|   |   |       |       react-server-components.md
+|   |   |       |       resource-routes.md
+|   |   |       |       route-module-type-safety.md
+|   |   |       |       search-params.md
+|   |   |       |       security.md
+|   |   |       |       server-bundles.md
+|   |   |       |       spa.md
+|   |   |       |       status.md
+|   |   |       |       suspense.md
+|   |   |       |       using-handle.md
+|   |   |       |       view-transitions.md
+|   |   |       |       webhook.md
+|   |   |       |       
+|   |   |       +---start
+|   |   |       |   |   index.md
+|   |   |       |   |   modes.md
+|   |   |       |   |   
+|   |   |       |   +---data
+|   |   |       |   |       actions.md
+|   |   |       |   |       custom.md
+|   |   |       |   |       data-loading.md
+|   |   |       |   |       index.md
+|   |   |       |   |       installation.md
+|   |   |       |   |       navigating.md
+|   |   |       |   |       pending-ui.md
+|   |   |       |   |       route-object.md
+|   |   |       |   |       routing.md
+|   |   |       |   |       testing.md
+|   |   |       |   |       
+|   |   |       |   +---declarative
+|   |   |       |   |       index.md
+|   |   |       |   |       installation.md
+|   |   |       |   |       navigating.md
+|   |   |       |   |       routing.md
+|   |   |       |   |       url-values.md
+|   |   |       |   |       
+|   |   |       |   \---framework
+|   |   |       |           actions.md
+|   |   |       |           data-loading.md
+|   |   |       |           deploying.md
+|   |   |       |           index.md
+|   |   |       |           installation.md
+|   |   |       |           navigating.md
+|   |   |       |           pending-ui.md
+|   |   |       |           rendering.md
+|   |   |       |           route-module.md
+|   |   |       |           routing.md
+|   |   |       |           testing.md
+|   |   |       |           
+|   |   |       \---upgrading
+|   |   |               component-routes.md
+|   |   |               future.md
+|   |   |               index.md
+|   |   |               remix.md
+|   |   |               router-provider.md
+|   |   |               v6.md
+|   |   |               
+|   |   +---react-router-dom
+|   |   |   |   LICENSE.md
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---dist
+|   |   |           index.d.mts
+|   |   |           index.d.ts
+|   |   |           index.js
+|   |   |           index.mjs
+|   |   |           
+|   |   +---rolldown
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   THIRD-PARTY-LICENSE
+|   |   |   |   
+|   |   |   +---bin
+|   |   |   |       cli.mjs
+|   |   |   |       
+|   |   |   \---dist
+|   |   |       |   cli.d.mts
+|   |   |       |   cli.mjs
+|   |   |       |   config.d.mts
+|   |   |       |   config.mjs
+|   |   |       |   experimental-default-runtime.mjs
+|   |   |       |   experimental-index.d.mts
+|   |   |       |   experimental-index.mjs
+|   |   |       |   experimental-runtime-base.mjs
+|   |   |       |   experimental-runtime-types.d.ts
+|   |   |       |   experimental-runtime.d.ts
+|   |   |       |   experimental-runtime.mjs
+|   |   |       |   filter-index.d.mts
+|   |   |       |   filter-index.mjs
+|   |   |       |   get-log-filter.d.mts
+|   |   |       |   get-log-filter.mjs
+|   |   |       |   index.d.mts
+|   |   |       |   index.mjs
+|   |   |       |   parallel-plugin-worker.d.mts
+|   |   |       |   parallel-plugin-worker.mjs
+|   |   |       |   parallel-plugin.d.mts
+|   |   |       |   parallel-plugin.mjs
+|   |   |       |   parse-ast-index.d.mts
+|   |   |       |   parse-ast-index.mjs
+|   |   |       |   plugins-index.d.mts
+|   |   |       |   plugins-index.mjs
+|   |   |       |   utils-index.d.mts
+|   |   |       |   utils-index.mjs
+|   |   |       |   
+|   |   |       \---shared
+|   |   |               binding-DmImI4pj.mjs
+|   |   |               binding-DZuNHVw4.d.mts
+|   |   |               bindingify-input-options-DrImMHKQ.mjs
+|   |   |               constructors-BM20b11r.d.mts
+|   |   |               constructors-mRbcbLyX.mjs
+|   |   |               create-bundler-option-CjAOgWvM.mjs
+|   |   |               define-config-Demdg3_4.mjs
+|   |   |               define-config-DNX0WekP.d.mts
+|   |   |               dist-DKbukT1H.mjs
+|   |   |               error-BP8lJHle.mjs
+|   |   |               get-log-filter-AjBknEEO.d.mts
+|   |   |               load-config-Dd8RvLlS.mjs
+|   |   |               logging-xuHO4mAy.d.mts
+|   |   |               logs-DmYCAKcW.mjs
+|   |   |               misc-DOSKtd97.mjs
+|   |   |               normalize-string-or-regex-Dm69lpQ-.mjs
+|   |   |               parse-CjRABVv7.mjs
+|   |   |               prompt-CH6TK0bC.mjs
+|   |   |               resolve-tsconfig-BlNGaH3Y.mjs
+|   |   |               rolldown-DfXO5K1m.mjs
+|   |   |               transform-CVse9_mH.d.mts
+|   |   |               watch-C94GTIM2.mjs
+|   |   |               
+|   |   +---scheduler
+|   |   |   |   index.js
+|   |   |   |   index.native.js
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   unstable_mock.js
+|   |   |   |   unstable_post_task.js
+|   |   |   |   
+|   |   |   \---cjs
+|   |   |           scheduler-unstable_mock.development.js
+|   |   |           scheduler-unstable_mock.production.js
+|   |   |           scheduler-unstable_post_task.development.js
+|   |   |           scheduler-unstable_post_task.production.js
+|   |   |           scheduler.development.js
+|   |   |           scheduler.native.development.js
+|   |   |           scheduler.native.production.js
+|   |   |           scheduler.production.js
+|   |   |           
+|   |   +---set-cookie-parser
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---lib
+|   |   |           set-cookie.js
+|   |   |           
+|   |   +---source-map-js
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   source-map.d.ts
+|   |   |   |   source-map.js
+|   |   |   |   
+|   |   |   \---lib
+|   |   |           array-set.js
+|   |   |           base64-vlq.js
+|   |   |           base64.js
+|   |   |           binary-search.js
+|   |   |           mapping-list.js
+|   |   |           quick-sort.js
+|   |   |           source-map-consumer.d.ts
+|   |   |           source-map-consumer.js
+|   |   |           source-map-generator.d.ts
+|   |   |           source-map-generator.js
+|   |   |           source-node.d.ts
+|   |   |           source-node.js
+|   |   |           util.js
+|   |   |           
+|   |   +---tinyglobby
+|   |   |   |   LICENSE
+|   |   |   |   package.json
+|   |   |   |   README.md
+|   |   |   |   
+|   |   |   \---dist
+|   |   |           index.cjs
+|   |   |           index.d.cts
+|   |   |           index.d.mts
+|   |   |           index.mjs
+|   |   |           
+|   |   \---vite
+|   |       |   client.d.ts
+|   |       |   LICENSE.md
+|   |       |   package.json
+|   |       |   README.md
+|   |       |   
+|   |       +---bin
+|   |       |       openChrome.js
+|   |       |       vite.js
+|   |       |       
+|   |       +---dist
+|   |       |   +---client
+|   |       |   |       bundledDevClient.mjs
+|   |       |   |       client.mjs
+|   |       |   |       env.mjs
+|   |       |   |       
+|   |       |   \---node
+|   |       |       |   cli.js
+|   |       |       |   index.d.ts
+|   |       |       |   index.js
+|   |       |       |   internal.d.ts
+|   |       |       |   internal.js
+|   |       |       |   module-runner.d.ts
+|   |       |       |   module-runner.js
+|   |       |       |   
+|   |       |       \---chunks
+|   |       |               build.js
+|   |       |               dist.js
+|   |       |               lib.js
+|   |       |               moduleRunnerTransport.d.ts
+|   |       |               node.js
+|   |       |               postcss-import.js
+|   |       |               
+|   |       +---misc
+|   |       |       false.js
+|   |       |       true.js
+|   |       |       
+|   |       \---types
+|   |           |   customEvent.d.ts
+|   |           |   hmrPayload.d.ts
+|   |           |   hot.d.ts
+|   |           |   import-meta.d.ts
+|   |           |   importGlob.d.ts
+|   |           |   importMeta.d.ts
+|   |           |   metadata.d.ts
+|   |           |   
+|   |           \---internal
+|   |                   cssPreprocessorOptions.d.ts
+|   |                   esbuildOptions.d.ts
+|   |                   lightningcssOptions.d.ts
+|   |                   rollupTypeCompat.d.ts
+|   |                   terserOptions.d.ts
+|   |                   
+|   +---public
+|   |   |   favicon.svg
+|   |   |   icons.svg
+|   |   |   logo.png
+|   |   |   
+|   |   +---astrology-engine
+|   |   |   |   laso-tuvi.bundle.html
+|   |   |   |   laso-tuvi.html
+|   |   |   |   
+|   |   |   +---css
+|   |   |   |       board.css
+|   |   |   |       board.css.enc
+|   |   |   |       controls.css
+|   |   |   |       controls.css.enc
+|   |   |   |       print.css
+|   |   |   |       print.css.enc
+|   |   |   |       theme.css
+|   |   |   |       theme.css.enc
+|   |   |   |       
+|   |   |   +---js
+|   |   |   |       app.js
+|   |   |   |       app.js.enc
+|   |   |   |       board-renderer.js
+|   |   |   |       board-renderer.js.enc
+|   |   |   |       constants.js
+|   |   |   |       constants.js.enc
+|   |   |   |       dpop.js
+|   |   |   |       export-engine.js
+|   |   |   |       export-engine.js.enc
+|   |   |   |       geometry.js
+|   |   |   |       geometry.js.enc
+|   |   |   |       ui-controller.js
+|   |   |   |       ui-controller.js.enc
+|   |   |   |       
+|   |   |   \---wasm
+|   |   |       |   e2ee_wasm.wasm
+|   |   |       |   
+|   |   |       \---wasm
+|   |   |               e2ee_wasm.wasm
+|   |   |               
+|   |   \---tarot-kieu
+|   |       |   boi-que-kieu.html
+|   |       |   que-giai.json
+|   |       |   
+|   |       \---cards
+|   |               que1.jpg
+|   |               que10.jpg
+|   |               que100.jpg
+|   |               que101.jpg
+|   |               que102.jpg
+|   |               que103.jpg
+|   |               que104.jpg
+|   |               que105.jpg
+|   |               que106.jpg
+|   |               que107.jpg
+|   |               que108.jpg
+|   |               que109.jpg
+|   |               que11.jpg
+|   |               que110.jpg
+|   |               que111.jpg
+|   |               que112.jpg
+|   |               que113.jpg
+|   |               que114.jpg
+|   |               que115.jpg
+|   |               que116.jpg
+|   |               que117.jpg
+|   |               que118.jpg
+|   |               que119.jpg
+|   |               que12.jpg
+|   |               que120.jpg
+|   |               que121.jpg
+|   |               que122.jpg
+|   |               que123.jpg
+|   |               que124.jpg
+|   |               que125.jpg
+|   |               que126.jpg
+|   |               que127.jpg
+|   |               que128.jpg
+|   |               que129.jpg
+|   |               que13.jpg
+|   |               que130.jpg
+|   |               que131.jpg
+|   |               que132.jpg
+|   |               que133.jpg
+|   |               que134.jpg
+|   |               que135.jpg
+|   |               que136.jpg
+|   |               que137.jpg
+|   |               que138.jpg
+|   |               que139.jpg
+|   |               que14.jpg
+|   |               que140.jpg
+|   |               que141.jpg
+|   |               que142.jpg
+|   |               que143.jpg
+|   |               que144.jpg
+|   |               que145.jpg
+|   |               que146.jpg
+|   |               que147.jpg
+|   |               que148.jpg
+|   |               que149.jpg
+|   |               que15.jpg
+|   |               que150.jpg
+|   |               que151.jpg
+|   |               que152.jpg
+|   |               que153.jpg
+|   |               que154.jpg
+|   |               que155.jpg
+|   |               que156.jpg
+|   |               que157.jpg
+|   |               que158.jpg
+|   |               que159.jpg
+|   |               que16.jpg
+|   |               que160.jpg
+|   |               que161.jpg
+|   |               que162.jpg
+|   |               que163.jpg
+|   |               que164.jpg
+|   |               que165.jpg
+|   |               que166.jpg
+|   |               que167.jpg
+|   |               que168.jpg
+|   |               que169.jpg
+|   |               que17.jpg
+|   |               que170.jpg
+|   |               que171.jpg
+|   |               que172.jpg
+|   |               que173.jpg
+|   |               que174.jpg
+|   |               que175.jpg
+|   |               que176.jpg
+|   |               que177.jpg
+|   |               que178.jpg
+|   |               que179.jpg
+|   |               que18.jpg
+|   |               que180.jpg
+|   |               que181.jpg
+|   |               que182.jpg
+|   |               que183.jpg
+|   |               que184.jpg
+|   |               que185.jpg
+|   |               que186.jpg
+|   |               que187.jpg
+|   |               que188.jpg
+|   |               que189.jpg
+|   |               que19.jpg
+|   |               que190.jpg
+|   |               que191.jpg
+|   |               que192.jpg
+|   |               que193.jpg
+|   |               que194.jpg
+|   |               que195.jpg
+|   |               que196.jpg
+|   |               que197.jpg
+|   |               que198.jpg
+|   |               que199.jpg
+|   |               que2.jpg
+|   |               que20.jpg
+|   |               que200.jpg
+|   |               que201.jpg
+|   |               que202.jpg
+|   |               que203.jpg
+|   |               que204.jpg
+|   |               que205.jpg
+|   |               que206.jpg
+|   |               que207.jpg
+|   |               que208.jpg
+|   |               que209.jpg
+|   |               que21.jpg
+|   |               que210.jpg
+|   |               que22.jpg
+|   |               que23.jpg
+|   |               que24.jpg
+|   |               que25.jpg
+|   |               que26.jpg
+|   |               que27.jpg
+|   |               que28.jpg
+|   |               que29.jpg
+|   |               que3.jpg
+|   |               que30.jpg
+|   |               que31.jpg
+|   |               que32.jpg
+|   |               que33.jpg
+|   |               que34.jpg
+|   |               que35.jpg
+|   |               que36.jpg
+|   |               que37.jpg
+|   |               que38.jpg
+|   |               que39.jpg
+|   |               que4.jpg
+|   |               que40.jpg
+|   |               que41.jpg
+|   |               que42.jpg
+|   |               que43.jpg
+|   |               que44.jpg
+|   |               que45.jpg
+|   |               que46.jpg
+|   |               que47.jpg
+|   |               que48.jpg
+|   |               que49.jpg
+|   |               que5.jpg
+|   |               que50.jpg
+|   |               que51.jpg
+|   |               que52.jpg
+|   |               que53.jpg
+|   |               que54.jpg
+|   |               que55.jpg
+|   |               que56.jpg
+|   |               que57.jpg
+|   |               que58.jpg
+|   |               que59.jpg
+|   |               que6.jpg
+|   |               que60.jpg
+|   |               que61.jpg
+|   |               que62.jpg
+|   |               que63.jpg
+|   |               que64.jpg
+|   |               que65.jpg
+|   |               que66.jpg
+|   |               que67.jpg
+|   |               que68.jpg
+|   |               que69.jpg
+|   |               que7.jpg
+|   |               que70.jpg
+|   |               que71.jpg
+|   |               que72.jpg
+|   |               que73.jpg
+|   |               que74.jpg
+|   |               que75.jpg
+|   |               que76.jpg
+|   |               que77.jpg
+|   |               que78.jpg
+|   |               que79.jpg
+|   |               que8.jpg
+|   |               que80.jpg
+|   |               que81.jpg
+|   |               que82.jpg
+|   |               que83.jpg
+|   |               que84.jpg
+|   |               que85.jpg
+|   |               que86.jpg
+|   |               que87.jpg
+|   |               que88.jpg
+|   |               que89.jpg
+|   |               que9.jpg
+|   |               que90.jpg
+|   |               que91.jpg
+|   |               que92.jpg
+|   |               que93.jpg
+|   |               que94.jpg
+|   |               que95.jpg
+|   |               que96.jpg
+|   |               que97.jpg
+|   |               que98.jpg
+|   |               que99.jpg
+|   |               
+|   \---src
+|       |   main.jsx
+|       |   
+|       +---app
+|       |       App.css
+|       |       App.jsx
+|       |       index.css
+|       |       
+|       +---features
+|       |   +---admin-dashboard
+|       |   |       AdminModal.css
+|       |   |       AdminModal.jsx
+|       |   |       
+|       |   +---astrology
+|       |   |       KhamThienTuViThienTuong.css
+|       |   |       KhamThienTuViThienTuong.jsx
+|       |   |       LaSoTuVi.css
+|       |   |       LaSoTuVi.jsx
+|       |   |       
+|       |   +---auth
+|       |   |       AuthModal.css
+|       |   |       AuthModal.jsx
+|       |   |       
+|       |   +---feng-shui
+|       |   +---lunar-calendar
+|       |   |       LichVanSu.css
+|       |   |       LichVanSu.jsx
+|       |   |       
+|       |   +---numerology
+|       |   +---qimen-dunjia
+|       |   \---tarot-kieu
+|       |           BoiKieu.css
+|       |           BoiKieu.jsx
+|       |           
+|       +---pages
+|       |   +---articles
+|       |   |       ArticleContent.jsx
+|       |   |       CategoryPage.css
+|       |   |       CategoryPage.jsx
+|       |   |       
+|       |   +---contact
+|       |   |       Contact.css
+|       |   |       Contact.jsx
+|       |   |       
+|       |   +---courses
+|       |   +---forum
+|       |   +---home
+|       |   +---shop
+|       |   |       Shop.jsx
+|       |   |       
+|       |   \---tools
+|       \---shared
+|           +---api
+|           +---assets
+|           |       ha-logo.png
+|           |       ICIEL-Lordish-Regular.otf
+|           |       MTD-Avelina.otf
+|           |       UVN-HOA-KY.ttf
+|           |       
+|           +---ui
+|           |       Footer.jsx
+|           |       Header.jsx
+|           |       Navbar.jsx
+|           |       QuickInsights.jsx
+|           |       RelatedArticles.jsx
+|           |       Sidebar.jsx
+|           |       TopBar.css
+|           |       TopBar.jsx
+|           |       UnderDevelopment.css
+|           |       UnderDevelopment.jsx
+|           |       
+|           \---utils
+|                   tuviEngine.js
+|                   
++---git
+|   \---hooks
++---packages
++---releases
+|   +---archives
+|   +---dist
+|   |   |   boi-que-kieu.html
+|   |   |   favicon.svg
+|   |   |   icons.svg
+|   |   |   index.html
+|   |   |   logo.png
+|   |   |   
+|   |   +---assets
+|   |   |       ha-logo-t_amG-OX.png
+|   |   |       ICIEL-Lordish-Regular-DTtnlqS6.otf
+|   |   |       index-3_eGN8NP.js
+|   |   |       index-CkCw4inP.css
+|   |   |       MTD-Avelina-CsOCw8mV.otf
+|   |   |       UVN-HOA-KY-D7QNlaMi.ttf
+|   |   |       
+|   |   +---astrology-engine
+|   |   |   |   laso-tuvi.bundle.html
+|   |   |   |   laso-tuvi.html
+|   |   |   |   
+|   |   |   +---css
+|   |   |   |       board.css
+|   |   |   |       board.css.enc
+|   |   |   |       controls.css
+|   |   |   |       controls.css.enc
+|   |   |   |       print.css
+|   |   |   |       print.css.enc
+|   |   |   |       theme.css
+|   |   |   |       theme.css.enc
+|   |   |   |       
+|   |   |   +---js
+|   |   |   |       app.js
+|   |   |   |       app.js.enc
+|   |   |   |       board-renderer.js
+|   |   |   |       board-renderer.js.enc
+|   |   |   |       constants.js
+|   |   |   |       constants.js.enc
+|   |   |   |       dpop.js
+|   |   |   |       export-engine.js
+|   |   |   |       export-engine.js.enc
+|   |   |   |       geometry.js
+|   |   |   |       geometry.js.enc
+|   |   |   |       ui-controller.js
+|   |   |   |       ui-controller.js.enc
+|   |   |   |       
+|   |   |   \---wasm
+|   |   |       |   e2ee_wasm.wasm
+|   |   |       |   
+|   |   |       \---wasm
+|   |   |               e2ee_wasm.wasm
+|   |   |               
+|   |   \---boi-kieu
+|   |       |   boi-que-kieu.html
+|   |       |   que-giai.json
+|   |       |   
+|   |       \---cards
+|   |               que1.jpg
+|   |               que10.jpg
+|   |               que100.jpg
+|   |               que101.jpg
+|   |               que102.jpg
+|   |               que103.jpg
+|   |               que104.jpg
+|   |               que105.jpg
+|   |               que106.jpg
+|   |               que107.jpg
+|   |               que108.jpg
+|   |               que109.jpg
+|   |               que11.jpg
+|   |               que110.jpg
+|   |               que111.jpg
+|   |               que112.jpg
+|   |               que113.jpg
+|   |               que114.jpg
+|   |               que115.jpg
+|   |               que116.jpg
+|   |               que117.jpg
+|   |               que118.jpg
+|   |               que119.jpg
+|   |               que12.jpg
+|   |               que120.jpg
+|   |               que121.jpg
+|   |               que122.jpg
+|   |               que123.jpg
+|   |               que124.jpg
+|   |               que125.jpg
+|   |               que126.jpg
+|   |               que127.jpg
+|   |               que128.jpg
+|   |               que129.jpg
+|   |               que13.jpg
+|   |               que130.jpg
+|   |               que131.jpg
+|   |               que132.jpg
+|   |               que133.jpg
+|   |               que134.jpg
+|   |               que135.jpg
+|   |               que136.jpg
+|   |               que137.jpg
+|   |               que138.jpg
+|   |               que139.jpg
+|   |               que14.jpg
+|   |               que140.jpg
+|   |               que141.jpg
+|   |               que142.jpg
+|   |               que143.jpg
+|   |               que144.jpg
+|   |               que145.jpg
+|   |               que146.jpg
+|   |               que147.jpg
+|   |               que148.jpg
+|   |               que149.jpg
+|   |               que15.jpg
+|   |               que150.jpg
+|   |               que151.jpg
+|   |               que152.jpg
+|   |               que153.jpg
+|   |               que154.jpg
+|   |               que155.jpg
+|   |               que156.jpg
+|   |               que157.jpg
+|   |               que158.jpg
+|   |               que159.jpg
+|   |               que16.jpg
+|   |               que160.jpg
+|   |               que161.jpg
+|   |               que162.jpg
+|   |               que163.jpg
+|   |               que164.jpg
+|   |               que165.jpg
+|   |               que166.jpg
+|   |               que167.jpg
+|   |               que168.jpg
+|   |               que169.jpg
+|   |               que17.jpg
+|   |               que170.jpg
+|   |               que171.jpg
+|   |               que172.jpg
+|   |               que173.jpg
+|   |               que174.jpg
+|   |               que175.jpg
+|   |               que176.jpg
+|   |               que177.jpg
+|   |               que178.jpg
+|   |               que179.jpg
+|   |               que18.jpg
+|   |               que180.jpg
+|   |               que181.jpg
+|   |               que182.jpg
+|   |               que183.jpg
+|   |               que184.jpg
+|   |               que185.jpg
+|   |               que186.jpg
+|   |               que187.jpg
+|   |               que188.jpg
+|   |               que189.jpg
+|   |               que19.jpg
+|   |               que190.jpg
+|   |               que191.jpg
+|   |               que192.jpg
+|   |               que193.jpg
+|   |               que194.jpg
+|   |               que195.jpg
+|   |               que196.jpg
+|   |               que197.jpg
+|   |               que198.jpg
+|   |               que199.jpg
+|   |               que2.jpg
+|   |               que20.jpg
+|   |               que200.jpg
+|   |               que201.jpg
+|   |               que202.jpg
+|   |               que203.jpg
+|   |               que204.jpg
+|   |               que205.jpg
+|   |               que206.jpg
+|   |               que207.jpg
+|   |               que208.jpg
+|   |               que209.jpg
+|   |               que21.jpg
+|   |               que210.jpg
+|   |               que22.jpg
+|   |               que23.jpg
+|   |               que24.jpg
+|   |               que25.jpg
+|   |               que26.jpg
+|   |               que27.jpg
+|   |               que28.jpg
+|   |               que29.jpg
+|   |               que3.jpg
+|   |               que30.jpg
+|   |               que31.jpg
+|   |               que32.jpg
+|   |               que33.jpg
+|   |               que34.jpg
+|   |               que35.jpg
+|   |               que36.jpg
+|   |               que37.jpg
+|   |               que38.jpg
+|   |               que39.jpg
+|   |               que4.jpg
+|   |               que40.jpg
+|   |               que41.jpg
+|   |               que42.jpg
+|   |               que43.jpg
+|   |               que44.jpg
+|   |               que45.jpg
+|   |               que46.jpg
+|   |               que47.jpg
+|   |               que48.jpg
+|   |               que49.jpg
+|   |               que5.jpg
+|   |               que50.jpg
+|   |               que51.jpg
+|   |               que52.jpg
+|   |               que53.jpg
+|   |               que54.jpg
+|   |               que55.jpg
+|   |               que56.jpg
+|   |               que57.jpg
+|   |               que58.jpg
+|   |               que59.jpg
+|   |               que6.jpg
+|   |               que60.jpg
+|   |               que61.jpg
+|   |               que62.jpg
+|   |               que63.jpg
+|   |               que64.jpg
+|   |               que65.jpg
+|   |               que66.jpg
+|   |               que67.jpg
+|   |               que68.jpg
+|   |               que69.jpg
+|   |               que7.jpg
+|   |               que70.jpg
+|   |               que71.jpg
+|   |               que72.jpg
+|   |               que73.jpg
+|   |               que74.jpg
+|   |               que75.jpg
+|   |               que76.jpg
+|   |               que77.jpg
+|   |               que78.jpg
+|   |               que79.jpg
+|   |               que8.jpg
+|   |               que80.jpg
+|   |               que81.jpg
+|   |               que82.jpg
+|   |               que83.jpg
+|   |               que84.jpg
+|   |               que85.jpg
+|   |               que86.jpg
+|   |               que87.jpg
+|   |               que88.jpg
+|   |               que89.jpg
+|   |               que9.jpg
+|   |               que90.jpg
+|   |               que91.jpg
+|   |               que92.jpg
+|   |               que93.jpg
+|   |               que94.jpg
+|   |               que95.jpg
+|   |               que96.jpg
+|   |               que97.jpg
+|   |               que98.jpg
+|   |               que99.jpg
+|   |               
+|   \---notes
++---security
+|   +---devsecops
+|   |       csp_headers.conf
+|   |       generate_csp.py
+|   |       package_wasm.py
+|   |       README.md
+|   |       vault_secrets.py
+|   |       wasm_manifest.json
+|   |       
+|   +---keys-and-secrets
+|   |       client_secret_714306691526-iq2uodqu69fdcdalibn2ipgia2t4lqvs.apps.googleusercontent.com.json
+|   |       firebase-service-account.json
+|   |       tuvi_ui_protected.enc
+|   |       
+|   \---policies
+|           Deployment_Security_Guide.md
+|           
+\---testing
+    +---e2e
+    +---load-tests
+    \---unit-tests
+            test_backend_api.py
+            test_engine.py
+            

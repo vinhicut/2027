@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  tuvi-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tuvi_hongan_app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+      - CORS_ORIGIN=*

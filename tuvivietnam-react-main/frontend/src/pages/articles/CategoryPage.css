@@ -1,0 +1,267 @@
+
+.category-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 16px 40px;
+}
+
+.cat-breadcrumb {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.cat-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   LINK / CARD
+========================= */
+
+.cat-card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #111;
+
+  /* Quan trọng khi dùng Link */
+  text-decoration: none;
+  color: inherit;
+}
+
+.cat-card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.cat-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.cat-hero-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.cat-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.cat-card:hover img {
+  transform: scale(1.05);
+}
+
+
+/* =========================
+   CARD SIZE
+========================= */
+
+.cat-card--large {
+  min-height: 360px;
+}
+
+.cat-card--sm {
+  min-height: 170px;
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.cat-card-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 14px 16px;
+
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.85)
+  );
+
+  color: #fff;
+}
+
+.cat-card-overlay h2 {
+  font-size: 20px;
+  margin: 6px 0 4px;
+}
+
+.cat-card-overlay h3 {
+  font-size: 13px;
+  margin: 4px 0 0;
+  line-height: 1.35;
+}
+
+
+/* =========================
+   TAG
+========================= */
+
+.cat-tag {
+  display: inline-block;
+  background: #1a1a1a;
+  color: #fff;
+
+  font-size: 10px;
+  padding: 2px 8px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   META
+========================= */
+
+.cat-meta {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+.cat-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+}
+
+
+/* =========================
+   POST GRID
+========================= */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+
+/* =========================
+   GRID CARD
+========================= */
+
+.cat-card--grid {
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.cat-card--grid img {
+  height: 180px;
+}
+
+.cat-card-body {
+  padding: 12px 14px 16px;
+  color: #222;
+}
+
+.cat-card-body h3 {
+  font-size: 15px;
+  margin: 8px 0 6px;
+  line-height: 1.4;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.cat-sidebar {
+  min-width: 0;
+}
+
+.cat-sidebar h4 {
+  font-size: 15px;
+  margin: 0 0 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #222;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .cat-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cat-body {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .category-page {
+    padding: 10px 12px 30px;
+  }
+
+  .cat-title {
+    font-size: 23px;
+  }
+
+  .cat-hero-side {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .cat-card--large {
+    min-height: 280px;
+  }
+
+  .cat-card--sm {
+    min-height: 200px;
+  }
+
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cat-card--grid img {
+    height: 200px;
+  }
+
+}

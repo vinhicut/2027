@@ -1,0 +1,133 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 24px;
+  background: #0f172a;
+  color: #94a3b8;
+  font-size: 12.5px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.top-bar-left .date {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top-bar-user-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #d97706;
+}
+
+.user-greeting-name {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.role-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.role-tag.manager {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+
+.role-tag.user {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.btn-open-admin {
+  background: #d97706;
+  color: #ffffff !important;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-open-admin:hover {
+  background: #b45309;
+}
+
+.btn-topbar-logout {
+  color: #cbd5e1 !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-topbar-logout:hover {
+  color: #ef4444 !important;
+  text-decoration: underline;
+}
+
+.btn-topbar-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-topbar-login:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-left: 8px;
+}
+
+.social-icons a {
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .top-bar-left {
+    display: none;
+  }
+  .top-bar {
+    justify-content: flex-end;
+    padding: 6px 12px;
+  }
+}

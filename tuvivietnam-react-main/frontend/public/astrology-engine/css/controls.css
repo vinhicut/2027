@@ -1,0 +1,378 @@
+/* KHU VỰC BẢNG ĐIỀU KHIỂN NHẬP LIỆU (CỘT PHẢI) */
+        .input-panel {
+            width: 410px;
+            flex: 0 0 410px;
+            background: #ffffff;
+            padding: 18px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 20;
+            overflow: visible;
+            height: fit-content;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .form-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #334155;
+            gap: 10px;
+        }
+
+        .form-row > label {
+            width: 86px;
+            font-weight: 600;
+            color: #475569;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        .panel-footer-note {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.5;
+            padding: 4px 6px;
+            white-space: nowrap;
+        }
+
+        .field-group {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 34px;
+            padding: 0 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font-main);
+            outline: none;
+            background: #ffffff;
+            color: #0f172a;
+            transition: border-color 0.15s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0f172a;
+        }
+
+        select {
+            height: 34px;
+            padding: 0 15px 0 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: var(--font-main);
+            background-color: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.15s;
+            text-align: center;
+            text-align-last: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+        }
+
+        select option {
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: var(--font-main);
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        select:focus {
+            border-color: #802722;
+        }
+
+        /* SEGMENTED CONTROL (ĐỐI XỨNG PHẲNG) */
+        .segmented-control {
+            display: flex;
+            width: 100%;
+            background: #e2e8f0;
+            border-radius: 4px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .segment-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .segment-btn input[type="radio"] {
+            display: none;
+        }
+
+        .segment-btn span {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            border-radius: 3px;
+            transition: all 0.15s;
+        }
+
+        .segment-btn input[type="radio"]:checked + span {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .check-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 12.5px;
+            color: #334155;
+            user-select: none;
+        }
+
+        .check-label input[type="checkbox"] {
+            accent-color: #802722;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        /* DÒNG NGÀY THÁNG NĂM SINH - ĐỐI XỨNG THẲNG HÀNG */
+        .date-row-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .date-row-group select#txtDay,
+        .date-row-group select#txtMonth {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        .date-row-group select#txtYear {
+            flex: 1.45;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        /* DÒNG GIỜ SINH - ĐỐI XỨNG CÂN ĐỐI */
+        .time-row-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .time-row-group select {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        /* NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) */
+        .btn-generate-tuvi {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 42px;
+            padding: 0 16px;
+            margin: 2px 0;
+            background-color: #802722;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 800;
+            font-family: var(--font-main);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(128, 39, 34, 0.28);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .btn-generate-tuvi:hover {
+            background-color: #9a2e29;
+            box-shadow: 0 6px 18px rgba(128, 39, 34, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .btn-generate-tuvi:active {
+            background-color: #6e201b;
+            box-shadow: 0 2px 8px rgba(128, 39, 34, 0.25);
+            transform: translateY(0);
+        }
+
+        .btn-generate-tuvi .btn-play-icon {
+            flex-shrink: 0;
+            width: 15px;
+            height: 15px;
+        }
+
+        /* PHẦN XUẤT BẢN - TỐI GIẢN & ĐỐI XỨNG */
+        .export-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .export-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .btn-export {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-align: center;
+            transition: all 0.15s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .export-section {
+                background: #ffffff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            }
+
+            .export-actions {
+                flex-direction: row;
+            }
+
+            .btn-export {
+                flex: 1 1 0;
+            }
+        }
+
+        .btn-export:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Nút CMYK: Nền tối thanh lịch */
+        .btn-cmyk {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-cmyk:hover:not(:disabled) {
+            background: #1e293b;
+            border-color: #1e293b;
+        }
+
+        /* Nút Đen Trắng: Nền Slate viền xám */
+        .btn-bw {
+            background: #ffffff;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+
+        .btn-bw:hover:not(:disabled) {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+        /* Nút Ảnh: Nền Slate viền xám đồng nhất */
+        .btn-img4k {
+            background: #ffffff;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+
+        .btn-img4k:hover:not(:disabled) {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+

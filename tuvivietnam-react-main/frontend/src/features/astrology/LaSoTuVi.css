@@ -1,0 +1,31 @@
+.laso-unified-page {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0;
+  min-height: auto;
+  height: auto;
+}
+
+.laso-unified-wrap {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+  min-height: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.laso-unified-iframe {
+  width: 100%;
+  border: none;
+  display: block;
+  background: transparent;
+  overflow: hidden;
+  transition: height 0.2s ease-out;
+  min-height: auto;
+}

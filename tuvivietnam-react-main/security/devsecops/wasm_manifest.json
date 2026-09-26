@@ -1,0 +1,8 @@
+{
+    "files": {
+        "e2ee_wasm.wasm": {
+            "sha256": "bb3ba3a927546d8e5776f21aff17338d14b588c3c3e6f9fd76a32dd9d3fab706",
+            "path": "frontend\\dist\\wasm\\e2ee_wasm.wasm"
+        }
+    }
+}

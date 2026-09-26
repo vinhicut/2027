@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <title>Tử Vi Hồng Ân - Lá Số Tử Vi Đẩu Số</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cinzel:wght@600;700;800&family=Noto+Serif:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/theme.css?v=2409">
+    <link rel="stylesheet" href="css/board.css?v=2409">
+    <link rel="stylesheet" href="css/controls.css?v=2409">
+    <link rel="stylesheet" href="css/print.css?v=2409">
+</head>
+
+<body>
+    <!-- KHU VỰC HIỂN THỊ LÁ SỐ (CỘT TRÁI) -->
+    <div class="output-panel">
+        <div class="tuvi-board-wrapper">
+            <!-- LỚP PHỦ MỜ YÊU CẦU LẬP LÁ SỐ (STALE OVERLAY) -->
+            <div id="tuviStaleOverlay" class="tuvi-stale-overlay hidden" onclick="generateTuVi()" title="Bấm vào đây để lập lá số">
+                <div class="tuvi-stale-notice" onclick="generateTuVi()">
+                    <svg class="stale-play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <span>BẤM NÚT LẬP LÁ SỐ ĐỂ XEM</span>
+                </div>
+            </div>
+            <!-- LỚP PHỦ TẢI LÁ SỐ (LOADING OVERLAY) -->
+            <div id="tuviLoadingOverlay" class="tuvi-loading-overlay">
+                <div class="tuvi-spinner-box">
+                    <div class="tuvi-dual-ring">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tuvi-board" id="tuviBoard">
+                <!-- THIÊN BÀN TRUNG TÂM -->
+                <div id="thien-ban">
+                    <!-- TAM GIÁC NÉT ĐỨT MỆNH TÀI QUAN -->
+                    <svg id="triangleMenhTaiQuan" class="menh-tai-quan-svg" viewBox="0 0 1000 1000"
+                        preserveAspectRatio="none">
+                        <polygon id="polyMenhTaiQuan" points="" />
+                    </svg>
+
+                    <div class="tb-watermark-bg"></div>
+
+                    <div class="tb-header">
+                        <div class="tb-brand-title">TỬ VI HỒNG ÂN</div>
+                        <div class="tb-header-sub-highlight">Luận giải đầy đủ 199k tại</div>
+                        <div class="tb-header-domain">www.tuvihongan.com</div>
+                        <div class="tb-header-sub">Đặt lịch luận giải riêng với thầy qua Zalo</div>
+                        <div class="tb-header-phone">0924.616.199</div>
+                    </div>
+
+                    <!-- KHUNG THÔNG TIN THIÊN BÀN -->
+                    <div class="tb-info-container">
+                        <div class="tb-body-wrap tb-content">
+                            <!-- Họ tên -->
+                            <div class="tb-grid-name">
+                                <span class="tb-lbl">Họ tên</span><span class="tb-colon">:</span>
+                                <span class="tb-val-name tb-span-val" id="tb-name">Group FB Tử Vi Việt Nam</span>
+                            </div>
+
+                            <!-- Thời gian sinh -->
+                            <div class="tb-grid-birth">
+                                <span class="tb-lbl">Năm sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-year">2008</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-year">Mậu Tí</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-year-tag">(N.2008)</span>
+                                </div>
+
+                                <span class="tb-lbl">Tháng sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-month">08</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-month">Canh Thân</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-month-tag">(Th.7)</span>
+                                </div>
+
+                                <span class="tb-lbl">Ngày sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-day">08</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-day">Canh Thìn</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-day-tag">(Ng.8)</span>
+                                </div>
+
+                                <span class="tb-lbl">Giờ sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-hour">10:30</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-hour">Tân Tỵ</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-hour-tag">(G.10:30)</span>
+                                </div>
+                            </div>
+
+                            <!-- Năm xem hạn -->
+                            <div class="tb-grid-watch">
+                                <span class="tb-lbl">Năm xem</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-watch">2026</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-watch">Bính Ngọ</span>
+                                    <span class="tb-age-text" id="tb-tuoi-mu">19 tuổi</span>
+                                </div>
+                            </div>
+
+                            <!-- Bản mệnh & Cục -->
+                            <div class="tb-grid-meta">
+                                <span class="tb-lbl">Âm Dương</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-am-duong">Dương Nam</span>
+                                <span class="tb-lbl">Bản Mệnh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-menh">Tích Lịch Hỏa</span>
+                                <span class="tb-lbl">Cục</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-cuc">Thủy nhị cục</span>
+                                <span class="tb-lbl">Chủ Mệnh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-chu-menh">Văn Khúc</span>
+                                <span class="tb-lbl">Chủ Thân</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-chu-than">Linh Tinh</span>
+                            </div>
+
+                            <!-- Mệnh lý -->
+                            <div class="tb-grid-menhly">
+                                <span class="tb-lbl">Mệnh lý</span><span class="tb-colon">:</span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-am-duong-ly">Âm Dương nghịch lý</span>
+                                <span></span><span></span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-cuc-menh-ly">Cục khắc Mệnh</span>
+                                <span></span><span></span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-than-cu">Thân cư Thê</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÃ ĐỊNH DANH WATERMARK THIÊN BÀN -->
+                    <div id="tb-id-code" class="tb-id-watermark"></div>
+                </div>
+
+                <!-- HUY HIỆU TUẦN VÀ TRIỆT -->
+                <div id="badgeTuan" class="badge-tuan-triet badge-tuan">Tuần</div>
+                <div id="badgeTriet" class="badge-tuan-triet badge-triet">Triệt</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BẢNG ĐIỀU KHIỂN NHẬP LIỆU (CỘT PHẢI) -->
+    <div class="input-panel">
+        <div class="panel-header">
+            <div class="panel-title">LẬP LÁ SỐ TỬ VI</div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Thông tin</div>
+            <div class="form-row">
+                <label for="txtName">Họ tên</label>
+                <div class="field-group">
+                    <input type="text" id="txtName" value="www.tuvihongan.com" placeholder="Họ và tên">
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Giới tính</label>
+                <div class="field-group">
+                    <div class="segmented-control">
+                        <label class="segment-btn"><input type="radio" name="gender" value="Nam"
+                                checked><span>Nam</span></label>
+                        <label class="segment-btn"><input type="radio" name="gender" value="Nữ"><span>Nữ</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Lịch</label>
+                <div class="field-group">
+                    <div class="segmented-control">
+                        <label class="segment-btn"><input type="radio" name="calendar" value="solar" checked
+                                onchange="toggleCalendarType()"><span>Dương lịch</span></label>
+                        <label class="segment-btn"><input type="radio" name="calendar" value="lunar"
+                                onchange="toggleCalendarType()"><span>Âm lịch</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" id="rowLeapMonth" style="display: none;">
+                <label>Nhuận</label>
+                <div class="field-group">
+                    <label class="check-label"><input type="checkbox" id="chkIsLeap"><span>Tháng nhuận</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Thời gian</div>
+            <div class="form-row">
+                <label>Ngày sinh</label>
+                <div class="date-row-group">
+                    <select id="txtDay" title="Ngày"></select>
+                    <select id="txtMonth" title="Tháng"></select>
+                    <select id="txtYear" title="Năm"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Giờ sinh</label>
+                <div class="time-row-group">
+                    <select id="txtHour" title="Giờ"></select>
+                    <select id="txtMinute" title="Phút"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="txtLimitYear">Năm xem hạn</label>
+                <div class="field-group">
+                    <select id="txtLimitYear" style="width: 100%;"></select>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
+        <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
+            <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+            </svg>
+            <span>LẬP LÁ SỐ</span>
+        </button>
+
+        <!-- KHU VỰC LƯU LÁ SỐ -->
+        <div class="form-section export-section">
+            <div class="section-title">Lưu lá số dưới dạng:</div>
+            <div class="export-actions">
+                <button type="button" class="btn-export btn-cmyk" id="btnExportCmyk" onclick="exportPdfCmyk()">PDF
+                    Màu</button>
+                <button type="button" class="btn-export btn-bw" id="btnExportBw" onclick="exportPdfGrayscale()">PDF Đen
+                    Trắng</button>
+                <button type="button" class="btn-export btn-img4k" id="btnExportImg" onclick="exportImage4K()">Ảnh</button>
+            </div>
+        </div>
+
+        <div class="panel-footer-note">An sao theo Tử Vi Đẩu Số Tân Biên 1956</div>
+    </div>
+
+    <!-- CÁC MODULE JAVASCRIPT -->
+    <script src="js/dpop.js?v=2409"></script>
+    <script src="js/constants.js?v=2409"></script>
+    <script src="js/geometry.js?v=2409"></script>
+    <script src="js/board-renderer.js?v=2409"></script>
+    <script src="js/ui-controller.js?v=2409"></script>
+    <script src="js/export-engine.js?v=2409"></script>
+    <script src="js/app.js?v=2409"></script>
+</body>
+
+</html>

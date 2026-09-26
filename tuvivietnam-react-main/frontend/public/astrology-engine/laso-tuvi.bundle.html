@@ -1,0 +1,3543 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <title>Tử Vi Hồng Ân - Lá Số Tử Vi Đẩu Số</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Cinzel:wght@600;700;800&family=Noto+Serif:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>/* INLINED: css/theme.css */
+:root {
+    --font-main: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-serif: 'Noto Serif', 'Times New Roman', Georgia, serif;
+    --kim: #334155;
+    --moc: #166534;
+    --thuy: #004b93;
+    --hoa: #b91c1c;
+    --tho: #92400e;
+    --blue-title: #172554;
+    --border-color: #0f172a;
+    --border-grid: #334155;
+    --bg-body: #f1f5f9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-style: normal !important;
+}
+
+html, body {
+    overflow: visible;
+    background-color: transparent;
+    font-family: var(--font-main);
+    color: #1e293b;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 8px 0 24px 0;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Ngũ hành màu sắc */
+.kim { color: var(--kim) !important; }
+.moc { color: var(--moc) !important; }
+.thuy { color: var(--thuy) !important; }
+.hoa { color: var(--hoa) !important; }
+.tho { color: var(--tho) !important; }
+
+/* HIỆU ỨNG TẠO ĐỘ TƯƠNG PHẢN RÕ NÉT CHO CHỮ TRÊN NỀN TAM GIÁC */
+.high-contrast-text {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff;
+}
+
+</style>
+    <style>/* INLINED: css/board.css */
+/* KHU VỰC HIỂN THỊ LÁ SỐ (CỘT TRÁI) */
+.output-panel {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    overflow: visible;
+}
+
+/* KHUNG LÁ SỐ A4 STANDARD TỶ LỆ 100% */
+.tuvi-board-wrapper {
+    position: relative;
+    background: var(--border-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    padding: 0;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    box-sizing: content-box;
+    transform-origin: top left;
+}
+
+/* LỚP PHỦ MỜ YÊU CẦU LẬP LÁ SỐ (STALE OVERLAY WITH DYNAMIC ANIMATIONS & INTERACTION) */
+.tuvi-stale-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    background-color: rgba(15, 23, 42, 0.45);
+    z-index: 12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    visibility: visible;
+    cursor: pointer;
+    animation: fadeInOverlay 0.35s ease-out forwards;
+}
+
+.tuvi-stale-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    display: none;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+}
+
+@keyframes scaleInNotice {
+    from {
+        opacity: 0;
+        transform: scale(0.88) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.tuvi-stale-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 28px;
+    background: rgba(15, 23, 42, 0.90);
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    user-select: none;
+    max-width: 90%;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    animation: scaleInNotice 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.tuvi-stale-notice:hover {
+    background: #802722;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 16px 40px rgba(128, 39, 34, 0.45);
+    transform: scale(1.03);
+}
+
+.tuvi-stale-notice:active {
+    transform: scale(0.98);
+}
+
+.tuvi-stale-notice .stale-play-icon {
+    flex-shrink: 0;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.tuvi-stale-notice:hover .stale-play-icon {
+    transform: translateX(2px) scale(1.1);
+}
+
+/* ĐIỀU CHỈNH ĐÁP ỨNG TRÊN MỌI KÍCH THƯỚC MÀN HÌNH */
+@media (max-width: 1024px) {
+    body {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .output-panel {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .input-panel {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+@media (max-width: 820px) {
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+@media (max-width: 640px) {
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+@media (max-width: 480px) {
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+@media (max-width: 400px) {
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+@media (max-width: 350px) {
+    .tuvi-board-wrapper {
+        
+    }
+}
+
+.tuvi-board {
+    width: 195mm;
+    height: 268mm;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    background: var(--border-color);
+    gap: 1.2px;
+    font-family: var(--font-main);
+    position: relative;
+}
+
+/* 12 CUNG ĐỊA BÀN */
+.house {
+    background: #ffffff;
+    padding: 7px 4px 6px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.house-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0 4px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    height: 24px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.house-header-left {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    z-index: 2;
+}
+
+.house-header-left.moc {
+    color: var(--moc);
+}
+
+.house-header-left.hoa {
+    color: var(--hoa);
+}
+
+.house-header-left.tho {
+    color: var(--tho);
+}
+
+.house-header-left.kim {
+    color: var(--kim);
+}
+
+.house-header-left.thuy {
+    color: var(--thuy);
+}
+
+.chi-cung {
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    font-family: var(--font-main);
+    color: inherit;
+    text-align: left;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.cung-name-wrap {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.cung-name {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: var(--font-main);
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.house-header-right {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    z-index: 2;
+    padding-right: 2px;
+}
+
+.dai-han {
+    color: #0f172a;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-main);
+    text-align: right;
+    line-height: 1.2;
+    white-space: nowrap;
+    letter-spacing: 0;
+}
+
+/* KHU VỰC CHÍNH TINH */
+.chinh-tinh-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 22px;
+    margin: 2px 0 3px 0;
+    gap: 2px;
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    text-align: center;
+}
+
+.chinh-tinh-item {
+    font-size: 14.5px;
+    font-weight: 800;
+    line-height: 1.38;
+    text-align: center;
+    letter-spacing: 0.3px;
+    width: 100%;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.chinh-tinh-item.hoa {
+    color: var(--hoa);
+}
+
+.chinh-tinh-item.tho {
+    color: var(--tho);
+}
+
+.chinh-tinh-item.moc {
+    color: var(--moc);
+}
+
+.chinh-tinh-item.thuy {
+    color: var(--thuy);
+}
+
+.chinh-tinh-item.kim {
+    color: var(--kim);
+}
+
+.chinh-tinh-item.vo-chinh-dieu {
+    color: #64748b;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.dac-tinh {
+    font-size: 0.92em;
+    font-weight: inherit;
+    letter-spacing: -0.2px;
+    margin-left: 1px;
+}
+
+/* KHU VỰC PHỤ TINH 2 CỘT */
+.phu-tinh-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 3px;
+    row-gap: 0px;
+    flex-grow: 1;
+    padding: 0 2px;
+    font-size: 10.8px;
+    line-height: 1.42;
+    align-content: start;
+    z-index: 2;
+    position: relative;
+    text-align: left;
+}
+
+.phu-tinh-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    min-width: 0;
+}
+
+.phu-tinh-col.left {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.phu-tinh-col.right {
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 1px;
+}
+
+.star-item {
+    display: inline-block;
+    white-space: nowrap;
+    letter-spacing: -0.15px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 1.8px;
+}
+
+/* Tự động điều chỉnh giãn cách thích ứng khi cột có mật độ sao lớn */
+.phu-tinh-col:has(.star-item:nth-child(8)) .star-item {
+    line-height: 1.35;
+    margin-bottom: 1px;
+}
+
+.phu-tinh-col:has(.star-item:nth-child(10)) .star-item {
+    line-height: 1.28;
+    margin-bottom: 0.2px;
+}
+
+.star-item.hoa {
+    color: var(--hoa);
+}
+
+.star-item.tho {
+    color: var(--tho);
+}
+
+.star-item.moc {
+    color: var(--moc);
+}
+
+.star-item.thuy {
+    color: var(--thuy);
+}
+
+.star-item.kim {
+    color: var(--kim);
+}
+
+.star-item.xau {
+    color: var(--hoa);
+    font-weight: 600;
+}
+
+.star-item.sat {
+    color: var(--hoa);
+    font-weight: 700;
+}
+
+.star-item.luu {
+    font-weight: 600;
+}
+
+/* CHÂN CUNG */
+.house-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    font-size: 11.5px;
+    color: #1e293b;
+    padding: 1px 4px 1px 4px;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    min-height: 21px;
+    z-index: 2;
+}
+
+.tieu-han-label {
+    font-weight: 700;
+    color: #0f172a;
+    text-align: left;
+    white-space: nowrap;
+    letter-spacing: 0.1px;
+    z-index: 2;
+}
+
+.trang-sinh-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+    color: #334155;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.1px;
+    z-index: 2;
+}
+
+.nguyet-han-label {
+    font-size: 11px;
+    color: #475569;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 0;
+    padding-right: 1px;
+    z-index: 2;
+}
+
+/* TAM GIÁC NÉT ĐỨT MỆNH TÀI QUAN */
+.menh-tai-quan-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 1;
+}
+
+#polyMenhTaiQuan {
+    fill: none;
+    stroke: #334155;
+    stroke-width: 0.48;
+    stroke-dasharray: 4 3;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 1;
+}
+
+/* HUY HIỆU THẺ PHẲNG TUẦN VÀ TRIỆT TRÊN ĐƯỜNG RANH GIỚI */
+.badge-tuan-triet {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 16px;
+    font-family: var(--font-main);
+    font-size: 9.5px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1.2px solid #0f172a;
+    border-radius: 3px;
+    box-shadow: none;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.badge-tab-up {
+    border: 1.2px solid #0f172a;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 17.5px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    transform: translate(-50%, -100%);
+}
+
+.badge-tab-down {
+    border: 1.2px solid #0f172a;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding-top: 0px;
+    transform: translate(-50%, 0);
+}
+
+.badge-divider-h {
+    border: 1.2px solid #0f172a;
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
+}
+
+
+.badge-divider-v {
+    border: 1.2px solid #0f172a;
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
+}
+
+.badge-tuan {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+.badge-triet {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+/* HIỆU ỨNG TẠO ĐỘ TƯƠNG PHẢN RÕ NÉT CHO CHỮ TRÊN NỀN TAM GIÁC */
+.chinh-tinh-item,
+.star-item,
+.cung-name-wrap,
+.chi-cung,
+.dai-han,
+.tieu-han-label,
+.trang-sinh-label,
+.nguyet-han-label,
+.tb-header,
+.tb-lbl,
+.tb-val-name,
+.tb-val-solar,
+.tb-val-lunar,
+.tb-cal-tag,
+.tb-menhly-item,
+.tb-age-text {
+    text-shadow: 0 0 1.5px #ffffff, 0 0 2.5px #ffffff;
+}
+
+/* MAPPING VỊ TRÍ 12 CUNG TRÊN GRID */
+#house-5 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+/* Tỵ */
+#house-6 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+/* Ngọ */
+#house-7 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+/* Mùi */
+#house-8 {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+/* Thân */
+#house-4 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+/* Thìn */
+#house-9 {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+/* Dậu */
+#house-3 {
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+/* Mão */
+#house-10 {
+    grid-area: 3 / 4 / 4 / 5;
+}
+
+/* Tuất */
+#house-2 {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+/* Dần */
+#house-1 {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+/* Sửu */
+#house-0 {
+    grid-area: 4 / 3 / 5 / 4;
+}
+
+/* Tý */
+#house-11 {
+    grid-area: 4 / 4 / 5 / 5;
+}
+
+/* Hợi */
+
+/* THIÊN BÀN (TRUNG TÂM - TIÊU ĐỀ TRÊN CÙNG & PHÂN BỐ CÂN ĐỐI) */
+#thien-ban {
+    grid-area: 2 / 2 / 4 / 4;
+    background: #ffffff;
+    padding: 16px 6px 12px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-main);
+}
+
+.tb-id-watermark {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #475569;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 2;
+    font-family: var(--font-main);
+    letter-spacing: 0.5px;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.tb-watermark-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    max-width: 88%;
+    aspect-ratio: 1 / 1;
+    opacity: 0.055;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url('../assets/HA_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.tb-header {
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.tb-brand-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--blue-title);
+    letter-spacing: 1.2px;
+    font-family: var(--font-main);
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.tb-header-sub {
+    font-size: 10.5px;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.tb-header-sub-highlight {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+}
+
+.tb-header-domain {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #0369a1;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+
+.tb-header-phone {
+    font-size: 13px;
+    font-weight: 800;
+    color: #b91c1c;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.tb-divider {
+    display: none;
+    height: 0;
+    margin: 0;
+}
+
+/* CONTAINER BAO BỌC TOÀN BỘ HỆ THỐNG THÔNG TIN THIÊN BÀN */
+.tb-info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    position: relative;
+    z-index: 2;
+}
+
+.tb-body-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 285px;
+    max-width: 100%;
+    margin: 0 auto;
+    flex-grow: 1;
+    padding: 2px 0 2px 0;
+    position: relative;
+    z-index: 2;
+    font-size: 12.5px;
+    line-height: 1.6;
+}
+
+/* TIÊU ĐỀ / NHÃN: IN ĐẬM (FONT-WEIGHT: 700) */
+.tb-lbl {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 12.5px;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.tb-colon {
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 12.5px;
+    text-align: left;
+    user-select: none;
+}
+
+.tb-lbl-right {
+    text-align: right;
+    justify-self: end;
+}
+
+.tb-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.tb-grid-name {
+    display: grid;
+    grid-template-columns: 74px 14px 56px 1fr;
+    column-gap: 0px;
+    align-items: baseline;
+    width: 285px;
+    margin: 0 auto;
+}
+
+.tb-grid-birth {
+    display: grid;
+    grid-template-columns: 74px 14px 56px 1fr;
+    row-gap: 7px;
+    column-gap: 0px;
+    align-items: baseline;
+    width: 285px;
+    margin: 0 auto;
+}
+
+/* GIÁ TRỊ: KHÔNG IN ĐẬM (FONT-WEIGHT: 400) */
+.tb-val-name {
+    grid-column: 3 / 5;
+    font-size: 13px;
+    font-weight: 400;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.tb-val-solar {
+    font-size: 12px;
+    font-weight: 400;
+    color: #334155;
+    font-feature-settings: "tnum";
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* CĂN CHỈNH KHỐI CHÚ THÍCH THẲNG HÀNG DỌC & CÁCH CỘT LIỀN TRƯỚC 1 KÝ TỰ (1ch) */
+.tb-lunar-cell {
+    display: grid;
+    grid-template-columns: 78px auto;
+    column-gap: 1ch;
+    align-items: baseline;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.tb-cal-tag {
+    font-size: 11px;
+    font-weight: 400;
+    color: #64748b;
+    white-space: nowrap;
+}
+
+.tb-val-lunar {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--blue-title);
+    white-space: nowrap;
+    text-align: left;
+}
+
+.tb-span-val {
+    grid-column: 3 / 5;
+    text-align: left;
+    font-weight: 400;
+}
+
+.tb-grid-watch {
+    display: grid;
+    grid-template-columns: 74px 14px 56px 1fr;
+    column-gap: 0px;
+    align-items: baseline;
+    margin-top: 0;
+    width: 285px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tb-grid-meta {
+    display: grid;
+    grid-template-columns: 74px 14px 56px 1fr;
+    row-gap: 6px;
+    column-gap: 0px;
+    align-items: baseline;
+    width: 285px;
+    margin: 0 auto;
+}
+
+.tb-grid-menhly {
+    display: grid;
+    grid-template-columns: 74px 14px 56px 1fr;
+    row-gap: 6px;
+    column-gap: 0px;
+    align-items: baseline;
+    width: 285px;
+    margin: 0 auto;
+}
+
+.tb-menhly-item {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #1e293b;
+    white-space: nowrap;
+    display: block;
+    text-align: left;
+}
+
+.tb-age-text {
+    color: var(--blue-title);
+    font-weight: 400;
+    font-size: 12.5px;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+}
+
+.tb-section-sep {
+    display: none;
+    height: 0;
+    margin: 0;
+}
+
+/* HIỆU ỨNG TẢI (LAZY LOADING ANIMATION) CHO TỜ LÁ SỐ */
+.tuvi-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    border-radius: 4px;
+    transition: none !important;
+    /* BẬT TỨC THÌ 0ms delay, phủ kín tuyệt đối ngay lập tức */
+}
+
+.tuvi-loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease-out, visibility 0.28s ease-out !important;
+    /* TẮT MƯỢT MÀ */
+}
+
+.tuvi-spinner-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.15), 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.tuvi-dual-ring {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tuvi-dual-ring div:nth-child(1) {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border: 3.5px solid transparent;
+    border-top-color: #0f172a;
+    border-bottom-color: #172554;
+    border-radius: 50%;
+    animation: spinClockwise 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.tuvi-dual-ring div:nth-child(2) {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid transparent;
+    border-left-color: #92400e;
+    border-right-color: #b91c1c;
+    border-radius: 50%;
+    animation: spinCounterClockwise 0.9s linear infinite;
+}
+
+@keyframes spinClockwise {
+    0% {
+        transform: rotate(0deg) scale(0.95);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.05);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(0.95);
+    }
+}
+
+@keyframes spinCounterClockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+.tuvi-board {
+    transition: opacity 0.35s ease-in-out;
+}
+
+.tuvi-board.is-updating {
+    opacity: 0.5;
+}
+
+</style>
+    <style>/* INLINED: css/controls.css */
+/* KHU VỰC BẢNG ĐIỀU KHIỂN NHẬP LIỆU (CỘT PHẢI) */
+        .input-panel {
+            width: 410px;
+            flex: 0 0 410px;
+            background: #ffffff;
+            padding: 18px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 20;
+            overflow: visible;
+            height: fit-content;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .panel-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .form-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 2px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #334155;
+            gap: 10px;
+        }
+
+        .form-row > label {
+            width: 86px;
+            font-weight: 600;
+            color: #475569;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        .panel-footer-note {
+            font-size: 12px;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.5;
+            padding: 4px 6px;
+            white-space: nowrap;
+        }
+
+        .field-group {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            height: 34px;
+            padding: 0 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font-main);
+            outline: none;
+            background: #ffffff;
+            color: #0f172a;
+            transition: border-color 0.15s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0f172a;
+        }
+
+        select {
+            height: 34px;
+            padding: 0 15px 0 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            font-family: var(--font-main);
+            background-color: #ffffff;
+            color: #0f172a;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.15s;
+            text-align: center;
+            text-align-last: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+        }
+
+        select option {
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            font-weight: 400;
+            font-family: var(--font-main);
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        select:focus {
+            border-color: #802722;
+        }
+
+        /* SEGMENTED CONTROL (ĐỐI XỨNG PHẲNG) */
+        .segmented-control {
+            display: flex;
+            width: 100%;
+            background: #e2e8f0;
+            border-radius: 4px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .segment-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .segment-btn input[type="radio"] {
+            display: none;
+        }
+
+        .segment-btn span {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            border-radius: 3px;
+            transition: all 0.15s;
+        }
+
+        .segment-btn input[type="radio"]:checked + span {
+            background: #ffffff;
+            color: #0f172a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .check-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 12.5px;
+            color: #334155;
+            user-select: none;
+        }
+
+        .check-label input[type="checkbox"] {
+            accent-color: #802722;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        /* DÒNG NGÀY THÁNG NĂM SINH - ĐỐI XỨNG THẲNG HÀNG */
+        .date-row-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .date-row-group select#txtDay,
+        .date-row-group select#txtMonth {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        .date-row-group select#txtYear {
+            flex: 1.45;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        /* DÒNG GIỜ SINH - ĐỐI XỨNG CÂN ĐỐI */
+        .time-row-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .time-row-group select {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+            text-align-last: center;
+        }
+
+        /* NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) */
+        .btn-generate-tuvi {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 42px;
+            padding: 0 16px;
+            margin: 2px 0;
+            background-color: #802722;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 13.5px;
+            font-weight: 800;
+            font-family: var(--font-main);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(128, 39, 34, 0.28);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .btn-generate-tuvi:hover {
+            background-color: #9a2e29;
+            box-shadow: 0 6px 18px rgba(128, 39, 34, 0.38);
+            transform: translateY(-1px);
+        }
+
+        .btn-generate-tuvi:active {
+            background-color: #6e201b;
+            box-shadow: 0 2px 8px rgba(128, 39, 34, 0.25);
+            transform: translateY(0);
+        }
+
+        .btn-generate-tuvi .btn-play-icon {
+            flex-shrink: 0;
+            width: 15px;
+            height: 15px;
+        }
+
+        /* PHẦN XUẤT BẢN - TỐI GIẢN & ĐỐI XỨNG */
+        .export-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .export-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .btn-export {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 36px;
+            padding: 0 12px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-align: center;
+            transition: all 0.15s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .export-section {
+                background: #ffffff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            }
+
+            .export-actions {
+                flex-direction: row;
+            }
+
+            .btn-export {
+                flex: 1 1 0;
+            }
+        }
+
+        .btn-export:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Nút CMYK: Nền tối thanh lịch */
+        .btn-cmyk {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+        }
+
+        .btn-cmyk:hover:not(:disabled) {
+            background: #1e293b;
+            border-color: #1e293b;
+        }
+
+        /* Nút Đen Trắng: Nền Slate viền xám */
+        .btn-bw {
+            background: #ffffff;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+
+        .btn-bw:hover:not(:disabled) {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+        /* Nút Ảnh: Nền Slate viền xám đồng nhất */
+        .btn-img4k {
+            background: #ffffff;
+            color: #334155;
+            border-color: #cbd5e1;
+        }
+
+        .btn-img4k:hover:not(:disabled) {
+            background: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+
+
+</style>
+    <style>/* INLINED: css/print.css */
+/* IN ẤN (A4 PRINT CSS) */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            body {
+                background: #ffffff;
+                color: #000000;
+            }
+
+            .input-panel {
+                display: none !important;
+            }
+
+            .output-panel {
+                padding: 10mm 5mm;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
+                
+            }
+
+            .tuvi-board-wrapper {
+                box-shadow: none;
+                border: 2px solid #000;
+                padding: 0;
+                
+            }
+
+            .tuvi-board {
+                width: 195mm;
+                height: 268mm;
+                background: #000;
+            }
+
+            .tb-watermark-bg {
+                opacity: 0.055;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+</style>
+</head>
+
+<body>
+    <!-- KHU VỰC HIỂN THỊ LÁ SỐ (CỘT TRÁI) -->
+    <div class="output-panel">
+        <div class="tuvi-board-wrapper">
+            <!-- LỚP PHỦ MỜ YÊU CẦU LẬP LÁ SỐ (STALE OVERLAY) -->
+            <div id="tuviStaleOverlay" class="tuvi-stale-overlay hidden" onclick="generateTuVi()" title="Bấm vào đây để lập lá số">
+                <div class="tuvi-stale-notice" onclick="generateTuVi()">
+                    <svg class="stale-play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <span>BẤM NÚT LẬP LÁ SỐ ĐỂ XEM</span>
+                </div>
+            </div>
+            <!-- LỚP PHỦ TẢI LÁ SỐ (LOADING OVERLAY) -->
+            <div id="tuviLoadingOverlay" class="tuvi-loading-overlay">
+                <div class="tuvi-spinner-box">
+                    <div class="tuvi-dual-ring">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tuvi-board" id="tuviBoard">
+                <!-- THIÊN BÀN TRUNG TÂM -->
+                <div id="thien-ban">
+                    <!-- TAM GIÁC NÉT ĐỨT MỆNH TÀI QUAN -->
+                    <svg id="triangleMenhTaiQuan" class="menh-tai-quan-svg" viewBox="0 0 1000 1000"
+                        preserveAspectRatio="none">
+                        <polygon id="polyMenhTaiQuan" points="" />
+                    </svg>
+
+                    <div class="tb-watermark-bg"></div>
+
+                    <div class="tb-header">
+                        <div class="tb-brand-title">TỬ VI HỒNG ÂN</div>
+                        <div class="tb-header-sub-highlight">Luận giải đầy đủ 199k tại</div>
+                        <div class="tb-header-domain">www.tuvihongan.com</div>
+                        <div class="tb-header-sub">Đặt lịch luận giải riêng với thầy qua Zalo</div>
+                        <div class="tb-header-phone">0924.616.199</div>
+                    </div>
+
+                    <!-- KHUNG THÔNG TIN THIÊN BÀN -->
+                    <div class="tb-info-container">
+                        <div class="tb-body-wrap tb-content">
+                            <!-- Họ tên -->
+                            <div class="tb-grid-name">
+                                <span class="tb-lbl">Họ tên</span><span class="tb-colon">:</span>
+                                <span class="tb-val-name tb-span-val" id="tb-name">Group FB Tử Vi Việt Nam</span>
+                            </div>
+
+                            <!-- Thời gian sinh -->
+                            <div class="tb-grid-birth">
+                                <span class="tb-lbl">Năm sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-year">2008</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-year">Mậu Tí</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-year-tag">(N.2008)</span>
+                                </div>
+
+                                <span class="tb-lbl">Tháng sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-month">08</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-month">Canh Thân</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-month-tag">(Th.7)</span>
+                                </div>
+
+                                <span class="tb-lbl">Ngày sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-day">08</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-day">Canh Thìn</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-day-tag">(Ng.8)</span>
+                                </div>
+
+                                <span class="tb-lbl">Giờ sinh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-hour">10:30</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-hour">Tân Tỵ</span>
+                                    <span class="tb-cal-tag" id="tb-lunar-hour-tag">(G.10:30)</span>
+                                </div>
+                            </div>
+
+                            <!-- Năm xem hạn -->
+                            <div class="tb-grid-watch">
+                                <span class="tb-lbl">Năm xem</span><span class="tb-colon">:</span>
+                                <span class="tb-val-solar" id="tb-solar-watch">2026</span>
+                                <div class="tb-lunar-cell">
+                                    <span class="tb-val-lunar" id="tb-lunar-watch">Bính Ngọ</span>
+                                    <span class="tb-age-text" id="tb-tuoi-mu">19 tuổi</span>
+                                </div>
+                            </div>
+
+                            <!-- Bản mệnh & Cục -->
+                            <div class="tb-grid-meta">
+                                <span class="tb-lbl">Âm Dương</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-am-duong">Dương Nam</span>
+                                <span class="tb-lbl">Bản Mệnh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-menh">Tích Lịch Hỏa</span>
+                                <span class="tb-lbl">Cục</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-cuc">Thủy nhị cục</span>
+                                <span class="tb-lbl">Chủ Mệnh</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-chu-menh">Văn Khúc</span>
+                                <span class="tb-lbl">Chủ Thân</span><span class="tb-colon">:</span>
+                                <span class="tb-val-lunar tb-span-val" id="tb-chu-than">Linh Tinh</span>
+                            </div>
+
+                            <!-- Mệnh lý -->
+                            <div class="tb-grid-menhly">
+                                <span class="tb-lbl">Mệnh lý</span><span class="tb-colon">:</span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-am-duong-ly">Âm Dương nghịch lý</span>
+                                <span></span><span></span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-cuc-menh-ly">Cục khắc Mệnh</span>
+                                <span></span><span></span>
+                                <span class="tb-menhly-item tb-span-val" id="tb-than-cu">Thân cư Thê</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÃ ĐỊNH DANH WATERMARK THIÊN BÀN -->
+                    <div id="tb-id-code" class="tb-id-watermark"></div>
+                </div>
+
+                <!-- HUY HIỆU TUẦN VÀ TRIỆT -->
+                <div id="badgeTuan" class="badge-tuan-triet badge-tuan">Tuần</div>
+                <div id="badgeTriet" class="badge-tuan-triet badge-triet">Triệt</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BẢNG ĐIỀU KHIỂN NHẬP LIỆU (CỘT PHẢI) -->
+    <div class="input-panel">
+        <div class="panel-header">
+            <div class="panel-title">LẬP LÁ SỐ TỬ VI</div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Thông tin</div>
+            <div class="form-row">
+                <label for="txtName">Họ tên</label>
+                <div class="field-group">
+                    <input type="text" id="txtName" value="www.tuvihongan.com" placeholder="Họ và tên">
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Giới tính</label>
+                <div class="field-group">
+                    <div class="segmented-control">
+                        <label class="segment-btn"><input type="radio" name="gender" value="Nam"
+                                checked><span>Nam</span></label>
+                        <label class="segment-btn"><input type="radio" name="gender" value="Nữ"><span>Nữ</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Lịch</label>
+                <div class="field-group">
+                    <div class="segmented-control">
+                        <label class="segment-btn"><input type="radio" name="calendar" value="solar" checked
+                                onchange="toggleCalendarType()"><span>Dương lịch</span></label>
+                        <label class="segment-btn"><input type="radio" name="calendar" value="lunar"
+                                onchange="toggleCalendarType()"><span>Âm lịch</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" id="rowLeapMonth" style="display: none;">
+                <label>Nhuận</label>
+                <div class="field-group">
+                    <label class="check-label"><input type="checkbox" id="chkIsLeap"><span>Tháng nhuận</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="section-title">Thời gian</div>
+            <div class="form-row">
+                <label>Ngày sinh</label>
+                <div class="date-row-group">
+                    <select id="txtDay" title="Ngày"></select>
+                    <select id="txtMonth" title="Tháng"></select>
+                    <select id="txtYear" title="Năm"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Giờ sinh</label>
+                <div class="time-row-group">
+                    <select id="txtHour" title="Giờ"></select>
+                    <select id="txtMinute" title="Phút"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="txtLimitYear">Năm xem hạn</label>
+                <div class="field-group">
+                    <select id="txtLimitYear" style="width: 100%;"></select>
+                </div>
+            </div>
+        </div>
+
+        <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
+        <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
+            <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+            </svg>
+            <span>LẬP LÁ SỐ</span>
+        </button>
+
+        <!-- KHU VỰC LƯU LÁ SỐ -->
+        <div class="form-section export-section">
+            <div class="section-title">Lưu lá số dưới dạng:</div>
+            <div class="export-actions">
+                <button type="button" class="btn-export btn-cmyk" id="btnExportCmyk" onclick="exportPdfCmyk()">PDF
+                    Màu</button>
+                <button type="button" class="btn-export btn-bw" id="btnExportBw" onclick="exportPdfGrayscale()">PDF Đen
+                    Trắng</button>
+                <button type="button" class="btn-export btn-img4k" id="btnExportImg" onclick="exportImage4K()">Ảnh</button>
+            </div>
+        </div>
+
+        <div class="panel-footer-note">An sao theo Tử Vi Đẩu Số Tân Biên 1956</div>
+    </div>
+
+    <!-- CÁC MODULE JAVASCRIPT -->
+    <script>/* INLINED: js/dpop.js */
+/**
+ * DPoP (Demonstrating Proof-of-Possession) Client Module
+ * Handles generating, storing, and retrieving the asymmetric key pair using WebCrypto and IndexedDB.
+ * Provides functionality to generate DPoP Proof JWTs for authenticated API requests.
+ */
+
+const DPOP_DB_NAME = 'dpop_db';
+const DPOP_STORE_NAME = 'dpop_keys';
+const KEY_ID = 'dpop_key_pair';
+
+/**
+ * Utility: Convert ArrayBuffer to Base64Url string
+ * @param {ArrayBuffer} buffer 
+ * @returns {string} Base64Url string
+ */
+function bufferToBase64Url(buffer) {
+    const bytes = new Uint8Array(buffer);
+    let binary = '';
+    for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary)
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '');
+}
+
+/**
+ * Utility: Convert string to ArrayBuffer
+ * @param {string} str 
+ * @returns {Uint8Array}
+ */
+function stringToBuffer(str) {
+    const encoder = new TextEncoder();
+    return encoder.encode(str);
+}
+
+let dbPromise = null;
+
+/**
+ * Opens and initializes the IndexedDB for storing DPoP keys
+ * @returns {Promise<IDBDatabase>}
+ */
+function openDB() {
+    if (!dbPromise) {
+        dbPromise = new Promise((resolve, reject) => {
+            const request = indexedDB.open(DPOP_DB_NAME, 1);
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains(DPOP_STORE_NAME)) {
+                    db.createObjectStore(DPOP_STORE_NAME);
+                }
+            };
+            request.onsuccess = (event) => {
+                resolve(event.target.result);
+            };
+            request.onerror = (event) => {
+                dbPromise = null;
+                reject(event.target.error);
+            };
+        });
+    }
+    return dbPromise;
+}
+
+/**
+ * Stores the generated key pair in IndexedDB
+ * @param {CryptoKeyPair} keyPair 
+ * @returns {Promise<void>}
+ */
+async function storeKeyPair(keyPair) {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([DPOP_STORE_NAME], 'readwrite');
+        const store = transaction.objectStore(DPOP_STORE_NAME);
+        const request = store.put(keyPair, KEY_ID);
+        request.onsuccess = () => resolve();
+        request.onerror = (e) => reject(e.target.error);
+    });
+}
+
+/**
+ * Retrieves the stored key pair from IndexedDB
+ * @returns {Promise<CryptoKeyPair|null>}
+ */
+async function getKeyPair() {
+    const db = await openDB();
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([DPOP_STORE_NAME], 'readonly');
+        const store = transaction.objectStore(DPOP_STORE_NAME);
+        const request = store.get(KEY_ID);
+        request.onsuccess = () => resolve(request.result || null);
+        request.onerror = (e) => reject(e.target.error);
+    });
+}
+
+/**
+ * Generates a new ECDSA P-256 key pair.
+ * The private key is non-extractable to prevent theft.
+ * @returns {Promise<CryptoKeyPair>}
+ */
+async function generateKeyPair() {
+    return await window.crypto.subtle.generateKey(
+        {
+            name: "ECDSA",
+            namedCurve: "P-256",
+        },
+        false, // Ensures private key extractable is false
+        ["sign", "verify"]
+    );
+}
+
+let initPromise = null;
+
+/**
+ * Initializes the DPoP module.
+ * Fetches the existing key pair or generates a new one if it doesn't exist.
+ * @returns {Promise<CryptoKeyPair>}
+ */
+export function initDPoP() {
+    if (!initPromise) {
+        initPromise = (async () => {
+            try {
+                let keyPair = await getKeyPair();
+                if (!keyPair) {
+                    keyPair = await generateKeyPair();
+                    await storeKeyPair(keyPair);
+                }
+                return keyPair;
+            } catch (e) {
+                initPromise = null;
+                throw e;
+            }
+        })();
+    }
+    return initPromise;
+}
+
+/**
+ * Generates a DPoP Proof JWT for an API request.
+ * @param {string} htm - The HTTP method (e.g., 'GET', 'POST').
+ * @param {string} htu - The HTTP URL (without query parameters).
+ * @returns {Promise<string>} The signed DPoP JWT Proof.
+ */
+export async function generateDPoPProof(htm, htu) {
+    const keyPair = await initDPoP();
+    
+    // Ensure htu has no query parameters or hash fragments
+    let cleanHtu = htu;
+    try {
+        const url = new URL(htu);
+        url.search = '';
+        url.hash = '';
+        cleanHtu = url.toString();
+    } catch (_e) {
+        // Not a valid absolute URL, assume it is already clean or a relative path
+    }
+    
+    // Export the public key to JWK format for the DPoP header
+    const jwk = await window.crypto.subtle.exportKey("jwk", keyPair.publicKey);
+    
+    // Remove properties not strictly required for DPoP JWK
+    delete jwk.ext;
+    delete jwk.key_ops;
+    delete jwk.alg;
+
+    const header = {
+        typ: "dpop+jwt",
+        alg: "ES256",
+        jwk: jwk
+    };
+    
+    const payload = {
+        jti: window.crypto.randomUUID ? window.crypto.randomUUID() : crypto.randomUUID(), // Unique token identifier, fallback for some environments
+        htm: htm.toUpperCase(), // HTTP Method
+        htu: cleanHtu, // HTTP URL
+        iat: Math.floor(Date.now() / 1000) // Issued at timestamp
+    };
+    
+    const headerStr = JSON.stringify(header);
+    const payloadStr = JSON.stringify(payload);
+    
+    const headerB64 = bufferToBase64Url(stringToBuffer(headerStr));
+    const payloadB64 = bufferToBase64Url(stringToBuffer(payloadStr));
+    
+    const dataToSign = `${headerB64}.${payloadB64}`;
+    
+    // Sign the header and payload with the private key
+    const signatureBuffer = await window.crypto.subtle.sign(
+        {
+            name: "ECDSA",
+            hash: { name: "SHA-256" },
+        },
+        keyPair.privateKey,
+        stringToBuffer(dataToSign)
+    );
+    
+    const signatureB64 = bufferToBase64Url(signatureBuffer);
+    
+    // Construct the final JWT
+    return `${dataToSign}.${signatureB64}`;
+}
+
+</script>
+    <script>/* INLINED: js/constants.js */
+/**
+ * constants.js
+ * Các hằng số định dạng và ưu tiên hiển thị giao diện lá số Tử Vi.
+ */
+
+const CHI_HANH = ["thuy", "tho", "moc", "moc", "tho", "hoa", "hoa", "tho", "kim", "kim", "tho", "thuy"];
+
+const SAO_NGU_HANH = {
+    "Tử Vi": "tho", "Liêm Trinh": "hoa", "Thiên Đồng": "thuy", "Vũ Khúc": "kim", "Thái Dương": "hoa",
+    "Thiên Cơ": "moc", "Thiên Phủ": "tho", "Thái Âm": "thuy", "Tham Lang": "thuy", "Cự Môn": "thuy",
+    "Thiên Tướng": "thuy", "Thiên Lương": "moc", "Thất Sát": "kim", "Phá Quân": "thuy",
+    "Kình Dương": "kim", "Đà La": "kim", "Hỏa Tinh": "hoa", "Hoả Tinh": "hoa", "Linh Tinh": "hoa",
+    "Địa Không": "hoa", "Địa Kiếp": "hoa", "Hóa Lộc": "moc", "Hóa Quyền": "thuy", "Hóa Khoa": "thuy", "Hóa Kỵ": "thuy",
+    "Lộc Tồn": "tho", "Bác Sỹ": "thuy", "Lực Sĩ": "hoa", "Thanh Long": "thuy", "Tiểu Hao": "hoa",
+    "Tướng Quân": "moc", "Tấu Thư": "kim", "Phi Liêm": "hoa", "Hỷ Thần": "hoa", "Hỉ Thần": "hoa", "Bệnh Phù": "tho",
+    "Đại Hao": "hoa", "Phục Binh": "hoa", "Quan Phủ": "hoa",
+    "Thái Tuế": "hoa", "Thiếu Dương": "hoa", "Tang Môn": "moc", "Thiếu Âm": "thuy", "Quan Phù": "hoa",
+    "Tử Phù": "kim", "Tuế Phá": "hoa", "Long Đức": "thuy", "Bạch Hổ": "kim", "Phúc Đức": "tho",
+    "Điếu Khách": "hoa", "Trực Phù": "hoa",
+    "Tả Phù": "tho", "Hữu Bật": "tho", "Văn Xương": "kim", "Văn Khúc": "thuy",
+    "Thiên Khôi": "hoa", "Thiên Việt": "hoa", "Tam Thai": "thuy", "Bát Tọa": "thuy",
+    "Ân Quang": "moc", "Thiên Quý": "tho", "Hồng Loan": "thuy", "Thiên Hỷ": "thuy",
+    "Đào Hoa": "moc", "Hoa Cái": "kim", "Thiên Mã": "hoa", "Kiếp Sát": "hoa", "Phá Toái": "hoa",
+    "Cô Thần": "hoa", "Quả Tú": "tho", "Thiên Khốc": "thuy", "Thiên Hư": "thuy",
+    "Long Trì": "thuy", "Phượng Các": "tho", "Giải Thần": "moc", "Địa Giải": "tho", "Thiên Giải": "hoa",
+    "Thiên Hình": "hoa", "Thiên Riêu": "thuy", "Thiên Diêu": "thuy", "Thiên Y": "thuy", "Thai Phụ": "kim", "Phong Cáo": "tho",
+    "Quốc Ấn": "tho", "Đường Phù": "moc", "Thiên Quan": "hoa", "Thiên Phúc": "tho",
+    "Thiên Trù": "tho", "Lưu Hà": "thuy", "LN Văn Tinh": "hoa", "Thiên Không": "hoa",
+    "Thiên La": "kim", "Địa Võng": "tho", "Thiên Thương": "tho", "Thiên Sứ": "thuy",
+    "Thiên Tài": "tho", "Thiên Thọ": "tho", "Đẩu Quân": "hoa", "Nguyệt Đức": "hoa", "Thiên Đức": "hoa",
+    "L.Thái Tuế": "hoa", "L.Tang Môn": "moc", "L.Bạch Hổ": "kim", "L.Thiên Khốc": "thuy", "L.Thiên Hư": "thuy",
+    "L.Lộc Tồn": "tho", "L.Kình Dương": "kim", "L.Đà La": "kim", "L.Thiên Mã": "hoa",
+    "L.Hóa Lộc": "moc", "L.Hóa Quyền": "thuy", "L.Hóa Khoa": "thuy", "L.Hóa Kỵ": "thuy"
+};
+
+const PHU_TINH_PRIORITY_TOT = {
+    "Hóa Khoa": 10, "Hóa Quyền": 11, "Hóa Lộc": 12,
+    "Tả Phù": 20, "Hữu Bật": 21, "Văn Xương": 22, "Văn Khúc": 23, "Thiên Khôi": 24, "Thiên Việt": 25,
+    "Lộc Tồn": 30, "Thiên Mã": 31,
+    "Thiếu Dương": 41, "Thiếu Âm": 42, "Long Đức": 43, "Phúc Đức": 44,
+    "Bác Sỹ": 50, "Lực Sĩ": 51, "Thanh Long": 52, "Tấu Thư": 54, "Hỷ Thần": 55,
+    "Đào Hoa": 60, "Hồng Loan": 61, "Thiên Hỷ": 62, "Hoa Cái": 63,
+    "Long Trì": 64, "Phượng Các": 65, "Giải Thần": 66, "Địa Giải": 67, "Thiên Giải": 68,
+    "Ân Quang": 70, "Thiên Quý": 71, "Tam Thai": 72, "Bát Tọa": 73,
+    "Thai Phụ": 74, "Phong Cáo": 75, "Quốc Ấn": 76, "Đường Phù": 77,
+    "Thiên Quan": 80, "Thiên Phúc": 81, "Thiên Đức": 82, "Nguyệt Đức": 83,
+    "Thiên Y": 84, "Thiên Trù": 85, "LN Văn Tinh": 86, "Thiên Tài": 87, "Thiên Thọ": 88
+};
+
+const PHU_TINH_PRIORITY_XAU = {
+    "Hóa Kỵ": 10,
+    "Kình Dương": 20, "Đà La": 21, "Hỏa Tinh": 22, "Hoả Tinh": 22, "Linh Tinh": 23, "Địa Không": 24, "Địa Kiếp": 25,
+    "Thiên Hình": 30, "Thiên Riêu": 31, "Thiên Diêu": 31,
+    "Thái Tuế": 39, "Tang Môn": 40, "Bạch Hổ": 41, "Tuế Phá": 42, "Điếu Khách": 43, "Quan Phù": 44, "Tử Phù": 45, "Trực Phù": 46,
+    "Tướng Quân": 49, "Đại Hao": 50, "Tiểu Hao": 51, "Phi Liêm": 52, "Bệnh Phù": 53, "Phục Binh": 54, "Quan Phủ": 55,
+    "Thiên Không": 60, "Kiếp Sát": 61, "Phá Toái": 62, "Cô Thần": 63, "Quả Tú": 64,
+    "Thiên Khốc": 65, "Thiên Hư": 66, "Thiên La": 67, "Địa Võng": 68,
+    "Thiên Thương": 69, "Thiên Sứ": 70, "Lưu Hà": 71, "Đẩu Quân": 72
+};
+
+window.CHI_HANH = CHI_HANH;
+window.SAO_NGU_HANH = SAO_NGU_HANH;
+window.PHU_TINH_PRIORITY_TOT = PHU_TINH_PRIORITY_TOT;
+window.PHU_TINH_PRIORITY_XAU = PHU_TINH_PRIORITY_XAU;
+
+</script>
+    <script>/* INLINED: js/geometry.js */
+/**
+ * geometry.js
+ * Tính toán tọa độ không gian: định vị huy hiệu Tuần/Triệt và tam giác Mệnh-Tài-Quan.
+ */
+
+function getBoundaryPosition(c1, c2) {
+    c1 = Number(c1);
+    c2 = Number(c2);
+    const pair = [c1, c2].sort((a, b) => a - b).join("-");
+    const BOUNDARY_MAP = {
+        "5-6": { top: "12.5%", left: "25%", orientation: "v", type: "divider-v" },
+        "6-7": { top: "25%", left: "50%", orientation: "h", type: "tab-down" },
+        "7-8": { top: "12.5%", left: "75%", orientation: "v", type: "divider-v" },
+        "8-9": { top: "25%", left: "87.5%", orientation: "h", type: "divider-h" },
+        "9-10": { top: "50%", left: "87.5%", orientation: "h", type: "divider-h" },
+        "10-11": { top: "75%", left: "87.5%", orientation: "h", type: "divider-h" },
+        "0-11": { top: "87.5%", left: "75%", orientation: "v", type: "divider-v" },
+        "0-1": { top: "75%", left: "50%", orientation: "h", type: "tab-up" },
+        "1-2": { top: "87.5%", left: "25%", orientation: "v", type: "divider-v" },
+        "2-3": { top: "75%", left: "12.5%", orientation: "h", type: "divider-h" },
+        "3-4": { top: "50%", left: "12.5%", orientation: "h", type: "divider-h" },
+        "4-5": { top: "25%", left: "12.5%", orientation: "h", type: "divider-h" }
+    };
+    return BOUNDARY_MAP[pair] || { top: "50%", left: "50%", orientation: "h", type: "divider-h" };
+}
+
+function positionTuanTrietBadges(tuanCung, trietCung) {
+    let tuan = document.getElementById("badgeTuan");
+    let triet = document.getElementById("badgeTriet");
+    const board = document.getElementById("tuviBoard");
+    if (!board) return;
+
+    if (!tuan) {
+        tuan = document.createElement("div");
+        tuan.id = "badgeTuan";
+        tuan.className = "badge-tuan-triet badge-tuan";
+        tuan.textContent = "Tuần";
+        board.appendChild(tuan);
+    } else if (tuan.parentElement !== board) {
+        board.appendChild(tuan);
+    }
+
+    if (!triet) {
+        triet = document.createElement("div");
+        triet.id = "badgeTriet";
+        triet.className = "badge-tuan-triet badge-triet";
+        triet.textContent = "Triệt";
+        board.appendChild(triet);
+    } else if (triet.parentElement !== board) {
+        board.appendChild(triet);
+    }
+
+    const hasTuan = Boolean(tuanCung && tuanCung.length >= 2 && tuanCung[0] !== undefined && tuanCung[0] !== null && tuanCung[1] !== undefined && tuanCung[1] !== null);
+    const hasTriet = Boolean(trietCung && trietCung.length >= 2 && trietCung[0] !== undefined && trietCung[0] !== null && trietCung[1] !== undefined && trietCung[1] !== null);
+
+    if (!hasTuan) tuan.style.display = "none";
+    if (!hasTriet) triet.style.display = "none";
+
+    if (!hasTuan && !hasTriet) return;
+
+    const pTuan = hasTuan ? getBoundaryPosition(tuanCung[0], tuanCung[1]) : null;
+    const pTriet = hasTriet ? getBoundaryPosition(trietCung[0], trietCung[1]) : null;
+
+    function applyBadgeStyle(el, pos) {
+        if (!el || !pos) return;
+        el.classList.remove("badge-tab-down", "badge-tab-up", "badge-divider-h", "badge-divider-v");
+        if (pos.type === "tab-down") {
+            el.classList.add("badge-tab-down");
+        } else if (pos.type === "tab-up") {
+            el.classList.add("badge-tab-up");
+        } else if (pos.type === "divider-v") {
+            el.classList.add("badge-divider-v");
+        } else {
+            el.classList.add("badge-divider-h");
+        }
+    }
+
+    if (hasTuan) {
+        tuan.style.display = "inline-flex";
+        applyBadgeStyle(tuan, pTuan);
+    }
+    if (hasTriet) {
+        triet.style.display = "inline-flex";
+        applyBadgeStyle(triet, pTriet);
+    }
+
+    const isCollision = Boolean(hasTuan && hasTriet && pTuan.top === pTriet.top && pTuan.left === pTriet.left);
+
+    if (isCollision) {
+        if (pTuan.orientation === "v") {
+            tuan.style.top = `calc(${pTuan.top} - 11px)`;
+            tuan.style.left = pTuan.left;
+            triet.style.top = `calc(${pTuan.top} + 11px)`;
+            triet.style.left = pTuan.left;
+        } else {
+            tuan.style.top = pTuan.top;
+            tuan.style.left = `calc(${pTuan.left} - 23px)`;
+            triet.style.top = pTuan.top;
+            triet.style.left = `calc(${pTuan.left} + 23px)`;
+        }
+    } else {
+        if (hasTuan) {
+            tuan.style.top = pTuan.top;
+            tuan.style.left = pTuan.left;
+        }
+        if (hasTriet) {
+            triet.style.top = pTriet.top;
+            triet.style.left = pTriet.left;
+        }
+    }
+}
+
+function updateMenhTaiQuanTriangle(menhPos) {
+    if (menhPos === undefined || menhPos === null) return;
+    menhPos = Number(menhPos);
+    if (isNaN(menhPos)) return;
+    const quanPos = (menhPos + 4) % 12;
+    const taiPos = (menhPos + 8) % 12;
+
+    const tb = document.getElementById("thien-ban");
+    const poly = document.getElementById("polyMenhTaiQuan");
+    if (!poly || !tb) return;
+
+    const tbRect = tb.getBoundingClientRect();
+
+    function getHouseContactPoint(pos) {
+        const STATIC_COORDS = {
+            0: { x: 750, y: 1000 },  // Tý
+            1: { x: 250, y: 1000 },  // Sửu
+            2: { x: 0,   y: 1000 },  // Dần
+            3: { x: 0,   y: 750 },   // Mão
+            4: { x: 0,   y: 250 },   // Thìn
+            5: { x: 0,   y: 0 },     // Tỵ
+            6: { x: 250, y: 0 },     // Ngọ
+            7: { x: 750, y: 0 },     // Mùi
+            8: { x: 1000, y: 0 },    // Thân
+            9: { x: 1000, y: 250 },  // Dậu
+            10: { x: 1000, y: 750 }, // Tuất
+            11: { x: 1000, y: 1000 } // Hợi
+        };
+
+        if (!tbRect || tbRect.width <= 0) {
+            return STATIC_COORDS[pos];
+        }
+
+        const houseEl = document.getElementById(`house-${pos}`);
+        if (!houseEl) return STATIC_COORDS[pos];
+        const hRect = houseEl.getBoundingClientRect();
+        if (hRect.width <= 0) return STATIC_COORDS[pos];
+
+        let x, y;
+        switch (pos) {
+            case 0:
+            case 1:
+                x = ((hRect.left + hRect.width / 2 - tbRect.left) / tbRect.width) * 1000;
+                y = 1000;
+                break;
+            case 2:
+                x = 0;
+                y = 1000;
+                break;
+            case 3:
+            case 4:
+                x = 0;
+                y = ((hRect.top + hRect.height / 2 - tbRect.top) / tbRect.height) * 1000;
+                break;
+            case 5:
+                x = 0;
+                y = 0;
+                break;
+            case 6:
+            case 7:
+                x = ((hRect.left + hRect.width / 2 - tbRect.left) / tbRect.width) * 1000;
+                y = 0;
+                break;
+            case 8:
+                x = 1000;
+                y = 0;
+                break;
+            case 9:
+            case 10:
+                x = 1000;
+                y = ((hRect.top + hRect.height / 2 - tbRect.top) / tbRect.height) * 1000;
+                break;
+            case 11:
+                x = 1000;
+                y = 1000;
+                break;
+            default:
+                return STATIC_COORDS[pos];
+        }
+
+        x = Math.max(0, Math.min(1000, x));
+        y = Math.max(0, Math.min(1000, y));
+        return { x, y };
+    }
+
+    const pM = getHouseContactPoint(menhPos);
+    const pQ = getHouseContactPoint(quanPos);
+    const pT = getHouseContactPoint(taiPos);
+
+    poly.setAttribute("points", `${pM.x.toFixed(1)},${pM.y.toFixed(1)} ${pQ.x.toFixed(1)},${pQ.y.toFixed(1)} ${pT.x.toFixed(1)},${pT.y.toFixed(1)}`);
+}
+
+window.getBoundaryPosition = getBoundaryPosition;
+window.positionTuanTrietBadges = positionTuanTrietBadges;
+window.updateMenhTaiQuanTriangle = updateMenhTaiQuanTriangle;
+
+</script>
+    <script>/* INLINED: js/board-renderer.js */
+/**
+ * board-renderer.js
+ * Quản lý vẽ giao diện lá số, 12 cung Địa Bàn và Thiên Bàn trung tâm.
+ * Tối ưu DocumentFragment chống DOM thrashing và hỗ trợ cập nhật tên độc lập.
+ */
+
+// Khởi tạo biến toàn cục lưu trữ mã ID duy nhất đã sử dụng trong phiên
+window._generatedTuViIds = window._generatedTuViIds || new Set();
+
+let currentChartData = null;
+window.currentChartData = null;
+
+function getCurrentChartData() {
+    return currentChartData;
+}
+
+function setCurrentChartData(chart) {
+    currentChartData = chart;
+    window.currentChartData = chart;
+}
+
+/**
+ * Trích xuất ký tự viết tắt tên người dùng (viết hoa, chuyển tự tiếng Việt chuẩn ASCII)
+ * Ví dụ: "Nguyễn Văn A" -> "NVA"
+ */
+function getInitials(name) {
+    if (!name || typeof name !== 'string') return "HA";
+    let clean = name.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/Đ/g, "D")
+        .replace(/[^a-zA-Z0-9\s]/g, "")
+        .trim();
+    if (!clean) return "HA";
+    let words = clean.split(/\s+/).filter(w => w.length > 0);
+    if (words.length === 0) return "HA";
+    let initials = words.map(w => w[0].toUpperCase()).join("");
+    return initials || "HA";
+}
+
+/**
+ * Thuật toán sinh 8 chữ số ngẫu nhiên duy nhất tuyệt đối (Strict Unique)
+ * Kết hợp timestamp millisecond, high-resolution performance timer và crypto random/Math random
+ */
+function generateStrictUniqueIdDigits() {
+    let digits = "";
+    let attempts = 0;
+    while (attempts < 1000) {
+        attempts++;
+        const now = Date.now();
+        const perf = (typeof performance !== "undefined" && performance.now) ? performance.now() : Math.random() * 1000;
+        const rand = (typeof crypto !== "undefined" && crypto.getRandomValues)
+            ? (crypto.getRandomValues(new Uint32Array(1))[0] % 100000000)
+            : Math.floor(Math.random() * 100000000);
+
+        const mixed = Math.abs(Math.floor((now ^ Math.floor(perf * 1000) ^ rand ^ (attempts * 7919)))) % 100000000;
+        digits = String(mixed).padStart(8, '0');
+
+        if (!window._generatedTuViIds.has(digits)) {
+            window._generatedTuViIds.add(digits);
+            return digits;
+        }
+    }
+    return String(Math.floor(10000000 + Math.random() * 90000000));
+}
+
+/**
+ * Cập nhật tên đương số trực tiếp trên Thiên Bàn và mã ID mờ mà không cần gọi lại API
+ */
+function updateBoardNameOnly(name) {
+    const safeName = (name && name.trim()) ? name.trim() : "Vô Danh";
+    const nameEl = document.getElementById("tb-name");
+    if (nameEl) {
+        nameEl.innerText = safeName;
+    }
+    if (currentChartData) {
+        if (currentChartData.thien_ban) {
+            currentChartData.thien_ban.ho_ten = safeName;
+        }
+        if (!currentChartData.idDigits) {
+            currentChartData.idDigits = generateStrictUniqueIdDigits();
+        }
+        const initials = getInitials(safeName);
+        const idCode = `${initials}-${currentChartData.idDigits}`;
+        currentChartData.idCode = idCode;
+        const idCodeEl = document.getElementById("tb-id-code");
+        if (idCodeEl) {
+            idCodeEl.innerText = idCode;
+        }
+    }
+}
+
+function renderTuViBoard(chart) {
+    setCurrentChartData(chart);
+    let tb = chart.thien_ban;
+    let db = chart.dia_ban;
+
+    // Sinh hoặc giữ nguyên mã ID duy nhất 8 số cho lá số này
+    if (!chart.idDigits) {
+        chart.idDigits = generateStrictUniqueIdDigits();
+    }
+    const initials = getInitials(tb.ho_ten);
+    const idCode = `${initials}-${chart.idDigits}`;
+    chart.idCode = idCode;
+
+    // Hiển thị mã ID watermark góc dưới bên phải Thiên bàn
+    const idCodeEl = document.getElementById("tb-id-code");
+    if (idCodeEl) {
+        idCodeEl.innerText = idCode;
+    }
+
+    // Cập nhật Thiên Bàn (1 Cột Dọc Đầy ĐỦ)
+    const nameEl = document.getElementById("tb-name");
+    if (nameEl) nameEl.innerText = tb.ho_ten;
+
+    const sYearEl = document.getElementById("tb-solar-year");
+    if (sYearEl) sYearEl.innerText = tb.duong_lich.nam;
+
+    const lYearEl = document.getElementById("tb-lunar-year");
+    if (lYearEl) lYearEl.innerText = tb.am_lich.can_chi_nam;
+
+    let lYear = (tb.am_lich.calc_nam !== undefined) ? tb.am_lich.calc_nam : tb.am_lich.nam;
+    const lYearTag = document.getElementById("tb-lunar-year-tag");
+    if (lYearTag) lYearTag.innerText = `(N.${lYear})`;
+
+    const sMonthEl = document.getElementById("tb-solar-month");
+    if (sMonthEl) sMonthEl.innerText = String(tb.duong_lich.thang).padStart(2, '0');
+
+    const lMonthEl = document.getElementById("tb-lunar-month");
+    if (lMonthEl) lMonthEl.innerText = tb.am_lich.can_chi_thang;
+
+    let lMonth = (tb.am_lich.calc_thang !== undefined) ? tb.am_lich.calc_thang : tb.am_lich.thang;
+    let lIsLeap = (tb.am_lich.calc_thang_nhuan !== undefined) ? tb.am_lich.calc_thang_nhuan : tb.am_lich.thang_nhuan;
+    const lMonthTag = document.getElementById("tb-lunar-month-tag");
+    if (lMonthTag) lMonthTag.innerText = `(Th.${lMonth}${lIsLeap ? 'N' : ''})`;
+
+    const sDayEl = document.getElementById("tb-solar-day");
+    if (sDayEl) sDayEl.innerText = String(tb.duong_lich.ngay).padStart(2, '0');
+
+    const lDayEl = document.getElementById("tb-lunar-day");
+    if (lDayEl) lDayEl.innerText = tb.am_lich.can_chi_ngay;
+
+    let lDay = (tb.am_lich.calc_ngay !== undefined) ? tb.am_lich.calc_ngay : tb.am_lich.ngay;
+    const lDayTag = document.getElementById("tb-lunar-day-tag");
+    if (lDayTag) lDayTag.innerText = `(Ng.${lDay})`;
+
+    let solarHourStr = `${String(tb.duong_lich.gio).padStart(2, '0')}:${String(tb.duong_lich.phut).padStart(2, '0')}`;
+    const sHourEl = document.getElementById("tb-solar-hour");
+    if (sHourEl) sHourEl.innerText = solarHourStr;
+
+    const lHourEl = document.getElementById("tb-lunar-hour");
+    if (lHourEl) lHourEl.innerText = tb.am_lich.can_chi_gio;
+
+    const lHourTag = document.getElementById("tb-lunar-hour-tag");
+    if (lHourTag) lHourTag.innerText = `(G.${solarHourStr})`;
+
+    const sWatchEl = document.getElementById("tb-solar-watch");
+    if (sWatchEl) sWatchEl.innerText = tb.nam_xem_han.nam;
+
+    const lWatchEl = document.getElementById("tb-lunar-watch");
+    if (lWatchEl) lWatchEl.innerText = tb.nam_xem_han.can_chi;
+
+    const tuoiMuEl = document.getElementById("tb-tuoi-mu");
+    if (tuoiMuEl) tuoiMuEl.innerText = `${tb.nam_xem_han.tuoi_mu} tuổi`;
+
+    const amDuongEl = document.getElementById("tb-am-duong");
+    if (amDuongEl) amDuongEl.innerText = tb.am_duong_menh;
+
+    const menhEl = document.getElementById("tb-menh");
+    if (menhEl) menhEl.innerText = tb.menh_nap_am;
+
+    const cucEl = document.getElementById("tb-cuc");
+    if (cucEl) cucEl.innerText = tb.cuc;
+
+    const chuMenhEl = document.getElementById("tb-chu-menh");
+    if (chuMenhEl) chuMenhEl.innerText = tb.chu_menh;
+
+    const chuThanEl = document.getElementById("tb-chu-than");
+    if (chuThanEl) chuThanEl.innerText = tb.chu_than;
+
+    const amDuongLyEl = document.getElementById("tb-am-duong-ly");
+    if (amDuongLyEl) amDuongLyEl.innerText = tb.am_duong_ly;
+
+    const cucMenhLyEl = document.getElementById("tb-cuc-menh-ly");
+    if (cucMenhLyEl) cucMenhLyEl.innerText = tb.cuc_menh_tuong_quan;
+
+    const thanCuEl = document.getElementById("tb-than-cu");
+    if (thanCuEl) thanCuEl.innerText = tb.than_cu;
+
+    // Xóa 12 Cung cũ (trừ Thiên Bàn)
+    const board = document.getElementById("tuviBoard");
+    if (!board) return;
+    const existingHouses = board.querySelectorAll(".house");
+    existingHouses.forEach(h => h.remove());
+
+    // TỐI ƯU HIỆU NĂNG: Sử dụng DocumentFragment để gom 12 cung, append duy nhất 1 lần vào DOM
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < 12; i++) {
+        let c = db[i];
+        let houseEl = document.createElement("div");
+        houseEl.className = "house";
+        houseEl.id = `house-${i}`;
+
+        // Header - Địa Chi & Tên Cung & Đại Hạn
+        let chiHanh = (window.CHI_HANH && window.CHI_HANH[i]) ? window.CHI_HANH[i] : "";
+
+        let headerHtml = `
+            <div class="house-header">
+                <div class="house-header-left ${chiHanh}">
+                    <span class="chi-cung">${c.cung_chi}</span>
+                </div>
+                <div class="cung-name-wrap">
+                    <span class="cung-name">${c.ten_cung}</span>
+                </div>
+                <div class="house-header-right">
+                    <span class="dai-han">${c.dai_han}</span>
+                </div>
+            </div>`;
+
+        // Chính tinh (Zone 2)
+        let chinhTinhHtml = `<div class="chinh-tinh-box">`;
+        if (c.chinh_tinh.length > 0) {
+            c.chinh_tinh.forEach(s => {
+                let dtClass = s.dac_tinh ? `dac-tinh` : '';
+                let dtText = s.dac_tinh ? `(${s.dac_tinh})` : '';
+                chinhTinhHtml += `<div class="chinh-tinh-item ${s.ngu_hanh}">${s.ten}<span class="${dtClass}">${dtText}</span></div>`;
+            });
+        } else {
+            chinhTinhHtml += `<div class="chinh-tinh-item vo-chinh-dieu"></div>`;
+        }
+        chinhTinhHtml += `</div>`;
+
+        // Tự động ép chuyển các sao "Tướng Quân" và "Thái Tuế" sang cột bên phải
+        const FORCE_RIGHT_STARS = ["Tướng Quân", "Thái Tuế"];
+        const rawTot = c.phu_tinh_tot.filter(s => !FORCE_RIGHT_STARS.includes(s.ten));
+        const forcedRight = c.phu_tinh_tot.filter(s => FORCE_RIGHT_STARS.includes(s.ten));
+        const rawXau = [...c.phu_tinh_xau, ...forcedRight];
+
+        const priTot = window.PHU_TINH_PRIORITY_TOT || {};
+        const priXau = window.PHU_TINH_PRIORITY_XAU || {};
+        const saoNguHanh = window.SAO_NGU_HANH || {};
+
+        // Sắp xếp phụ tinh theo chuẩn thứ tự
+        const sortedTot = [...rawTot].sort((a, b) => {
+            const pA = priTot[a.ten] !== undefined ? priTot[a.ten] : 99;
+            const pB = priTot[b.ten] !== undefined ? priTot[b.ten] : 99;
+            return pA - pB;
+        });
+
+        const sortedXau = [...rawXau].sort((a, b) => {
+            const pA = priXau[a.ten] !== undefined ? priXau[a.ten] : 99;
+            const pB = priXau[b.ten] !== undefined ? priXau[b.ten] : 99;
+            return pA - pB;
+        });
+
+        // Phụ tinh 2 cột (Zone 3)
+        let leftColHtml = `<div class="phu-tinh-col left">`;
+        sortedTot.forEach(s => {
+            let dt = s.dac_tinh ? ` (${s.dac_tinh})` : '';
+            leftColHtml += `<span class="star-item ${s.ngu_hanh}">${s.ten}${dt}</span>`;
+        });
+        c.sao_luu.filter(l => l.loai === "tot").forEach(l => {
+            let baseName = l.ten.replace("L.", "");
+            let hanh = saoNguHanh[baseName] || "tho";
+            leftColHtml += `<span class="star-item ${hanh} luu">${l.ten}</span>`;
+        });
+        leftColHtml += `</div>`;
+
+        let rightColHtml = `<div class="phu-tinh-col right">`;
+        sortedXau.forEach(s => {
+            let dt = s.dac_tinh ? ` (${s.dac_tinh})` : '';
+            let cls = s.ngu_hanh || 'hoa';
+            rightColHtml += `<span class="star-item ${cls}">${s.ten}${dt}</span>`;
+        });
+        c.sao_luu.filter(l => l.loai === "xau").forEach(l => {
+            let baseName = l.ten.replace("L.", "");
+            let hanh = saoNguHanh[baseName] || "hoa";
+            rightColHtml += `<span class="star-item ${hanh} luu">${l.ten}</span>`;
+        });
+        rightColHtml += `</div>`;
+
+        let phuTinhGridHtml = `<div class="phu-tinh-grid">${leftColHtml}${rightColHtml}</div>`;
+
+        // Chân cung (Zone 4)
+        let footerHtml = `
+            <div class="house-footer">
+                <span class="tieu-han-label">${c.tieu_han_chi}</span>
+                <span class="trang-sinh-label">${c.trang_sinh}</span>
+                <span class="nguyet-han-label">Th.${c.nguyet_han_thang}</span>
+            </div>`;
+
+        houseEl.innerHTML = headerHtml + chinhTinhHtml + phuTinhGridHtml + footerHtml;
+        fragment.appendChild(houseEl);
+    }
+
+    // Đính kèm trọn vẹn 12 cung vào DOM một lần duy nhất
+    board.appendChild(fragment);
+
+    // Kẻ tam giác nét đứt Mệnh - Tài - Quan
+    if (typeof updateMenhTaiQuanTriangle === "function") {
+        updateMenhTaiQuanTriangle(chart.menhPos);
+    }
+
+    // Định vị huy hiệu Tuần và Triệt trên vách ngăn
+    if (typeof positionTuanTrietBadges === "function") {
+        positionTuanTrietBadges(chart.tuan_cung, chart.triet_cung);
+    }
+
+    // Cập nhật JSON Viewer nếu có
+    const jsonEl = document.getElementById("jsonOutputContent");
+    if (jsonEl) jsonEl.innerText = JSON.stringify(chart, null, 2);
+}
+
+window.renderTuViBoard = renderTuViBoard;
+window.updateBoardNameOnly = updateBoardNameOnly;
+window.getCurrentChartData = getCurrentChartData;
+window.setCurrentChartData = setCurrentChartData;
+window.getInitials = getInitials;
+window.generateStrictUniqueIdDigits = generateStrictUniqueIdDigits;
+
+</script>
+    <script>/* INLINED: js/ui-controller.js */
+/**
+ * ui-controller.js
+ * Điều khiển bảng nhập liệu, trạng thái lịch âm/dương, debounce và lớp phủ loading.
+ * Độc lập hóa trường họ tên để không kích hoạt request tính toán thừa.
+ */
+
+let tuviLoadingStartTime = 0;
+const MIN_LOADING_TIME = 560; // ms
+
+function showTuViLoading() {
+    tuviLoadingStartTime = Date.now();
+    const overlay = document.getElementById("tuviLoadingOverlay");
+    const board = document.getElementById("tuviBoard");
+    if (overlay) {
+        overlay.classList.remove("hidden");
+        void overlay.offsetWidth; // Force Reflow
+    }
+    if (board) board.classList.add("is-updating");
+}
+
+async function hideTuViLoading() {
+    const elapsedTime = Date.now() - tuviLoadingStartTime;
+    const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsedTime);
+    if (remainingTime > 0) {
+        await new Promise(resolve => setTimeout(resolve, remainingTime));
+    }
+    const overlay = document.getElementById("tuviLoadingOverlay");
+    const board = document.getElementById("tuviBoard");
+    if (overlay) overlay.classList.add("hidden");
+    if (board) board.classList.remove("is-updating");
+}
+
+function debounce(func, wait = 300) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+function populateSelect(id, start, end, selected) {
+    const select = document.getElementById(id);
+    if (!select) return;
+    select.innerHTML = "";
+    for (let i = start; i <= end; i++) {
+        let val = i.toString().padStart(2, '0');
+        let option = new Option(val, i);
+        if (i === selected) option.selected = true;
+        select.add(option);
+    }
+}
+
+function updateDaysInMonth() {
+    let year = parseInt(document.getElementById("txtYear").value) || 2006;
+    let month = parseInt(document.getElementById("txtMonth").value) || 1;
+    let isSolar = document.querySelector('input[name="calendar"]:checked')?.value === "solar";
+    let maxDays = 31;
+    if (isSolar) {
+        maxDays = new Date(year, month, 0).getDate();
+    } else {
+        maxDays = 30;
+    }
+    const daySelect = document.getElementById("txtDay");
+    if (!daySelect) return;
+    let currentDay = parseInt(daySelect.value) || 1;
+    if (daySelect.options.length !== maxDays) {
+        daySelect.innerHTML = "";
+        for (let i = 1; i <= maxDays; i++) {
+            let val = i.toString().padStart(2, '0');
+            let option = new Option(val, i);
+            if (i === currentDay) option.selected = true;
+            daySelect.add(option);
+        }
+        if (currentDay > maxDays) {
+            currentDay = maxDays;
+            daySelect.value = currentDay;
+        }
+    }
+}
+
+function initDropdowns() {
+    populateSelect("txtYear", 1900, 2100, 2006);
+    populateSelect("txtMonth", 1, 12, 1);
+    populateSelect("txtDay", 1, 31, 1);
+    populateSelect("txtHour", 0, 23, 0);
+    populateSelect("txtMinute", 0, 59, 0);
+    populateSelect("txtLimitYear", 2000, 2100, 2027);
+}
+
+function toggleCalendarType() {
+    const calRadio = document.querySelector('input[name="calendar"]:checked');
+    let isLunar = calRadio ? (calRadio.value === "lunar") : false;
+    const leapRow = document.getElementById("rowLeapMonth");
+    if (leapRow) leapRow.style.display = isLunar ? "flex" : "none";
+}
+
+function collectInputParams() {
+    let name = document.getElementById("txtName") ? (document.getElementById("txtName").value.trim() || "Vô Danh") : "Vô Danh";
+    let gender = document.querySelector('input[name="gender"]:checked')?.value || "Nam";
+    let isSolar = (document.querySelector('input[name="calendar"]:checked')?.value === "solar");
+    let isLeapMonthInput = document.getElementById("chkIsLeap") ? document.getElementById("chkIsLeap").checked : false;
+
+    let year = parseInt(document.getElementById("txtYear")?.value) || 2006;
+    let month = parseInt(document.getElementById("txtMonth")?.value) || 1;
+    let day = parseInt(document.getElementById("txtDay")?.value) || 1;
+    let hour = parseInt(document.getElementById("txtHour")?.value) || 0;
+    let minute = parseInt(document.getElementById("txtMinute")?.value) || 0;
+    let limitYear = parseInt(document.getElementById("txtLimitYear")?.value) || 2027;
+
+    return {
+        name,
+        gender,
+        is_solar: isSolar,
+        isSolar: isSolar,
+        day,
+        month,
+        year,
+        hour,
+        minute,
+        is_leap_month_input: isLeapMonthInput,
+        isLeapMonthInput: isLeapMonthInput,
+        limit_year: limitYear,
+        limitYear
+    };
+}
+
+function showTuViStaleNotice() {
+    const overlay = document.getElementById("tuviStaleOverlay");
+    if (overlay) {
+        overlay.classList.remove("hidden");
+    }
+}
+
+function hideTuViStaleNotice() {
+    const overlay = document.getElementById("tuviStaleOverlay");
+    if (overlay) {
+        overlay.classList.add("hidden");
+    }
+}
+
+function initEventListeners() {
+    // 1. Họ và tên: Cập nhật tên và hiển thị thông báo yêu cầu bấm nút Lập lá số
+    const nameEl = document.getElementById("txtName");
+    if (nameEl) {
+        nameEl.addEventListener("input", (e) => {
+            if (typeof updateBoardNameOnly === "function") {
+                updateBoardNameOnly(e.target.value);
+            }
+            showTuViStaleNotice();
+        });
+    }
+
+    // 2. Giới tính
+    document.querySelectorAll('input[name="gender"]').forEach(el => {
+        el.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    });
+
+    // 3. Loại lịch (Dương lịch / Âm lịch)
+    document.querySelectorAll('input[name="calendar"]').forEach(el => {
+        el.addEventListener("change", () => {
+            toggleCalendarType();
+            updateDaysInMonth();
+            showTuViStaleNotice();
+        });
+    });
+
+    // 4. Tháng nhuận
+    const leapEl = document.getElementById("chkIsLeap");
+    if (leapEl) {
+        leapEl.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    }
+
+    // 5. Năm sinh, Tháng sinh, Ngày sinh
+    const yearEl = document.getElementById("txtYear");
+    if (yearEl) {
+        yearEl.addEventListener("change", () => {
+            updateDaysInMonth();
+            showTuViStaleNotice();
+        });
+    }
+    const monthEl = document.getElementById("txtMonth");
+    if (monthEl) {
+        monthEl.addEventListener("change", () => {
+            updateDaysInMonth();
+            showTuViStaleNotice();
+        });
+    }
+    const dayEl = document.getElementById("txtDay");
+    if (dayEl) {
+        dayEl.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    }
+
+    // 6. Giờ sinh, Phút sinh
+    const hourEl = document.getElementById("txtHour");
+    if (hourEl) {
+        hourEl.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    }
+    const minuteEl = document.getElementById("txtMinute");
+    if (minuteEl) {
+        minuteEl.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    }
+
+    // 7. Năm xem hạn
+    const limitYearEl = document.getElementById("txtLimitYear");
+    if (limitYearEl) {
+        limitYearEl.addEventListener("change", () => {
+            showTuViStaleNotice();
+        });
+    }
+}
+
+// Điều chỉnh bố cục linh hoạt giữa Máy tính (>1024px) và Điện thoại (<=1024px)
+function syncResponsiveWidths() {
+    try {
+        const wrapper = document.querySelector('.tuvi-board-wrapper');
+        const outputPanel = document.querySelector('.output-panel');
+        const inputPanel = document.querySelector('.input-panel');
+        const exportSection = document.querySelector('.export-section');
+        const footerNote = document.querySelector('.panel-footer-note');
+        const board = document.getElementById('tuviBoard');
+        if (!wrapper || !outputPanel || !inputPanel || !exportSection || !board) return;
+
+        const isMobile = window.innerWidth <= 1024;
+        
+        // Chuẩn hóa kích thước gốc của Lá Số Tử Vi (195mm x 268mm)
+        const BASE_WIDTH = 737; // 195mm
+        const BASE_HEIGHT = 1013; // 268mm
+        let scale = 1.0;
+        
+        if (isMobile) {
+            const containerWidth = document.documentElement.clientWidth || window.innerWidth || (document.body ? document.body.clientWidth : 390);
+            const padding = 20; // safe area padding
+            const availableWidth = Math.max(280, containerWidth - padding);
+            scale = Math.min(1.0, Math.floor((availableWidth / BASE_WIDTH) * 1000) / 1000);
+        }
+        
+        board.style.transform = `scale(${scale})`;
+        board.style.transformOrigin = 'top left';
+
+        // Kích thước wrapper chuẩn (box-sizing: content-box đảm bảo viền 2px nằm ngoài)
+        const scaledWidth = Math.round(BASE_WIDTH * scale);
+        const scaledHeight = Math.round(BASE_HEIGHT * scale);
+        wrapper.style.width = `${scaledWidth}px`;
+        wrapper.style.height = `${scaledHeight}px`;
+
+        if (isMobile) {
+            // Giao diện Điện thoại: Chuyển khối Xuất lá số xuống dưới Preview lá số
+            if (exportSection.parentElement !== outputPanel) {
+                outputPanel.appendChild(exportSection);
+            }
+            if (scaledWidth > 0) {
+                exportSection.style.width = `${scaledWidth}px`;
+                exportSection.style.maxWidth = `${scaledWidth}px`;
+                inputPanel.style.width = `${scaledWidth}px`;
+                inputPanel.style.maxWidth = `${scaledWidth}px`;
+            }
+        } else {
+            // Giao diện Máy tính: Khôi phục 100% giao diện gốc bên trong Bảng nhập liệu
+            if (exportSection.parentElement !== inputPanel) {
+                if (footerNote) {
+                    inputPanel.insertBefore(exportSection, footerNote);
+                } else {
+                    inputPanel.appendChild(exportSection);
+                }
+            }
+            // Xóa style inline để sử dụng CSS máy tính gốc
+            exportSection.style.width = '';
+            exportSection.style.maxWidth = '';
+            inputPanel.style.width = '';
+            inputPanel.style.maxWidth = '';
+        }
+    } catch (_e) {}
+}
+
+// Báo cáo chiều cao thực tế về trang cha để tự động co giãn iframe (Zero scrollbars)
+function notifyParentHeight() {
+    syncResponsiveWidths();
+    try {
+        if (window.parent && window.parent !== window) {
+            const board = document.querySelector('.tuvi-board-wrapper');
+            const panel = document.querySelector('.input-panel');
+            const exportSec = document.querySelector('.export-section');
+            let maxBottom = 0;
+            [board, panel, exportSec].forEach(el => {
+                if (el) {
+                    const r = el.getBoundingClientRect();
+                    const b = r.bottom + (window.pageYOffset || document.documentElement.scrollTop || 0);
+                    if (b > maxBottom) maxBottom = b;
+                }
+            });
+            if (document.body && document.body.children) {
+                for (let i = 0; i < document.body.children.length; i++) {
+                    const child = document.body.children[i];
+                    if (child.tagName === 'SCRIPT' || child.tagName === 'STYLE') continue;
+                    const r = child.getBoundingClientRect();
+                    const b = r.bottom + (window.pageYOffset || document.documentElement.scrollTop || 0);
+                    if (b > maxBottom) maxBottom = b;
+                }
+            }
+            const h = maxBottom > 0 ? Math.ceil(maxBottom) + 20 : (document.body ? document.body.scrollHeight : 1040);
+            window.parent.postMessage({ type: 'TUVI_IFRAME_RESIZE', height: h }, '*');
+        }
+    } catch (_e) {}
+}
+
+window.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'REQUEST_TUVI_HEIGHT') {
+        notifyParentHeight();
+        setTimeout(notifyParentHeight, 150);
+    }
+});
+
+window.showTuViLoading = showTuViLoading;
+window.hideTuViLoading = hideTuViLoading;
+window.showTuViStaleNotice = showTuViStaleNotice;
+window.hideTuViStaleNotice = hideTuViStaleNotice;
+window.debounce = debounce;
+window.populateSelect = populateSelect;
+window.updateDaysInMonth = updateDaysInMonth;
+window.initDropdowns = initDropdowns;
+window.toggleCalendarType = toggleCalendarType;
+window.collectInputParams = collectInputParams;
+window.initEventListeners = initEventListeners;
+window.notifyParentHeight = notifyParentHeight;
+window.syncResponsiveWidths = syncResponsiveWidths;
+
+</script>
+    <script>/* INLINED: js/export-engine.js */
+/**
+ * export-engine.js
+ * Quản lý xuất bản lá số: PDF CMYK chuẩn in offset, PDF Đen trắng in laser, và Ảnh 4K A4 (300 DPI).
+ * Đã loại bỏ chuỗi Base64 218KB, sử dụng trực tiếp tài nguyên logo và sửa lỗi watermark.
+ */
+
+function showExportToast(_msg, _spinning = true) {}
+
+function hideExportToast(_delay = 2500) {}
+
+function setExportButtonsDisabled(disabled) {
+    const btn1 = document.getElementById('btnExportCmyk');
+    const btn2 = document.getElementById('btnExportBw');
+    const btn3 = document.getElementById('btnExportImg');
+    if (btn1) btn1.disabled = disabled;
+    if (btn2) btn2.disabled = disabled;
+    if (btn3) btn3.disabled = disabled;
+}
+
+function getExportFileName(ext, variant = '') {
+    const nameEl = document.getElementById('txtName');
+    let name = nameEl ? nameEl.value.trim() : '';
+    if (!name && window.currentChartData && window.currentChartData.thien_ban) {
+        name = window.currentChartData.thien_ban.ho_ten || '';
+    }
+    const safeName = name.replace(/[/\\:*?"<>|]/g, '').trim() || 'La-so-Tu-Vi';
+    const suffix = variant ? ` ${variant}` : '';
+    return `${safeName}${suffix}.${ext}`;
+}
+
+function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 150);
+}
+
+// Chụp canvas lá số độ nét cao chuẩn in ấn 300 DPI
+async function captureTuviBoard(scale = 3.5, options = {}) {
+    const wrapper = document.querySelector('.tuvi-board-wrapper');
+    if (!wrapper) throw new Error('Không tìm thấy .tuvi-board-wrapper');
+
+    if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+    }
+
+    const origCreatePattern = CanvasRenderingContext2D.prototype.createPattern;
+    CanvasRenderingContext2D.prototype.createPattern = function(image, repetition) {
+        if (image && (image.width === 0 || image.height === 0)) {
+            const fallback = document.createElement('canvas');
+            fallback.width = 1;
+            fallback.height = 1;
+            return origCreatePattern.call(this, fallback, repetition);
+        }
+        return origCreatePattern.call(this, image, repetition);
+    };
+
+    // Tạo container ngoài màn hình (off-screen) để clone và render tĩnh ở tỉ lệ chuẩn 100%
+    // ĐẢM BẢO TUYỆT ĐỐI KHÔNG GÂY GIẬT KHỰNG, RUNG LẮC HOẶC THAY ĐỔI VIEWPORT TRÊN ĐIỆN THOẠI
+    const offscreen = document.createElement('div');
+    offscreen.style.cssText = `
+        position: fixed !important;
+        top: 0 !important;
+        left: -10000px !important;
+        width: 737px !important;
+        height: 1013px !important;
+        z-index: -9999 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        overflow: visible !important;
+    `;
+
+    const cloneWrapper = wrapper.cloneNode(true);
+    cloneWrapper.style.transform = 'none';
+    cloneWrapper.style.transformOrigin = 'top left';
+    cloneWrapper.style.width = '737px';
+    cloneWrapper.style.height = '1013px';
+    cloneWrapper.style.margin = '0';
+    cloneWrapper.style.padding = '0';
+    cloneWrapper.style.boxSizing = 'content-box';
+    cloneWrapper.style.zoom = '1';
+
+    const cloneBoard = cloneWrapper.querySelector('#tuviBoard');
+    if (cloneBoard) {
+        cloneBoard.style.transform = 'none';
+        cloneBoard.style.transformOrigin = 'top left';
+        cloneBoard.style.width = '195mm';
+        cloneBoard.style.height = '268mm';
+    }
+
+    const cloneStale = cloneWrapper.querySelector('#tuviStaleOverlay');
+    if (cloneStale) cloneStale.style.display = 'none';
+    const cloneLoading = cloneWrapper.querySelector('#tuviLoadingOverlay');
+    if (cloneLoading) cloneLoading.style.display = 'none';
+
+    if (options.watermarkOpacity) {
+        const cloneWm = cloneWrapper.querySelector('.tb-watermark-bg');
+        if (cloneWm) cloneWm.style.opacity = options.watermarkOpacity;
+    }
+
+    offscreen.appendChild(cloneWrapper);
+    document.body.appendChild(offscreen);
+
+    try {
+        await new Promise(r => requestAnimationFrame(r));
+        await new Promise(r => setTimeout(r, 60));
+
+        const canvas = await html2canvas(cloneWrapper, {
+            scale: scale,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: '#ffffff',
+            logging: false,
+            imageTimeout: 0
+        });
+
+        return canvas;
+    } finally {
+        CanvasRenderingContext2D.prototype.createPattern = origCreatePattern;
+        offscreen.remove();
+    }
+}
+
+function rgbToCmyk(r, g, b) {
+    const r_ = r / 255;
+    const g_ = g / 255;
+    const b_ = b / 255;
+    const k = 1 - Math.max(r_, g_, b_);
+    if (k >= 0.9999) {
+        return [0, 0, 0, 255];
+    }
+    const c = Math.round(((1 - r_ - k) / (1 - k)) * 255);
+    const m = Math.round(((1 - g_ - k) / (1 - k)) * 255);
+    const y = Math.round(((1 - b_ - k) / (1 - k)) * 255);
+    const kVal = Math.round(k * 255);
+    return [c, m, y, kVal];
+}
+
+function rgbToGrayscale(r, g, b) {
+    const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+    if (gray > 248) {
+        return 255;
+    } else if (gray >= 215) {
+        return Math.min(250, Math.round(gray));
+    } else {
+        return Math.max(0, Math.round(gray * 0.82));
+    }
+}
+
+async function generatePdfDocument({
+    pageWidthPt = 595.28,
+    pageHeightPt = 841.89,
+    marginPt = 20,
+    imgWidthPx,
+    imgHeightPx,
+    colorSpace = 'DeviceCMYK',
+    bitsPerComponent = 8,
+    rawBytes
+}) {
+    let streamData = rawBytes;
+    let isCompressed = false;
+
+    if (typeof CompressionStream !== 'undefined') {
+        try {
+            const cs = new CompressionStream('deflate');
+            const writer = cs.writable.getWriter();
+            writer.write(rawBytes);
+            writer.close();
+            const reader = cs.readable.getReader();
+            const chunks = [];
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                chunks.push(value);
+            }
+            let total = 0;
+            chunks.forEach(c => total += c.length);
+            const res = new Uint8Array(total);
+            let offset = 0;
+            chunks.forEach(c => {
+                res.set(c, offset);
+                offset += c.length;
+            });
+            streamData = res;
+            isCompressed = true;
+        } catch (e) {
+            console.warn('Nén FlateDecode không khả dụng, sử dụng raw stream:', e);
+        }
+    }
+
+    const imgWidthPt = (pageWidthPt - 2 * marginPt).toFixed(2);
+    const imgHeightPt = (pageHeightPt - 2 * marginPt).toFixed(2);
+    const x = marginPt.toFixed(2);
+    const y = marginPt.toFixed(2);
+    const contentStr = `q\n${imgWidthPt} 0 0 ${imgHeightPt} ${x} ${y} cm\n/Im1 Do\nQ\n`;
+    const contentBytes = new TextEncoder().encode(contentStr);
+
+    const filterLine = isCompressed ? '/Filter /FlateDecode\n' : '';
+    const chunks = [];
+    const offsets = [];
+    let currentOffset = 0;
+
+    function append(data) {
+        const bytes = typeof data === 'string' ? new TextEncoder().encode(data) : data;
+        chunks.push(bytes);
+        currentOffset += bytes.length;
+    }
+
+    append('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+
+    offsets[1] = currentOffset;
+    append('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+
+    offsets[2] = currentOffset;
+    append('2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n');
+
+    offsets[3] = currentOffset;
+    append(`3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageWidthPt.toFixed(2)} ${pageHeightPt.toFixed(2)}] /Contents 5 0 R /Resources << /XObject << /Im1 4 0 R >> >> >>\nendobj\n`);
+
+    offsets[4] = currentOffset;
+    append(`4 0 obj\n<< /Type /XObject /Subtype /Image /Width ${imgWidthPx} /Height ${imgHeightPx} /ColorSpace /${colorSpace} /BitsPerComponent ${bitsPerComponent} ${filterLine}/Length ${streamData.length} >>\nstream\n`);
+    append(streamData);
+    append('\nendstream\nendobj\n');
+
+    offsets[5] = currentOffset;
+    append(`5 0 obj\n<< /Length ${contentBytes.length} >>\nstream\n`);
+    append(contentBytes);
+    append('endstream\nendobj\n');
+
+    const startxref = currentOffset;
+    append('xref\n0 6\n0000000000 65535 f \n');
+    for (let i = 1; i <= 5; i++) {
+        append(String(offsets[i]).padStart(10, '0') + ' 00000 n \n');
+    }
+    append(`trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${startxref}\n%%EOF\n`);
+
+    return new Blob(chunks, { type: 'application/pdf' });
+}
+
+async function exportPdfCmyk() {
+    try {
+        setExportButtonsDisabled(true);
+
+        const canvas = await captureTuviBoard(3.5);
+        const w = canvas.width;
+        const h = canvas.height;
+        const ctx = canvas.getContext('2d');
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const rgba = imgData.data;
+
+        await new Promise(r => setTimeout(r, 20));
+
+        const totalPixels = w * h;
+        const cmykBytes = new Uint8Array(totalPixels * 4);
+
+        let srcIdx = 0;
+        let dstIdx = 0;
+        for (let i = 0; i < totalPixels; i++) {
+            const cmyk = rgbToCmyk(rgba[srcIdx], rgba[srcIdx + 1], rgba[srcIdx + 2]);
+            cmykBytes[dstIdx] = cmyk[0];
+            cmykBytes[dstIdx + 1] = cmyk[1];
+            cmykBytes[dstIdx + 2] = cmyk[2];
+            cmykBytes[dstIdx + 3] = cmyk[3];
+            srcIdx += 4;
+            dstIdx += 4;
+        }
+
+        const pdfBlob = await generatePdfDocument({
+            pageWidthPt: 595.28,
+            pageHeightPt: 841.89,
+            marginPt: 20,
+            imgWidthPx: w,
+            imgHeightPx: h,
+            colorSpace: 'DeviceCMYK',
+            rawBytes: cmykBytes
+        });
+
+        const filename = getExportFileName('pdf');
+        downloadBlob(pdfBlob, filename);
+    } catch (e) {
+        console.error('Lỗi khi xuất PDF CMYK:', e);
+    } finally {
+        setExportButtonsDisabled(false);
+    }
+}
+
+async function exportPdfGrayscale() {
+    try {
+        setExportButtonsDisabled(true);
+
+        const canvas = await captureTuviBoard(3.5, { watermarkOpacity: '0.14' });
+        const w = canvas.width;
+        const h = canvas.height;
+        const ctx = canvas.getContext('2d');
+        const imgData = ctx.getImageData(0, 0, w, h);
+        const rgba = imgData.data;
+
+        await new Promise(r => setTimeout(r, 20));
+
+        const totalPixels = w * h;
+        const grayBytes = new Uint8Array(totalPixels);
+
+        let srcIdx = 0;
+        for (let i = 0; i < totalPixels; i++) {
+            grayBytes[i] = rgbToGrayscale(rgba[srcIdx], rgba[srcIdx + 1], rgba[srcIdx + 2]);
+            srcIdx += 4;
+        }
+
+        const pdfBlob = await generatePdfDocument({
+            pageWidthPt: 595.28,
+            pageHeightPt: 841.89,
+            marginPt: 20,
+            imgWidthPx: w,
+            imgHeightPx: h,
+            colorSpace: 'DeviceGray',
+            rawBytes: grayBytes
+        });
+
+        const filename = getExportFileName('pdf', '(Đen trắng)');
+        downloadBlob(pdfBlob, filename);
+    } catch (e) {
+        console.error('Lỗi khi xuất PDF Grayscale:', e);
+    } finally {
+        setExportButtonsDisabled(false);
+    }
+}
+
+async function exportImage4K() {
+    try {
+        setExportButtonsDisabled(true);
+
+        const boardCanvas = await captureTuviBoard(3.5);
+
+        const A4_WIDTH = 2480;
+        const A4_HEIGHT = 3508;
+
+        const a4Canvas = document.createElement('canvas');
+        a4Canvas.width = A4_WIDTH;
+        a4Canvas.height = A4_HEIGHT;
+
+        const ctx = a4Canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, A4_WIDTH, A4_HEIGHT);
+
+        const minMargin = 85;
+        const maxAvailableWidth = A4_WIDTH - 2 * minMargin;
+        const maxAvailableHeight = A4_HEIGHT - 2 * minMargin;
+
+        const boardRatio = boardCanvas.width / boardCanvas.height;
+        let targetWidth = maxAvailableWidth;
+        let targetHeight = targetWidth / boardRatio;
+
+        if (targetHeight > maxAvailableHeight) {
+            targetHeight = maxAvailableHeight;
+            targetWidth = targetHeight * boardRatio;
+        }
+
+        targetWidth = Math.round(targetWidth);
+        targetHeight = Math.round(targetHeight);
+
+        const posX = Math.round((A4_WIDTH - targetWidth) / 2);
+        const posY = Math.round((A4_HEIGHT - targetHeight) / 2);
+
+        ctx.drawImage(
+            boardCanvas,
+            0, 0, boardCanvas.width, boardCanvas.height,
+            posX, posY, targetWidth, targetHeight
+        );
+
+        const rawBlob = await new Promise((resolve, reject) => {
+            a4Canvas.toBlob(blob => {
+                if (blob) resolve(blob);
+                else reject(new Error('Không thể chuyển canvas sang blob PNG'));
+            }, 'image/png');
+        });
+
+        const finalBlob = await embedDpiInPngBlob(rawBlob, 300);
+
+        const filename = getExportFileName('png');
+        downloadBlob(finalBlob, filename);
+    } catch (e) {
+        console.error('Lỗi khi xuất ảnh 4K:', e);
+    } finally {
+        setExportButtonsDisabled(false);
+    }
+}
+
+async function embedDpiInPngBlob(blob, dpi = 300) {
+    try {
+        const arrayBuffer = await blob.arrayBuffer();
+        const bytes = new Uint8Array(arrayBuffer);
+
+        if (bytes[0] !== 137 || bytes[1] !== 80 || bytes[2] !== 78 || bytes[3] !== 71) {
+            return blob;
+        }
+
+        const ppm = Math.round(dpi / 0.0254);
+
+        const physChunk = new Uint8Array(21);
+        const view = new DataView(physChunk.buffer);
+        view.setUint32(0, 9);
+        physChunk[4] = 0x70; physChunk[5] = 0x48; physChunk[6] = 0x59; physChunk[7] = 0x73;
+        view.setUint32(8, ppm);
+        view.setUint32(12, ppm);
+        physChunk[16] = 1;
+
+        const crcTable = new Uint32Array(256);
+        for (let i = 0; i < 256; i++) {
+            let c = i;
+            for (let k = 0; k < 8; k++) {
+                c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+            }
+            crcTable[i] = c;
+        }
+        let crc = 0 ^ (-1);
+        for (let i = 4; i < 17; i++) {
+            crc = (crc >>> 8) ^ crcTable[(crc ^ physChunk[i]) & 0xFF];
+        }
+        crc = (crc ^ (-1)) >>> 0;
+        view.setUint32(17, crc);
+
+        const dataView = new DataView(arrayBuffer);
+        const ihdrLen = dataView.getUint32(8);
+        const ihdrEnd = 8 + 4 + 4 + ihdrLen + 4;
+
+        const newBytes = new Uint8Array(bytes.length + 21);
+        newBytes.set(bytes.subarray(0, ihdrEnd), 0);
+        newBytes.set(physChunk, ihdrEnd);
+        newBytes.set(bytes.subarray(ihdrEnd), ihdrEnd + 21);
+
+        return new Blob([newBytes], { type: 'image/png' });
+    } catch (e) {
+        console.warn('Không thể nhúng pHYs chunk vào PNG:', e);
+        return blob;
+    }
+}
+
+window.exportPdfCmyk = exportPdfCmyk;
+window.exportPdfGrayscale = exportPdfGrayscale;
+window.exportImage4K = exportImage4K;
+window.captureTuviBoard = captureTuviBoard;
+window.getExportFileName = getExportFileName;
+window.downloadBlob = downloadBlob;
+
+</script>
+    <script>/* INLINED: js/app.js */
+/**
+ * app.js
+ * Điểm khởi nhập chính của ứng dụng Frontend.
+ * Điều phối gọi API Backend /api/calculate, khởi tạo các bộ điều khiển và xử lý sự kiện toàn cục.
+ */
+
+let currentRequestId = 0;
+const OVERLAY_BUFFER_TIME = 200; // ms
+
+async function generateTuVi() {
+    const requestId = ++currentRequestId;
+
+    // Ẩn lớp phủ mờ thông báo
+    if (typeof hideTuViStaleNotice === "function") {
+        hideTuViStaleNotice();
+    }
+
+    // BƯỚC 1: KÍCH HOẠT MÀN CHE LOADING
+    if (typeof showTuViLoading === "function") {
+        showTuViLoading();
+    }
+
+    const bufferPromise = new Promise(resolve => setTimeout(resolve, OVERLAY_BUFFER_TIME));
+
+    // Thu thập tham số đầu vào
+    const payload = (typeof collectInputParams === "function")
+        ? collectInputParams()
+        : {};
+
+    const apiUrl = (window.location.origin && window.location.origin !== "null" && window.location.protocol.startsWith("http"))
+        ? `${window.location.origin}/api/calculate`
+        : "http://localhost:8080/api/calculate";
+
+    let chartData = null;
+
+    try {
+        // BƯỚC 2: GỌI API LẤY DỮ LIỆU TÍNH TOÁN
+        try {
+            const res = await fetch(apiUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error("Lỗi HTTP " + res.status);
+            chartData = await res.json();
+        } catch (apiErr) {
+            console.warn("Lỗi gọi API từ origin chính, thử fallback localhost:8080...", apiErr);
+            const resLocal = await fetch("http://localhost:8080/api/calculate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+            if (resLocal.ok) {
+                chartData = await resLocal.json();
+            }
+        }
+
+        if (requestId !== currentRequestId) {
+            return;
+        }
+
+        // BƯỚC 3: ĐỢI THỜI GIAN ĐỆM ĐẢM BẢO MÀN CHE ĐÃ PHỦ KÍN
+        await bufferPromise;
+
+        if (requestId !== currentRequestId) {
+            return;
+        }
+
+        // BƯỚC 4: RENDER DỮ LIỆU LÁ SỐ MỚI BÊN DƯỚI MÀN CHE
+        if (chartData && typeof renderTuViBoard === "function") {
+            renderTuViBoard(chartData);
+        }
+    } catch (err) {
+        console.error("Không thể cập nhật lá số:", err);
+    } finally {
+        if (requestId === currentRequestId) {
+            // BƯỚC 5: HẠ MÀN CHE
+            if (typeof hideTuViLoading === "function") {
+                await hideTuViLoading();
+            }
+            if (typeof notifyParentHeight === "function") {
+                notifyParentHeight();
+                setTimeout(notifyParentHeight, 150);
+            }
+        }
+    }
+}
+
+// Xử lý sự kiện co giãn màn hình
+window.addEventListener('resize', () => {
+    if (typeof syncResponsiveWidths === "function") {
+        syncResponsiveWidths();
+    }
+    const cur = window.getCurrentChartData ? window.getCurrentChartData() : window.currentChartData;
+    if (cur) {
+        if (typeof updateMenhTaiQuanTriangle === "function") {
+            updateMenhTaiQuanTriangle(cur.menhPos);
+        }
+        if (typeof positionTuanTrietBadges === "function") {
+            positionTuanTrietBadges(cur.tuan_cung, cur.triet_cung);
+        }
+    }
+    if (typeof notifyParentHeight === "function") {
+        notifyParentHeight();
+    }
+});
+
+// Xử lý chuẩn bị in
+window.addEventListener('beforeprint', () => {
+    const cur = window.getCurrentChartData ? window.getCurrentChartData() : window.currentChartData;
+    if (cur) {
+        if (typeof updateMenhTaiQuanTriangle === "function") {
+            updateMenhTaiQuanTriangle(cur.menhPos);
+        }
+        if (typeof positionTuanTrietBadges === "function") {
+            positionTuanTrietBadges(cur.tuan_cung, cur.triet_cung);
+        }
+    }
+});
+
+// Khởi chạy khi tài liệu HTML sẵn sàng
+document.addEventListener("DOMContentLoaded", () => {
+    if (typeof initDropdowns === "function") initDropdowns();
+    if (typeof initEventListeners === "function") initEventListeners();
+    if (typeof updateDaysInMonth === "function") updateDaysInMonth();
+    generateTuVi();
+    if (typeof notifyParentHeight === "function") {
+        notifyParentHeight();
+        setTimeout(notifyParentHeight, 200);
+        setTimeout(notifyParentHeight, 800);
+    }
+});
+
+window.addEventListener('load', () => {
+    if (typeof notifyParentHeight === "function") {
+        notifyParentHeight();
+        setTimeout(notifyParentHeight, 300);
+    }
+});
+
+if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(() => {
+        if (typeof notifyParentHeight === "function") notifyParentHeight();
+    });
+    ro.observe(document.body);
+}
+
+window.generateTuVi = generateTuVi;
+
+
+</script>
+</body>
+
+</html>

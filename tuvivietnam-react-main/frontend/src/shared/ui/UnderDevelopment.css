@@ -1,0 +1,18 @@
+.under-dev-page {
+  width: 100%;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.under-dev-message {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-red, #8b1d1d);
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 0;
+}
