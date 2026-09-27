@@ -19,8 +19,8 @@ function Footer() {
               Liên hệ: <a href="tel:0920461699">0920461699</a>
             </div>
             <div>
-              <a href="https://www.tuvihongan.com" target="_blank" rel="noopener noreferrer">
-                www.tuvihongan.com
+              <a href="https://tuvihongan.com" target="_blank" rel="noopener noreferrer">
+                https://tuvihongan.com
               </a>
             </div>
           </div>

@@ -1,0 +1,356 @@
+.thien-duong-page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #f7f3ec;
+  color: #333;
+}
+
+.thien-duong-container {
+  box-sizing: border-box;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 34px 50px 44px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+  line-height: 1.8;
+}
+
+.thien-duong-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 14px;
+}
+
+.thien-duong-breadcrumb a {
+  color: #8b1e1e;
+  text-decoration: none;
+}
+
+.thien-duong-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.thien-duong-title {
+  margin: 0 0 15px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #d6b36a;
+  color: #8b1e1e;
+  font-size: 32px;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.thien-duong-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  margin-bottom: 26px;
+  color: #777;
+  font-size: 14px;
+}
+
+.thien-duong-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  align-items: start;
+  gap: 30px;
+}
+
+.thien-duong-article {
+  min-width: 0;
+}
+
+.thien-duong-cover {
+  overflow: hidden;
+  margin-bottom: 22px;
+  border-radius: 8px;
+  background: #faf6eb;
+}
+
+.thien-duong-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
+.thien-duong-article p {
+  margin: 10px 0 15px;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.thien-duong-article .thien-duong-lead {
+  margin: 0 0 25px;
+  padding: 20px;
+  border-left: 4px solid #c79a3b;
+  border-radius: 8px;
+  background: #faf6eb;
+  font-size: 17px;
+}
+
+.thien-duong-toc {
+  margin: 25px 0 32px;
+  padding: 20px 24px;
+  border: 1px solid #ead9ae;
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.thien-duong-toc h2 {
+  margin: 0 0 10px;
+  color: #8b1e1e;
+  font-size: 20px;
+}
+
+.thien-duong-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thien-duong-toc a {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  color: #555;
+  text-decoration: none;
+}
+
+.thien-duong-toc a span:first-child {
+  color: #a37827;
+  font-weight: 700;
+}
+
+.thien-duong-toc a:hover,
+.thien-duong-sidebar a:hover {
+  color: #8b1e1e;
+}
+
+.thien-duong-sections {
+  display: grid;
+  gap: 30px;
+}
+
+.thien-duong-section {
+  scroll-margin-top: 24px;
+}
+
+.thien-duong-article .thien-duong-section-title {
+  margin: 35px 0 15px;
+  padding-left: 12px;
+  border-left: 4px solid #c79a3b;
+  color: #8b1e1e;
+  font-size: 23px;
+  line-height: 1.45;
+}
+
+.thien-duong-section-body h3 {
+  margin: 24px 0 8px;
+  color: #8b1e1e;
+  font-size: 19px;
+}
+
+.thien-duong-section-body ul {
+  padding-left: 25px;
+}
+
+.thien-duong-section-body li {
+  margin-bottom: 7px;
+}
+
+.thien-duong-callout {
+  margin: 22px 0;
+  padding: 16px 20px;
+  border-left: 4px solid #c79a3b;
+  border-radius: 8px;
+  background: #faf6eb;
+}
+
+.thien-duong-article .thien-duong-callout .callout-title {
+  margin: 0;
+  color: #8b1e1e;
+  font-weight: 700;
+}
+
+.thien-duong-rating-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.thien-duong-rating {
+  padding: 16px;
+  border: 1px solid #ead9ae;
+  border-radius: 8px;
+  background: #faf6eb;
+}
+
+.thien-duong-rating .rating-title {
+  color: #8b1e1e;
+  font-weight: 700;
+}
+
+.thien-duong-article .thien-duong-rating p {
+  margin: 4px 0 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.thien-duong-quote {
+  margin: 22px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background: #8b1e1e;
+  color: #fff8e8;
+}
+
+.thien-duong-article .thien-duong-quote p {
+  color: inherit;
+}
+
+.thien-duong-article .thien-duong-quote .quote-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.thien-duong-note {
+  margin-top: 32px;
+  padding: 18px 20px;
+  border: 1px solid #ead9ae;
+  border-radius: 8px;
+  background: #fff8e8;
+  color: #666;
+  font-size: 14px;
+}
+
+.thien-duong-note strong {
+  color: #444;
+}
+
+.thien-duong-sidebar > div {
+  position: sticky;
+  top: 24px;
+  padding: 18px;
+  border: 1px solid #ead9ae;
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.thien-duong-sidebar .sidebar-label {
+  margin: 0 0 12px;
+  color: #a37827;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.thien-duong-sidebar .sidebar-links a {
+  display: block;
+  padding: 7px 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.thien-duong-sidebar .sidebar-star {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #e6e0d5;
+  text-align: center;
+}
+
+.thien-duong-sidebar .star-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #faf0d8;
+  font-size: 30px;
+}
+
+.thien-duong-sidebar .star-name {
+  margin: 8px 0 0;
+  color: #8b1e1e;
+  font-weight: 700;
+}
+
+.thien-duong-sidebar .star-caption {
+  margin: 2px 0 0;
+  color: #777;
+  font-size: 12px;
+}
+
+.thien-duong-article .cumon-highlight {
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid #ead9ae;
+  border-left: 4px solid #c79a3b;
+  border-radius: 8px;
+  background: #fff1ee;
+}
+
+.thien-duong-article .cumon-highlight p {
+  color: #5b4343;
+}
+
+.thien-duong-article .cumon-highlight .cumon-highlight-title {
+  margin: 0;
+  color: #8b1e1e;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .thien-duong-page {
+    padding: 20px 10px;
+  }
+
+  .thien-duong-container {
+    padding: 24px 20px 30px;
+  }
+
+  .thien-duong-title {
+    font-size: 25px;
+  }
+
+  .thien-duong-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .thien-duong-sidebar {
+    display: none;
+  }
+
+  .thien-duong-rating-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .thien-duong-container {
+    padding: 20px 15px 24px;
+  }
+
+  .thien-duong-meta {
+    justify-content: flex-start;
+    gap: 6px 14px;
+  }
+
+  .thien-duong-article .thien-duong-section-title {
+    font-size: 20px;
+  }
+}

@@ -12,7 +12,7 @@ const featured = {
   id: 1,
   title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thiên Tướng',
   tag: 'TỬ VI',
-  date: '22/10/2020',
+  date: '27/09/2026',
   author: 'Tử Vi Việt Nam',
   image: 'https://picsum.photos/seed/tv1/800/500',
   large: true,
@@ -30,7 +30,7 @@ const posts = [
     id: 2,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thiên Lương',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv2/400/280',
 
     link: '/chuyen-muc/thien-luong',
@@ -40,17 +40,17 @@ const posts = [
     id: 3,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thái Dương',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv3/400/280',
 
-    link: '/chuyen-muc/thai-duong',
+    link: '/chuyen-muc/thien-giam-thai-duong',
   },
 
   {
     id: 4,
     title: 'Tử vi đẩu số toàn thư hán việt – Phần cuối',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tuvi-toan-thu/400/280',
 
     link: '/chuyen-muc/tu-vi-dau-so-toan-thu',
@@ -60,7 +60,7 @@ const posts = [
     id: 5,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Cự Môn',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv5/400/280',
 
     link: '/chuyen-muc/cu-mon',
@@ -70,7 +70,7 @@ const posts = [
     id: 6,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thiên Tướng',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv6/400/300',
 
     link: '/chuyen-muc/thien-tuong',
@@ -80,7 +80,7 @@ const posts = [
     id: 7,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thiên Lương',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv7/400/300',
 
     link: '/chuyen-muc/thien-luong',
@@ -90,7 +90,7 @@ const posts = [
     id: 8,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Thất Sát',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv8/400/300',
 
     link: '/chuyen-muc/that-sat',
@@ -100,7 +100,7 @@ const posts = [
     id: 9,
     title: 'KHÂM THIÊN GIÁM TỬ VI ĐẨU SỐ – Phá Quân',
     tag: 'TỬ VI',
-    date: '22/10/2020',
+    date: '27/09/2026',
     image: 'https://picsum.photos/seed/tv9/400/300',
 
     link: '/chuyen-muc/pha-quan',

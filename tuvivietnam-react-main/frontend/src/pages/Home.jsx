@@ -194,11 +194,11 @@ export default function Home() {
             className="flex items-center gap-3 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-amber-400 bg-[#fffaf2] shadow-md">
+            <div className="w-11 h-11 aspect-square shrink-0 rounded-full overflow-hidden border-2 border-amber-400 bg-[#fffaf2] shadow-md">
               <img
                 src="/logo.jpg"
                 alt="Tử Vi Hồng Ân Logo"
-                className="w-full h-full object-cover"
+                className="block w-full h-full object-cover"
               />
             </div>
             <div>
@@ -347,7 +347,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-base sm:text-xl text-stone-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
-                Soi tỏ cung Mệnh, định hướng công danh tài lộc, hòa hợp nhân duyên và khai thông vượng khí nhà ở - cơ quan qua thuật số Đông phương chính thống.
+                Nền tảng MIỄN PHÍ - Lập lá số Tử Vi & luận giải chuẩn xác. Gieo quẻ Tarot Kiều về công việc, tình duyên, gia đạo; phong thủy nhà cửa - hôn nhân
               </p>
 
               {/* Special Promo Highlight Box: 199k & Zalo Booking */}
@@ -411,7 +411,7 @@ export default function Home() {
                         className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
                       >
                         <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>0385.497.085</span>
+                        <span>Zalo: 0385.497.085</span>
                       </a>
                     </div>
                   </div>
