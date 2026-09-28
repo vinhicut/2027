@@ -70,6 +70,11 @@ export default function Home() {
       return;
     }
 
+    if (id === 'batquai') {
+      navigate('/la-kinh-phong-thuy');
+      return;
+    }
+
     scrollToSection(id);
   };
 
@@ -411,7 +416,7 @@ export default function Home() {
                         className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
                       >
                         <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Zalo: 0385.497.085</span>
+                        <span>Zalo: </span>
                       </a>
                     </div>
                   </div>
@@ -471,7 +476,7 @@ export default function Home() {
               {/* Module 2: BÁT QUÁI, PHONG THỦY */}
               <div
                 id="card-batquai-intro"
-                onClick={() => scrollToSection('service')}
+                onClick={() => navigate('/la-kinh-phong-thuy')}
                 className="group relative rounded-3xl bg-white p-6 sm:p-7 border border-amber-200/80 hover:border-amber-500 transition-all duration-300 hover:shadow-[0_12px_30px_rgba(180,130,60,0.15)] cursor-pointer flex flex-col justify-between shadow-sm"
               >
                 <div className="space-y-4">
@@ -927,7 +932,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-stone-300">
             {/* Col 1: Brand Info */}
-            <div className="space-y-3 md:col-span-1">
+{/*             <div className="space-y-3 md:col-span-1">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full overflow-hidden border border-amber-400 bg-[#fffaf2] shadow-xs">
                   <img
@@ -954,7 +959,7 @@ export default function Home() {
                   tuvihongan.com
                 </a>
               </div>
-            </div>
+            </div> */}
 
             {/* Col 2: Dịch Vụ Miễn Phí */}
             <div className="space-y-2.5">
@@ -975,7 +980,7 @@ export default function Home() {
                 <li>
                   <button
                     type="button"
-                    onClick={() => navigate('/boi-kieu')}
+                    onClick={() => navigate('/la-kinh-phong-thuy')}
                     className="hover:text-red-700 transition-colors flex items-center gap-1.5 cursor-pointer text-stone-700"
                   >
                     <Compass className="w-3.5 h-3.5 text-amber-700" />

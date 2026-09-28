@@ -25,6 +25,10 @@
   font-family: 'Playfair Display', Georgia, serif;
 }
 
+.font-serif-heading {
+  font-family: 'Noto Serif', Georgia, serif;
+}
+
 /* Elegant oriental scrollbar for light parchment theme */
 ::-webkit-scrollbar {
   width: 8px;

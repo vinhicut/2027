@@ -48,7 +48,7 @@
 }
 
 .app,
-.app * {
+.app :where(*):not(:where(.feng-shui-widget, .feng-shui-widget *)) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -68,7 +68,7 @@ a {
   transition: all 0.2s ease;
 }
 
-button {
+button:not(:where(.feng-shui-widget button)) {
   cursor: pointer;
   border: none;
   font-family: inherit;

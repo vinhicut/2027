@@ -17,6 +17,7 @@ import CuMon from '../pages/baiviet/CuMon';
 import ThienLuong from '../pages/baiviet/ThienLuong';
 import ThatSat from '../pages/baiviet/ThatSat';
 import PhaQuan from '../pages/baiviet/PhaQuan';
+import { PhongThuyWidget } from '../phongthuy/PhongThuyWidget';
 function App() {
   const { pathname } = useLocation();
 
@@ -41,6 +42,7 @@ function App() {
           />
           <Route path="/lich-van-su" element={<LichVanSu />} />
           <Route path="/boi-kieu" element={<BoiKieu />} />
+          <Route path="/la-kinh-phong-thuy" element={<PhongThuyWidget />} />
           <Route path="/chuyen-muc" element={<CategoryPage />} />
           <Route path="/chuyen-muc/thien-tuong" element={<KhamThienTuViThienTuong />} />
           <Route path="/chuyen-muc/thien-giam-thai-duong" element={<KhamThienGiamThaiDuong />} />
