@@ -120,78 +120,6 @@ export default function Home() {
       {/* 1. HEADER & NAVIGATION                                                    */}
       {/* ========================================================================= */}
       <header className="sticky top-0 z-40 bg-[#fffdfa]/95 backdrop-blur-md border-b border-amber-200/80 text-stone-800 shadow-sm">
-        {/* Top Banner Notice */}
-        <div className="bg-gradient-to-r from-amber-700 via-red-800 to-amber-800 text-white text-xs py-1.5 px-4 shadow-inner">
-          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 font-medium">
-            <div className="flex items-center gap-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-300 animate-pulse" />
-              <span>
-                Luận giải đầy đủ chi tiết chỉ{' '}
-                <strong className="text-yellow-200 font-bold">199k</strong> tại{' '}
-                <a
-                  href="https://www.tuvihongan.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-yellow-200 transition-colors font-semibold"
-                >
-                  www.tuvihongan.com
-                </a>
-              </span>
-            </div>
-            <div className="flex items-center gap-4 text-xs">
-              <span className="hidden sm:inline text-amber-100">
-                Đặt lịch riêng với thầy qua Zalo:
-              </span>
-              <div className="flex items-center gap-2">
-                <a
-                  href="https://zalo.me/0924616199"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-stone-900 hover:text-stone-950 bg-amber-100 hover:bg-white px-2.5 py-0.5 rounded-full font-semibold border border-amber-300 transition-all shadow-xs"
-                  title="Mở Zalo nhắn tin trực tiếp"
-                >
-                  <Phone className="w-3 h-3 text-emerald-700" />
-                  <span>0924.6161.99</span>
-                  <button
-                    type="button"
-                    onClick={(e) => copyToClipboard('0924616199', e)}
-                    className="hover:text-amber-800 ml-0.5 cursor-pointer"
-                    title="Sao chép số"
-                  >
-                    {copiedPhone === '0924616199' ? (
-                      <Check className="w-3 h-3 text-emerald-700" />
-                    ) : (
-                      <Copy className="w-3 h-3 opacity-60" />
-                    )}
-                  </button>
-                </a>
-                <a
-                  href="https://zalo.me/0385497085"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden md:inline-flex items-center gap-1.5 text-stone-900 hover:text-stone-950 bg-amber-100 hover:bg-white px-2.5 py-0.5 rounded-full font-semibold border border-amber-300 transition-all shadow-xs"
-                  title="Mở Zalo nhắn tin trực tiếp"
-                >
-                  <Phone className="w-3 h-3 text-emerald-700" />
-                  <span>0385.497.085</span>
-                  <button
-                    type="button"
-                    onClick={(e) => copyToClipboard('0385497085', e)}
-                    className="hover:text-amber-800 ml-0.5 cursor-pointer"
-                    title="Sao chép số"
-                  >
-                    {copiedPhone === '0385497085' ? (
-                      <Check className="w-3 h-3 text-emerald-700" />
-                    ) : (
-                      <Copy className="w-3 h-3 opacity-60" />
-                    )}
-                  </button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Main Navigation Bar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
           {/* Brand Logo */}
@@ -208,16 +136,13 @@ export default function Home() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display font-bold text-xl sm:text-2xl tracking-wide text-stone-900">
-                  Tử Vi{' '}
-                  <span className="bg-gradient-to-r from-amber-700 to-red-700 bg-clip-text text-transparent">
-                    Hồng Ân
-                  </span>
+                <span className="font-display font-bold text-2xl sm:text-3xl tracking-wide text-red-700 whitespace-nowrap">
+                  Tử Vi Hồng Ân
                 </span>
               </div>
-              <p className="text-[11px] text-stone-500 font-medium tracking-wider">
+{/*               <p className="text-[11px] text-stone-500 font-medium tracking-wider">
                 www.tuvihongan.com • Soi Mệnh - Đắc Thời - Định Hướng
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -345,7 +270,7 @@ export default function Home() {
 
             {/* Main Heading */}
             <div className="text-center max-w-4xl mx-auto">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-stone-900 mb-4 leading-tight sm:leading-tight">
+              {/* <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-stone-900 mb-4 leading-tight sm:leading-tight">
                 Tử Vi{' '}
                 <span className="bg-gradient-to-r from-red-800 via-amber-700 to-amber-900 bg-clip-text text-transparent">
                   Hồng Ân
@@ -353,7 +278,7 @@ export default function Home() {
               </h1>
               <p className="text-base sm:text-xl text-stone-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
                 Nền tảng MIỄN PHÍ - Lập lá số Tử Vi & Xem Sao Chiếu mệnh hàng năm, Bói Kiều về công việc
-              </p>
+              </p> */}
 
               {/* Special Promo Highlight Box: 199k & Zalo Booking */}
               <div className="max-w-3xl mx-auto p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#fffdfa] via-white to-amber-50/50 border-2 border-amber-400/80 shadow-[0_10px_35px_rgba(217,119,6,0.12)] mb-10 text-left">
