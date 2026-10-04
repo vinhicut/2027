@@ -129,7 +129,7 @@ export default function Home() {
           >
             <div className="w-11 h-11 aspect-square shrink-0 rounded-full overflow-hidden border-2 border-amber-400 bg-[#fffaf2] shadow-md">
               <img
-                src="/logo.jpg"
+                src="/logo.png"
                 alt="Tử Vi Hồng Ân Logo"
                 className="block w-full h-full object-cover"
               />
@@ -877,7 +877,7 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full overflow-hidden border border-amber-400 bg-[#fffaf2] shadow-xs">
                   <img
-                    src="/logo.jpg"
+                    src="/logo.png"
                     alt="Tử Vi Hồng Ân Logo"
                     className="w-full h-full object-cover"
                   />

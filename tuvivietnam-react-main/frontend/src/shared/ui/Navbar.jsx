@@ -74,7 +74,7 @@ function Navbar() {
         <div className="header-container">
           <Link to="/" className="logo">
             <div className="brand-logo-wrap">
-              <img src="/logo.jpg" alt="Tử Vi Hồng Ân Logo" className="brand-logo-img" />
+              <img src="/logo.png" alt="Tử Vi Hồng Ân Logo" className="brand-logo-img" />
             </div>
             <div className="logo-text">
               <h1 className="logo-main">TỬ VI HỒNG ÂN</h1>
