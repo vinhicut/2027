@@ -1192,6 +1192,16 @@ body {
             margin-bottom: 2px;
         }
 
+        .export-section > .section-title {
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .service-section > .section-title {
+            color: #0f172a;
+            font-weight: 800;
+        }
+
         .form-row {
             display: flex;
             align-items: center;
@@ -1421,6 +1431,47 @@ body {
             height: 15px;
         }
 
+        .service-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin: 4px 0;
+        }
+
+        .btn-service {
+            display: flex;
+            min-width: 0;
+            min-height: 54px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            padding: 7px 8px;
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: var(--font-main);
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
+        }
+
+        .btn-service strong {
+            color: #802722;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .btn-service:hover {
+            background: #fffdfb;
+            border-color: #802722;
+            box-shadow: 0 2px 8px rgba(128, 39, 34, 0.12);
+        }
+
         /* PHẦN XUẤT BẢN - TỐI GIẢN & ĐỐI XỨNG */
         .export-section {
             display: flex;
@@ -1481,14 +1532,14 @@ body {
 
         /* Nút CMYK: Nền tối thanh lịch */
         .btn-cmyk {
-            background: #0f172a;
+            background: #802722;
             color: #ffffff;
-            border-color: #0f172a;
+            border-color: #802722;
         }
 
         .btn-cmyk:hover:not(:disabled) {
-            background: #1e293b;
-            border-color: #1e293b;
+            background: #9a2e29;
+            border-color: #9a2e29;
         }
 
         /* Nút Đen Trắng: Nền Slate viền xám */
@@ -1764,13 +1815,27 @@ body {
             </div>
         </div>
 
-        <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
-        <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
-            <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>LẬP LÁ SỐ</span>
-        </button>
+        <div class="form-section service-section">
+            <div class="section-title">Dịch vụ luận giải:</div>
+            <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
+            <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
+                <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                <span>LẬP LÁ SỐ</span>
+            </button>
+
+            <div class="service-actions" aria-label="Dịch vụ luận giải">
+                <button type="button" class="btn-service" onclick="window.parent.postMessage({ type: 'TUVI_OPEN_SERVICE_MODAL', service: 'lifetime' }, window.location.origin)">
+                    <span>Luận giải đầy đủ</span>
+                    <strong>199.000đ</strong>
+                </button>
+                <button type="button" class="btn-service" onclick="window.parent.postMessage({ type: 'TUVI_OPEN_SERVICE_MODAL', service: 'consultation' }, window.location.origin)">
+                    <span>Đặt lịch luận giải riêng với Thầy</span>
+                    <strong>500.000đ</strong>
+                </button>
+            </div>
+        </div>
 
         <!-- KHU VỰC LƯU LÁ SỐ -->
         <div class="form-section export-section">

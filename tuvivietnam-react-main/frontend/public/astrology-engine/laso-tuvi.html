@@ -214,13 +214,27 @@
             </div>
         </div>
 
-        <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
-        <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
-            <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-            </svg>
-            <span>LẬP LÁ SỐ</span>
-        </button>
+        <div class="form-section service-section">
+            <div class="section-title">Dịch vụ luận giải:</div>
+            <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
+            <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
+                <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+                <span>LẬP LÁ SỐ</span>
+            </button>
+
+            <div class="service-actions" aria-label="Dịch vụ luận giải">
+                <button type="button" class="btn-service" onclick="window.parent.postMessage({ type: 'TUVI_OPEN_SERVICE_MODAL', service: 'lifetime' }, window.location.origin)">
+                    <span>Luận giải đầy đủ</span>
+                    <strong>199.000đ</strong>
+                </button>
+                <button type="button" class="btn-service" onclick="window.parent.postMessage({ type: 'TUVI_OPEN_SERVICE_MODAL', service: 'consultation' }, window.location.origin)">
+                    <span>Đặt lịch luận giải riêng với Thầy</span>
+                    <strong>500.000đ</strong>
+                </button>
+            </div>
+        </div>
 
         <!-- KHU VỰC LƯU LÁ SỐ -->
         <div class="form-section export-section">

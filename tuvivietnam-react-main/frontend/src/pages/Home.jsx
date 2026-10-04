@@ -332,7 +332,7 @@ export default function Home() {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Top Tagline */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
+            {/* <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-900 text-xs font-semibold shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-amber-700" />
                 <span>Khai Quang Vận Mệnh • Bát Trạch Phong Thủy • Thi Ca Bói Kiều</span>
@@ -341,7 +341,7 @@ export default function Home() {
                 <Crown className="w-3.5 h-3.5 text-amber-700" />
                 <span>Chính Thức: tuvihongan.com</span>
               </div>
-            </div>
+            </div> */}
 
             {/* Main Heading */}
             <div className="text-center max-w-4xl mx-auto">
@@ -352,7 +352,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-base sm:text-xl text-stone-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
-                Nền tảng MIỄN PHÍ - Lập lá số Tử Vi & luận giải chuẩn xác. Gieo quẻ Tarot Kiều về công việc, tình duyên, gia đạo; phong thủy nhà cửa - hôn nhân
+                Nền tảng MIỄN PHÍ - Lập lá số Tử Vi & Xem Sao Chiếu mệnh hàng năm, Bói Kiều về công việc
               </p>
 
               {/* Special Promo Highlight Box: 199k & Zalo Booking */}
@@ -367,9 +367,9 @@ export default function Home() {
                         <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-600" /> Luận giải 1-1 chuyên sâu
                       </span>
                     </div>
-                    <h2 className="text-xl sm:text-2xl font-display font-bold text-stone-900">
+                    <h2 className="text-lg sm:text-xl font-display font-bold text-stone-900 md:whitespace-nowrap">
                       Luận giải đầy đủ{' '}
-                      <span className="text-red-700 text-2xl sm:text-3xl font-extrabold underline decoration-amber-500">
+                      <span className="text-lg sm:text-xl text-red-700 font-extrabold underline decoration-amber-500">
                         199k
                       </span>{' '}
                       tại{' '}
@@ -380,6 +380,21 @@ export default function Home() {
                         className="text-amber-800 hover:text-red-700 transition-colors inline-flex items-center gap-1 font-bold underline"
                       >
                         tuvihongan.com <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </h2>
+                    <h2 className="mt-3 text-lg sm:text-xl font-display font-bold text-stone-900">
+                      Luận giải trực tiếp 1-1 với thầy Tử Vi Hồng Ân{' '}
+                      <span className="text-lg sm:text-xl text-red-700 font-extrabold underline decoration-amber-500">
+                        500k
+                      </span>{' '}
+                      –{' '}
+                      <a
+                        href="https://zalo.me/0924616199"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-amber-800 hover:text-red-700 transition-colors font-bold underline"
+                      >
+                        Đặt lịch qua Zalo
                       </a>
                     </h2>
                     <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
@@ -407,7 +422,7 @@ export default function Home() {
                         className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
                       >
                         <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Zalo: 0924.6161.99</span>
+                        <span>Zalo: 0924.616.199</span>
                       </a>
                       <a
                         href="https://zalo.me/0385497085"
@@ -416,7 +431,7 @@ export default function Home() {
                         className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
                       >
                         <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Zalo: </span>
+                        <span>Zalo: 0385.497.085</span>
                       </a>
                     </div>
                   </div>
@@ -443,7 +458,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-display font-bold text-stone-900 group-hover:text-amber-800 transition-colors mb-2">
+                    <h3 className="text-xl font-display font-bold text-red-700 group-hover:text-red-800 transition-colors mb-2">
                       LẬP LÁ SỐ TỬ VI
                     </h3>
                     <p className="text-stone-600 text-sm leading-relaxed">
@@ -490,7 +505,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-display font-bold text-stone-900 group-hover:text-amber-800 transition-colors mb-2">
+                    <h3 className="text-xl font-display font-bold text-red-700 group-hover:text-red-800 transition-colors mb-2">
                       BÁT QUÁI, PHONG THỦY
                     </h3>
                     <p className="text-stone-600 text-sm leading-relaxed">
@@ -534,7 +549,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-display font-bold text-stone-900 group-hover:text-amber-800 transition-colors mb-2">
+                    <h3 className="text-xl font-display font-bold text-red-700 group-hover:text-red-800 transition-colors mb-2">
                       TAROT KIỀU
                     </h3>
                     <p className="text-stone-600 text-sm leading-relaxed">
@@ -671,7 +686,7 @@ export default function Home() {
                     className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-700 via-amber-700 to-red-800 text-white font-bold text-sm sm:text-base hover:brightness-105 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Crown className="w-5 h-5 text-yellow-300" />
-                    <span>Đăng Ký Luận Giải 199k Ngay</span>
+                    <span>Luận Giải Đầy Đủ 199k</span>
                     <ArrowRight className="w-5 h-5" />
                   </button>
 
@@ -680,7 +695,7 @@ export default function Home() {
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                       Bảo mật thông tin đương số 100%
                     </span>
-                    <span>Nhận kết quả trong 24h</span>
+                    <span>Nhận kết quả ngay</span>
                   </div>
                 </div>
               </div>
@@ -690,13 +705,14 @@ export default function Home() {
                 <div className="space-y-6">
                   <div className="pb-4 border-b border-stone-200">
                     <span className="text-xs text-amber-800 font-bold uppercase tracking-wider block mb-1">
-                      Tư Vấn Trực Tiếp 1-1
+                      Luận Giải Trực Tiếp 1-1
                     </span>
                     <h3 className="text-2xl sm:text-3xl font-display font-bold text-stone-900">
                       Đặt Lịch Luận Giải Riêng Với Thầy
                     </h3>
+                    <p>500.000đ/Lá số</p>
                     <p className="text-stone-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                      Trực tiếp đàm thoại qua Zalo (gọi thoại hoặc gọi video) cùng Thầy Hồng Ân để tháo gỡ vướng mắc, soi cung duyên nợ, định hướng kinh doanh.
+                      Trực tiếp đàm thoại qua Zalo (gọi thoại hoặc gọi Video) cùng Thầy Tử Vi Hồng Ân để luận giải bản mệnh, đại vận, tiểu vận, phu thê, tử tức, phúc đức, định hướng sự nghiệp, v.v.
                     </p>
                   </div>
 

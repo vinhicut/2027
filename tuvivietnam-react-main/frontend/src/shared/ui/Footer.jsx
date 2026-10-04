@@ -9,14 +9,11 @@ function Footer() {
             <strong>DIỄN ĐÀN TỬ VI HỒNG ÂN</strong>
           </div>
           <p>
-            Diễn đàn Tử Vi Việt Nam được thành lập từ năm 2026 bởi thầy Trần Ngọc Điệp, bút danh tuetvnb, cùng đông đảo thành viên yêu thích bộ
-            môn huyền học Tử Vi đẩu số. Và cùng với Câu lạc bộ Phong thủy Thăng
-            Long, đây đã là nơi chia sẻ kiến thức và đàm luận về các triết lý
-            Văn hoá Phương Đông của nhiều chí sỹ cả trong và ngoài nước.
+            Diễn Đàn Tử Vi Hồng Ân được thành lập từ năm 2026 với sự cố vấn của Thiền Sư Trần Ngọc Điệp, Pháp danh Thích Lăng Nghiêm. Đây là nơi các trí sỹ đồng đạo và những người yêu thích nghiên cứu, chia sẻ, chiêm nghiệm và đàm luận Tử Vi Đẩu Số, Kinh Dịch, Bát Trạch và các bộ môn huyền học Đông Tây.
           </p>
           <div className="contact-info">
             <div>
-              Liên hệ: <a href="tel:0920461699">0920461699</a>
+              Liên hệ: <a href="tel:0924616199">0924.616.199</a>
             </div>
             <div>
               <a href="https://tuvihongan.com" target="_blank" rel="noopener noreferrer">

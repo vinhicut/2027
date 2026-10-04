@@ -124,7 +124,7 @@ function Navbar() {
           <div className="header-actions desktop-only">
             <div className="header-info-badge">
               <span className="info-title">TƯ VẤN HỌC THUẬT & LUẬN GIẢI</span>
-              <a href="tel:0920461699" className="info-hotline">0920.461.699</a>
+              <a href="tel:0924616199" className="info-hotline">0924.616.199</a>
             </div>
           </div>
 
@@ -244,8 +244,8 @@ function Navbar() {
 
             <div className="mobile-menu-contact">
               <div className="mobile-contact-title">TƯ VẤN HỌC THUẬT & LUẬN GIẢI</div>
-              <a href="tel:0920461699" className="mobile-hotline-btn">
-                📞 0920.461.699
+              <a href="tel:0924616199" className="mobile-hotline-btn">
+                📞 0924.616.199
               </a>
             </div>
           </div>
