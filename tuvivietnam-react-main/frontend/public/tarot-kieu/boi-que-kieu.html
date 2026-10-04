@@ -47,9 +47,10 @@ h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.5rem);color
   user-select:none;
   -webkit-user-drag:none;
 }
-.wheel-numbers{display:none}
+.wheel-numbers{position:absolute;inset:0;z-index:2;display:block;pointer-events:none}
 .wheel-numbers span{
-  position:absolute;left:50%;top:50%;width:32px;height:22px;margin-left:-16px;margin-top:-11px;
+  position:absolute;width:44px;height:32px;transform:translate(-50%,-50%);
+  border:0;border-radius:50%;
   font-size:.72rem;font-weight:700;color:#f8e9b0;text-shadow:0 1px 3px #000;
   display:flex;align-items:center;justify-content:center;
 }
@@ -132,22 +133,38 @@ function imgSrc(n){
   return "cards/Que-" + padded + ".png";
 }
 
-// 12 vị trí cố định tương ứng 12 ô số đã in trên ảnh chiếc nón.
-// Vị trí 0 = ô số 1 ở đỉnh trên, các vị trí tăng theo chiều kim đồng hồ.
-// 12 ô số cố định đúng theo hình chiếc nón.
-// Vị trí 0 là ô "1" ở chính giữa phía trên, sau đó chạy theo chiều kim đồng hồ.
-const WHEEL_NUMBERS = [1,18,36,54,72,90,108,126,144,162,180,210];
-const SEGMENTS = WHEEL_NUMBERS.length;
+// The artwork has 12 sectors; each spin assigns them 12 distinct quẻ from 1-210.
+const SEGMENTS = 12;
 const SEG_ANGLE = 360 / SEGMENTS; // 30 độ
-let currentNumbers = WHEEL_NUMBERS.slice();
+let currentNumbers = [];
 let currentRotation = 0; // góc quay hiện tại của wheel (độ)
 
 function buildWheelNumbers(){
-  // Các con số đã được in sẵn trên ảnh, vì vậy không tạo thêm số HTML.
-  // Giữ đúng thứ tự theo 12 ô trên nón: 1 → 18 → 36 → ... → 210.
-  currentNumbers = WHEEL_NUMBERS.slice();
+  const selectedNumbers = new Set();
+  while(selectedNumbers.size < SEGMENTS){
+    selectedNumbers.add(Math.floor(Math.random() * 210) + 1);
+  }
+  currentNumbers = Array.from(selectedNumbers);
+
   const el = document.getElementById("wheelNums");
-  if(el) el.innerHTML = "";
+  const wheel = document.getElementById("wheel");
+  if(!el || !wheel) return;
+
+  const size = wheel.clientWidth;
+  const radius = size * 0.36;
+  const sectorColors = ["#15543a", "#8b1e1e", "#b38d24"];
+  el.innerHTML = "";
+
+  currentNumbers.forEach((number, index) => {
+    const angle = (-90 + index * SEG_ANGLE) * Math.PI / 180;
+    const label = document.createElement("span");
+    label.textContent = number;
+    label.setAttribute("aria-label", `Quẻ ${number}`);
+    label.style.left = `${size / 2 + Math.cos(angle) * radius}px`;
+    label.style.top = `${size / 2 + Math.sin(angle) * radius}px`;
+    label.style.backgroundColor = sectorColors[index % sectorColors.length];
+    el.appendChild(label);
+  });
 }
 
 let isSpinning = false;
@@ -165,15 +182,14 @@ function spinWheel(){
   resultText.textContent = "Đang bốc quẻ...";
   center.textContent = "...";
 
-  // 1. Giữ đúng 12 số đã có sẵn trên ảnh chiếc nón.
+  // Randomize all 12 displayed labels from the full range of 210 quẻ.
   buildWheelNumbers();
 
-  // 2. Chọn ngẫu nhiên 1 trong 12 ô số để dừng dưới mũi tên.
+  // Select one of the displayed numbers so the pointer and result always match.
   const stopIndex = Math.floor(Math.random() * SEGMENTS);
   const target = currentNumbers[stopIndex];
 
-  // 3. Mỗi ô cách nhau đúng 30 độ.
-  // Ô 0 (số 1) nằm ở đỉnh trên; các ô tiếp theo theo chiều kim đồng hồ.
+  // Each sector is 30 degrees, starting at the top and moving clockwise.
   // Phải tính cả góc hiện tại để những lần quay thứ 2, 3... vẫn dừng chính xác.
   // Góc cần bù để ô stopIndex nằm đúng dưới mũi tên: 
   // (360 - (góc hiện tại + góc của ô)) mod 360.

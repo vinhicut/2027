@@ -9,7 +9,7 @@ function Footer() {
             <strong>DIỄN ĐÀN TỬ VI HỒNG ÂN</strong>
           </div>
           <p>
-            Diễn Đàn Tử Vi Hồng Ân được thành lập từ năm 2026 với sự cố vấn của Thiền Sư Trần Ngọc Điệp, Pháp danh Thích Lăng Nghiêm. Đây là nơi các trí sỹ đồng đạo và những người yêu thích nghiên cứu, chia sẻ, chiêm nghiệm và đàm luận Tử Vi Đẩu Số, Kinh Dịch, Bát Trạch và các bộ môn huyền học Đông Tây.
+            Nền tảng Miễn phí lập Lá Số Tử Vi và tham khảo phong thủy, được cố vấn bởi Thiền sư Trần Ngọc Điệp – pháp danh Thích Lăng Nghiêm, cùng Đệ tử Hồng Ân và các trí sĩ yêu thích Tử Vi Đẩu Số, Kinh Dịch, Phong Thủy, Phật Pháp và Đạo Mẫu Việt Nam. Nơi nghiên cứu, chia sẻ, chiêm nghiệm và đàm luận về các bộ môn huyền học.
           </p>
           <div className="contact-info">
             <div>

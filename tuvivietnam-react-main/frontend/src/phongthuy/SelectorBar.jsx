@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, User, Heart, RefreshCw, Sparkles, Check } from 'lucide-react';
+import { Calendar, User, Heart, Sparkles, Check } from 'lucide-react';
 import { getYearDetails } from './sixtyHoaGiap';
 
 const COMMON_YEARS = [1984, 1986, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1998, 2000];
@@ -125,7 +125,7 @@ export const SelectorBar = ({
         )}
 
         {/* Nút hành động nhanh */}
-        <div className={isSingle ? 'md:col-span-4' : 'md:col-span-2'}>
+        {/* <div className={isSingle ? 'md:col-span-4' : 'md:col-span-2'}>
           <div className="flex gap-2">
             <button
               onClick={() => {
@@ -139,7 +139,7 @@ export const SelectorBar = ({
               <span>Đặt lại</span>
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Lối tắt chọn nhanh các năm sinh phổ biến */}
