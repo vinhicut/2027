@@ -70,8 +70,7 @@ def create_app():
 
     app = Flask(
         __name__,
-        static_folder=static_folder,
-        static_url_path=""
+        static_folder=None
     )
 
     # Đăng ký các phân hệ API
@@ -130,7 +129,7 @@ def create_app():
         if not path or path == "/":
             path = "index.html"
 
-        folder = app.static_folder
+        folder = static_folder
 
         # Chặn các tệp tin nguy hiểm
         forbidden_extensions = {".py", ".pyc", ".env", ".git", ".bak", ".swp", ".key", ".log", ".DS_Store"}
