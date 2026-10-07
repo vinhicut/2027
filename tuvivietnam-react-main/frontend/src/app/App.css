@@ -644,6 +644,7 @@ button:not(:where(.feng-shui-widget button)) {
 }
 
 .pillar-title {
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-size: 16px;
   font-weight: 700;
   color: var(--text-main);

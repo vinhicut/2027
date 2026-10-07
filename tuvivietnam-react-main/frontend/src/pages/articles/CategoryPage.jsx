@@ -1,7 +1,7 @@
 
 // src/components/CategoryPage.jsx
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './CategoryPage.css';
 
@@ -112,6 +112,15 @@ const posts = [
 // COMPONENT
 // ==========================================
 function CategoryPage() {
+  const recommendedPosts = useMemo(() => {
+    const candidates = [featured, ...posts];
+    for (let index = candidates.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [candidates[index], candidates[randomIndex]] = [candidates[randomIndex], candidates[index]];
+    }
+    return candidates.slice(0, 10);
+  }, []);
+
   return (
     <div className="category-page">
 
@@ -255,6 +264,14 @@ function CategoryPage() {
           <h4>
             CÓ THỂ BẠN THÍCH
           </h4>
+
+          <div className="cat-recommendations">
+            {recommendedPosts.map((post) => (
+              <Link key={`${post.id}-${post.link}`} to={post.link} className="cat-recommendation">
+                <span>{post.title}</span>
+              </Link>
+            ))}
+          </div>
 
         </aside>
 

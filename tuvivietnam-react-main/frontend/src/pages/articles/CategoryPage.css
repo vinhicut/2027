@@ -211,6 +211,27 @@
   border-bottom: 2px solid #222;
 }
 
+.cat-recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cat-recommendation {
+  display: block;
+  color: #222;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 9px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cat-recommendation:hover span {
+  color: #8b1e1e;
+}
+
 
 /* =========================
    TABLET

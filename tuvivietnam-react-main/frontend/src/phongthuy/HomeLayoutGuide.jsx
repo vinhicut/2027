@@ -172,7 +172,7 @@ export const HomeLayoutGuide = ({ husbandData }) => {
           </div>
 
           <div className="bg-[#FFFFFF] p-4 rounded-xl border border-[#E5DFD4] shadow-2xs">
-            <h4 className="font-bold text-[#1F1914] mb-1 flex items-center gap-1.5 text-sm">
+            <h4 className="font-bold text-[#1F1914] mb-1 flex items-center gap-1.5 text-sm" style={{ fontFamily: "'Be Vietnam Pro', sans-serif" }}>
               <AlertTriangle className="w-4 h-4 text-[#D97706]" /> 4. Cửa nhà vệ sinh đối diện bếp nấu hoặc cửa chính
             </h4>
             <p className="text-[#524940] leading-relaxed mb-2">

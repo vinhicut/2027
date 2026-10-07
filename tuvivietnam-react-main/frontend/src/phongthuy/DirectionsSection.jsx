@@ -202,7 +202,7 @@ export const DirectionsSection = ({
       </div>
 
       {/* Bảng so sánh nhanh hướng nhà giữa hai vợ chồng */}
-      <div className="bg-[#FAF7F2] border border-[#E5DFD4] rounded-2xl p-6">
+      <div className="bg-[#FAF7F2] border border-[#E5DFD4] rounded-2xl p-4 sm:p-6">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-5 h-5 text-[#9E2A1E]" />
           <div>
@@ -217,7 +217,7 @@ export const DirectionsSection = ({
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead>
+            <thead className="hidden sm:table-header-group">
               <tr className="border-b border-[#E0D8CC] text-[#70665B] uppercase text-[10px] tracking-wider">
                 <th className="py-2.5 px-3 font-semibold">Phương Vị</th>
                 <th className="py-2.5 px-3 font-semibold">Góc Độ</th>
@@ -230,7 +230,7 @@ export const DirectionsSection = ({
                 <th className="py-2.5 px-3 font-semibold">Đánh Giá Phối Hợp & Lời Khuyên Bố Trí</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#EFE8DD]">
+            <tbody className="block sm:table-row-group">
               {husbandDirs.map((hDir, idx) => {
                 const wDir = wifeDirs[idx];
                 const hGood = hDir.starType === 'Cát';
@@ -253,10 +253,11 @@ export const DirectionsSection = ({
                 }
 
                 return (
-                  <tr key={hDir.direction} className="hover:bg-[#FFFFFF]/60">
-                    <td className="py-3 px-3 font-bold text-[#1F1914]">{hDir.direction}</td>
-                    <td className="py-3 px-3 text-[#70665B]">{hDir.degreesCenter}°</td>
+                  <tr key={hDir.direction} className="grid grid-cols-2 sm:table-row mb-3 sm:mb-0 rounded-xl sm:rounded-none border border-[#E5DFD4] sm:border-0 bg-white/70 sm:bg-transparent hover:bg-[#FFFFFF]/60">
+                    <td className="py-3 px-3 font-bold text-[#1F1914] border-b border-[#EFE8DD] sm:border-0"><span className="block text-[10px] uppercase tracking-wide text-[#8A7D6F] sm:hidden">Phương vị</span>{hDir.direction}</td>
+                    <td className="py-3 px-3 text-[#70665B] border-b border-[#EFE8DD] sm:border-0"><span className="block text-[10px] uppercase tracking-wide text-[#8A7D6F] sm:hidden">Góc độ</span>{hDir.degreesCenter}°</td>
                     <td className="py-3 px-3">
+                      <span className="block text-[10px] uppercase tracking-wide text-[#8A7D6F] sm:hidden">Chồng</span>
                       <span
                         className={`inline-flex px-2 py-0.5 rounded text-[11px] font-semibold border ${
                           hGood
@@ -268,6 +269,7 @@ export const DirectionsSection = ({
                       </span>
                     </td>
                     <td className="py-3 px-3">
+                      <span className="block text-[10px] uppercase tracking-wide text-[#8A7D6F] sm:hidden">Vợ</span>
                       <span
                         className={`inline-flex px-2 py-0.5 rounded text-[11px] font-semibold border ${
                           wGood
@@ -278,7 +280,8 @@ export const DirectionsSection = ({
                         {wDir.star} ({wDir.starType})
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-[#4A4239] leading-relaxed">
+                    <td className="col-span-2 py-3 px-3 text-[#4A4239] leading-relaxed border-t border-[#EFE8DD] sm:col-span-1 sm:border-t-0 sm:border-b sm:border-[#EFE8DD]">
+                      <span className="block text-[10px] uppercase tracking-wide text-[#8A7D6F] mb-1 sm:hidden">Đánh giá phối hợp & lời khuyên</span>
                       <div className="flex items-center gap-1.5 flex-wrap">
                         <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold border ${verdictBadge}`}>
                           {hGood && wGood ? 'ĐẠI CÁT' : !hGood && !wGood ? 'SONG HUNG' : 'BÌNH HÒA'}
