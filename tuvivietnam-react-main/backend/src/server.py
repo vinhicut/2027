@@ -51,6 +51,7 @@ from core.db import init_db
 from modules.auth.routes_auth import auth_bp
 from modules.admin.routes_admin import admin_bp
 from modules.astrology.routes_charts import charts_bp
+from modules.booking.routes_booking import booking_bp
 
 # Cấu hình mặc định
 CONFIG = {
@@ -77,6 +78,7 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(admin_bp)
     app.register_blueprint(charts_bp)
+    app.register_blueprint(booking_bp)
 
     # Cấu hình CORS an toàn
     @app.after_request

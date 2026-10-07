@@ -186,7 +186,7 @@ function Navbar() {
               </div>
             </div>
             <ul className="mobile-nav-menu">
-              <li className={location.pathname === '/' ? 'active' : ''}>
+              <li className={location.pathname === '/' || location.pathname === '/home' ? 'active' : ''}>
                 <Link to="/" onClick={() => setMobileMenuOpen(false)}>
                   TRANG CHỦ
                 </Link>
@@ -256,7 +256,7 @@ function Navbar() {
       <nav className="navbar desktop-only">
         <div className="navbar-container">
           <ul className="nav-menu">
-            <li className={location.pathname === '/' ? 'nav-item active' : 'nav-item'}>
+            <li className={location.pathname === '/' || location.pathname === '/home' ? 'nav-item active' : 'nav-item'}>
               <Link to="/">TRANG CHỦ</Link>
             </li>
             <li className="nav-item has-dropdown">

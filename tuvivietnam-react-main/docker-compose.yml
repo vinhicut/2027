@@ -11,3 +11,11 @@ services:
       HOST: 0.0.0.0
       PORT: 2026
       CORS_ORIGIN: "*"
+      BOOKING_NOTIFICATION_EMAIL: ${BOOKING_NOTIFICATION_EMAIL:-nguyenvinhvan90@gmail.com}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL:-}
+      SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
+      SMTP_USE_SSL: ${SMTP_USE_SSL:-false}

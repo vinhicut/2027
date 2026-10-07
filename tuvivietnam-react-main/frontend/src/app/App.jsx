@@ -21,7 +21,7 @@ import { PhongThuyWidget } from '../phongthuy/PhongThuyWidget';
 function App() {
   const { pathname } = useLocation();
 
-  if (pathname === '/') {
+  if (pathname === '/' || pathname === '/home') {
     return <Home />;
   }
 

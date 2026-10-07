@@ -11,19 +11,16 @@ import {
   ExternalLink,
   Copy,
   Check,
-  Menu,
-  X,
   CheckCircle2,
   MessageSquare,
   ShieldCheck,
 } from 'lucide-react';
+import Navbar from '../shared/ui/Navbar';
 
 export default function Home() {
   const navigate = useNavigate();
 
   // Navigation & UI state
-  const [activeSection, setActiveSection] = useState('service');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // Copy phone state
@@ -31,6 +28,8 @@ export default function Home() {
 
   // Booking Form state
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -46,8 +45,6 @@ export default function Home() {
   };
 
   const scrollToSection = (id) => {
-    setActiveSection(id);
-    setIsMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -59,36 +56,30 @@ export default function Home() {
     }
   };
 
-  const handleNavItemClick = (id) => {
-    if (id === 'tuvi') {
-      navigate('/la-so-tu-vi');
-      return;
-    }
-
-    if (id === 'tarot') {
-      navigate('/boi-kieu');
-      return;
-    }
-
-    if (id === 'batquai') {
-      navigate('/la-kinh-phong-thuy');
-      return;
-    }
-
-    scrollToSection(id);
-  };
-
-  const handleBookingSubmit = (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-  };
+    setFormError('');
+    setIsSubmitting(true);
 
-  const navItems = [
-    { id: 'tuvi', label: 'LẬP LÁ SỐ TỬ VI', icon: Sparkles, badge: 'Miễn phí' },
-    { id: 'batquai', label: 'BÁT QUÁI - PHONG THỦY', icon: Compass, badge: 'Miễn phí' },
-    { id: 'tarot', label: 'TAROT KIỀU', icon: BookOpen, badge: 'Miễn phí' },
-    { id: 'service', label: 'LUẬN GIẢI 199K', icon: Crown, highlight: true },
-  ];
+    try {
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Chưa gửi được thông tin. Vui lòng thử lại.');
+      }
+
+      setFormSubmitted(true);
+    } catch (error) {
+      setFormError(error.message || 'Chưa gửi được thông tin. Vui lòng thử lại.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#fcfaf7] text-stone-800 flex flex-col font-sans selection:bg-amber-600 selection:text-white relative">
@@ -116,133 +107,7 @@ export default function Home() {
         }
       `}</style>
 
-      {/* ========================================================================= */}
-      {/* 1. HEADER & NAVIGATION                                                    */}
-      {/* ========================================================================= */}
-      <header className="sticky top-0 z-40 bg-[#fffdfa]/95 backdrop-blur-md border-b border-amber-200/80 text-stone-800 shadow-sm">
-        {/* Main Navigation Bar */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
-          {/* Brand Logo */}
-          <div
-            className="flex items-center gap-3 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            <div className="w-11 h-11 aspect-square shrink-0 rounded-full overflow-hidden border-2 border-amber-400 bg-[#fffaf2] shadow-md">
-              <img
-                src="/logo.png"
-                alt="Tử Vi Hồng Ân Logo"
-                className="block w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-display font-bold text-2xl sm:text-3xl tracking-wide text-red-700 whitespace-nowrap">
-                  Tử Vi Hồng Ân
-                </span>
-              </div>
-{/*               <p className="text-[11px] text-stone-500 font-medium tracking-wider">
-                www.tuvihongan.com • Soi Mệnh - Đắc Thời - Định Hướng
-              </p> */}
-            </div>
-          </div>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleNavItemClick(item.id)}
-                  className={`relative px-3.5 py-2 rounded-xl text-xs xl:text-sm font-semibold tracking-wide transition-all flex items-center gap-1.5 cursor-pointer ${
-                    item.highlight
-                      ? 'bg-gradient-to-r from-red-700 via-amber-700 to-red-800 text-white shadow-md hover:brightness-105 border border-red-800/30'
-                      : isActive
-                      ? 'bg-amber-100/90 text-amber-900 border border-amber-300 font-bold'
-                      : 'text-stone-700 hover:text-amber-900 hover:bg-amber-50/80 border border-transparent'
-                  }`}
-                >
-                  <Icon
-                    className={`w-4 h-4 ${
-                      item.highlight ? 'text-yellow-300' : 'text-amber-700'
-                    }`}
-                  />
-                  <span>{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold">
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* Mobile menu button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              type="button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-stone-700 hover:text-amber-900 hover:bg-amber-100/60 rounded-lg cursor-pointer"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile dropdown menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-[#fffdfa] border-b border-amber-200 px-4 py-4 space-y-2 shadow-lg">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => handleNavItemClick(item.id)}
-                  className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium flex items-center justify-between cursor-pointer ${
-                    item.highlight
-                      ? 'bg-gradient-to-r from-red-700 to-amber-700 text-white font-semibold'
-                      : 'text-stone-700 hover:bg-amber-50 hover:text-amber-900'
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <Icon className="w-4 h-4 text-amber-700" />
-                    <span>{item.label}</span>
-                  </div>
-                  {item.badge && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold border border-emerald-200">
-                      {item.badge}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-            <div className="pt-3 border-t border-stone-200 flex flex-col gap-2 text-xs">
-              <a
-                href="https://zalo.me/0924616199"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 py-2 rounded-xl border border-emerald-200 font-semibold"
-              >
-                <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Zalo 1: 0924.6161.99</span>
-              </a>
-              <a
-                href="https://zalo.me/0385497085"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 py-2 rounded-xl border border-emerald-200 font-semibold"
-              >
-                <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Zalo 2: 0385.497.085</span>
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
+      <Navbar />
 
       {/* ========================================================================= */}
       {/* 2. MAIN CONTENT SECTIONS                                                  */}
@@ -281,8 +146,8 @@ export default function Home() {
               </p> */}
 
               {/* Special Promo Highlight Box: 199k & Zalo Booking */}
-              <div className="max-w-3xl mx-auto p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#fffdfa] via-white to-amber-50/50 border-2 border-amber-400/80 shadow-[0_10px_35px_rgba(217,119,6,0.12)] mb-10 text-left">
-                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="max-w-5xl mx-auto p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#fffdfa] via-white to-amber-50/50 border-2 border-amber-400/80 shadow-[0_10px_35px_rgba(217,119,6,0.12)] mb-10 text-left">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2">
                       <span className="px-3 py-0.5 rounded-full text-xs font-extrabold bg-amber-600 text-white tracking-wide uppercase shadow-xs">
@@ -294,7 +159,7 @@ export default function Home() {
                     </div>
                     <h2 className="text-lg sm:text-xl font-display font-bold text-stone-900 md:whitespace-nowrap">
                       Luận giải đầy đủ{' '}
-                      <span className="text-lg sm:text-xl text-red-700 font-extrabold underline decoration-amber-500">
+                      <span className="text-lg sm:text-xl text-red-700 font-extrabold">
                         199k
                       </span>{' '}
                       tại{' '}
@@ -309,18 +174,19 @@ export default function Home() {
                     </h2>
                     <h2 className="mt-3 text-lg sm:text-xl font-display font-bold text-stone-900">
                       Luận giải trực tiếp 1-1 với thầy Tử Vi Hồng Ân{' '}
-                      <span className="text-lg sm:text-xl text-red-700 font-extrabold underline decoration-amber-500">
+                      <span className="text-lg sm:text-xl text-red-700 font-extrabold">
                         500k
-                      </span>{' '}
-                      –{' '}
-                      <a
-                        href="https://zalo.me/0924616199"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-amber-800 hover:text-red-700 transition-colors font-bold underline"
-                      >
-                        Đặt lịch qua Zalo
-                      </a>
+                      </span>
+                      <span className="block mt-1 text-lg sm:text-xl">
+                        <a
+                          href="https://zalo.me/0924616199"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-amber-800 hover:text-red-700 transition-colors font-bold underline"
+                        >
+                          Đặt lịch qua Zalo <ArrowRight className="w-6 h-5" strokeWidth={2.5} aria-hidden="true" />
+                        </a>
+                      </span>
                     </h2>
                     <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
                       Bản giải đoán trọn đời 12 cung, 10 năm đại vận, tiểu vận chi tiết, phong thủy tài lộc kích tài tăng phúc.
@@ -328,10 +194,10 @@ export default function Home() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="w-full md:w-auto flex flex-col sm:flex-row md:flex-col gap-2.5 shrink-0">
+                  <div className="w-full lg:w-72 flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
                     <button
                       type="button"
-                      onClick={() => scrollToSection('service')}
+                      onClick={() => setShowPaymentModal(true)}
                       className="w-full px-5 py-3 rounded-xl bg-gradient-to-r from-red-700 via-amber-700 to-red-800 text-white font-bold text-sm hover:brightness-105 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <Crown className="w-4 h-4 text-yellow-300" />
@@ -748,6 +614,11 @@ export default function Home() {
                       </div>
                     ) : (
                       <form onSubmit={handleBookingSubmit} className="space-y-2.5 text-xs">
+                        {formError && (
+                          <p role="alert" className="rounded-lg border border-red-200 bg-red-50 p-2.5 text-red-800">
+                            {formError}
+                          </p>
+                        )}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           <input
                             type="text"
@@ -779,7 +650,8 @@ export default function Home() {
                         </select>
                         <button
                           type="submit"
-                          className="w-full py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border border-amber-300 transition-colors shadow-2xs cursor-pointer"
+                          disabled={isSubmitting}
+                          className="w-full py-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold border border-amber-300 transition-colors shadow-2xs cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                         >
                           Gửi Thông Tin Đặt Lịch Hẹn
                         </button>
