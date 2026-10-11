@@ -18,6 +18,7 @@ import ThienLuong from '../pages/baiviet/ThienLuong';
 import ThatSat from '../pages/baiviet/ThatSat';
 import PhaQuan from '../pages/baiviet/PhaQuan';
 import { PhongThuyWidget } from '../phongthuy/PhongThuyWidget';
+import QimenArticles from '../pages/qimen/QimenPage';
 function App() {
   const { pathname } = useLocation();
 
@@ -56,8 +57,9 @@ function App() {
           <Route path="/dien-dan" element={<UnderDevelopment />} />
           <Route path="/khoa-hoc" element={<UnderDevelopment />} />
           <Route path="/cua-hang" element={<UnderDevelopment />} />
-          <Route path="/ky-mon" element={<UnderDevelopment />} />
-          <Route path="/ky-mon-don-giap" element={<UnderDevelopment />} />
+          <Route path="/ky-mon" element={<QimenArticles />} />
+          <Route path="/ky-mon-don-giap" element={<QimenArticles />} />
+          <Route path="/ky-mon-don-giap/:slug" element={<QimenArticles />} />
           <Route path="/than-so" element={<UnderDevelopment />} />
           <Route path="/than-so-hoc" element={<UnderDevelopment />} />
         </Routes>
@@ -68,4 +70,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;\n

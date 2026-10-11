@@ -1,0 +1,33 @@
+.qimen-page{max-width:1100px;margin:0 auto;padding:22px 20px 56px;color:#30291f}.qimen-breadcrumb{display:flex;gap:10px;align-items:center;margin-bottom:28px;color:#858078;font-size:13px}.qimen-breadcrumb a{color:#80602d;text-decoration:none}.qimen-heading{margin:0 0 28px;padding:30px 20px;text-align:center;background:#f7f2e7;border-bottom:2px solid #c9aa68}.qimen-heading>p,.qimen-label{color:#98723a;font-size:11px;letter-spacing:.13em;font-weight:700}.qimen-heading h1{margin:8px 0;color:#6f2521;font-size:32px}.qimen-heading>span{color:#686158}.qimen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.qimen-card{position:relative;display:flex;min-height:235px;flex-direction:column;padding:22px;border:1px solid #e8e0d2;border-radius:7px;background:#fff;color:inherit;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease}.qimen-card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #382b1714}.qimen-card-number{position:absolute;right:17px;top:13px;color:#e8dfd0;font-size:32px;font-weight:700}.qimen-card h2{margin:9px 0 7px;color:#762b25;font-size:21px}.qimen-card>p{margin:0 0 18px;color:#665f56;font-size:14px;line-height:1.65}.qimen-card-link{margin-top:auto;color:#8a672e;font-size:13px;font-weight:700}.qimen-article{max-width:850px;margin:0 auto;padding:36px 48px;background:#fff;border:1px solid #eee6d8;border-radius:8px;box-shadow:0 4px 20px #382b170a}.qimen-article h1{margin:10px 0 12px;color:#762b25;font-size:32px;line-height:1.35}.qimen-meta{margin-bottom:26px;color:#8a847a;font-size:13px}.qimen-meta span{padding:0 7px}.qimen-lead{padding:18px 20px;border-left:4px solid #c9aa68;background:#faf7f0;font-size:17px;line-height:1.8}.qimen-article section{margin:30px 0}.qimen-article h2{color:#762b25;font-size:21px}.qimen-article section p{color:#49443c;line-height:1.85}.qimen-article dl{display:grid;gap:8px}.qimen-article dl div{display:grid;grid-template-columns:170px 1fr;gap:12px;padding:12px;background:#faf8f3}.qimen-article dt{font-weight:700;color:#70552a}.qimen-article dd{margin:0;line-height:1.6}.qimen-article blockquote{margin:28px 0;padding:18px 22px;border-left:3px solid #c9aa68;background:#faf7f0;color:#62543b;font-style:italic;line-height:1.8;white-space:pre-line}.qimen-note{margin-top:28px;color:#827c72;font-size:13px;line-height:1.7}.qimen-back{display:inline-block;margin-top:12px;color:#812d26;text-decoration:none;font-weight:700}@media(max-width:800px){.qimen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qimen-article{padding:30px 26px}}@media(max-width:520px){.qimen-page{padding:16px 14px 40px}.qimen-grid{grid-template-columns:1fr}.qimen-card{min-height:190px}.qimen-article{padding:25px 18px}.qimen-article h1{font-size:26px}.qimen-article dl div{grid-template-columns:1fr;gap:4px}}
+
+.qimen-article .qimen-cover{display:block;width:100%;max-height:420px;aspect-ratio:2/1;object-fit:cover;margin:0 0 24px;border-radius:7px}
+.qimen-article{padding:34px 44px}
+@media(max-width:600px){.qimen-article{padding:24px 18px}.qimen-article .qimen-cover{aspect-ratio:1.6/1}}
+
+.qimen-article .qimen-cover{height:auto;max-height:none;aspect-ratio:auto;object-fit:contain}
+
+.qimen-article h1,.qimen-card h2,.cat-grid .cat-card-body h3,.qimen-heading h1{font-family:'Be Vietnam Pro',Arial,sans-serif;font-style:normal;font-weight:700;letter-spacing:normal}
+.qimen-article h1{line-height:1.45}
+
+
+.qimen-article>blockquote{max-width:620px;margin:32px auto;padding:24px 28px;border:0;border-top:1px solid #d9c69f;border-bottom:1px solid #d9c69f;border-radius:0;background:#fcfaf5;color:#57452d;font-family:'Be Vietnam Pro',Georgia,serif;font-size:17px;line-height:2;text-align:center;white-space:pre-line}
+.qimen-article>blockquote::before,.qimen-article>blockquote::after{display:block;color:#b29256;font-size:15px;line-height:1.4}
+.qimen-article>blockquote::before{content:'✦';margin-bottom:12px}
+.qimen-article>blockquote::after{content:'✦';margin-top:12px}
+@media(max-width:600px){.qimen-article>blockquote{margin:24px auto;padding:20px 12px;font-size:16px;line-height:1.9}}
+
+.qimen-article .qimen-detail-text h2{font-family:'Be Vietnam Pro',Arial,sans-serif;font-size:22px;font-style:normal;font-weight:700;letter-spacing:normal}
+.qimen-article .qimen-detail-text p{font-family:'Be Vietnam Pro',Arial,sans-serif;font-size:16px;font-style:normal;font-weight:400;line-height:1.85;letter-spacing:normal}
+
+
+.qimen-category-page .cat-hero-side .cat-card-overlay{top:0;bottom:auto;left:0;padding:12px 14px 26px;background:linear-gradient(180deg,rgba(0,0,0,.84) 0%,rgba(0,0,0,.42) 68%,transparent 100%);text-align:left}
+.qimen-category-page .cat-hero-side .cat-card-overlay .cat-tag{margin-bottom:4px}
+.qimen-category-page .cat-hero-side .cat-card-overlay h3{margin:4px 0 0;color:#fff;font-family:'Be Vietnam Pro',Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.35;text-align:left;text-shadow:0 1px 3px rgba(0,0,0,.65)}
+
+
+.qimen-category-page .cat-hero-side .cat-card-overlay{top:auto;bottom:0;left:0;padding:14px 16px;background:linear-gradient(transparent,rgba(0,0,0,.85));text-align:left}
+.qimen-category-page .cat-hero-side .cat-card img{object-position:left top}
+
+
+.qimen-category-page .cat-grid .cat-card img{object-position:left top}
+
