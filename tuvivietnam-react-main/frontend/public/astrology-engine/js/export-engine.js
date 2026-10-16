@@ -88,6 +88,7 @@ async function captureTuviBoard(scale = 3.5, options = {}) {
 
     const cloneBoard = cloneWrapper.querySelector('#tuviBoard');
     if (cloneBoard) {
+        cloneBoard.classList.remove('is-updating');
         cloneBoard.style.transform = 'none';
         cloneBoard.style.transformOrigin = 'top left';
         cloneBoard.style.width = '195mm';

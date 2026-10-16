@@ -11,6 +11,7 @@ services:
       HOST: 0.0.0.0
       PORT: 2026
       CORS_ORIGIN: "*"
+      CUSTOMER_API_URL: ${CUSTOMER_API_URL:-http://host.docker.internal:3001}
       BOOKING_NOTIFICATION_EMAIL: ${BOOKING_NOTIFICATION_EMAIL:-nguyenvinhvan90@gmail.com}
       SMTP_HOST: ${SMTP_HOST:-}
       SMTP_PORT: ${SMTP_PORT:-587}
@@ -19,3 +20,5 @@ services:
       SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL:-}
       SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
       SMTP_USE_SSL: ${SMTP_USE_SSL:-false}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

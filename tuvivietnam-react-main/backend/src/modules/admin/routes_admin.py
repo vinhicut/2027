@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, g
 from modules.auth.auth import role_required
 from core.db import admin_get_users, admin_get_charts, admin_get_stats
+from core.node_api_proxy import proxy_customer_api
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/api/admin")
 
@@ -38,3 +39,28 @@ def get_stats():
         "status": "success",
         "data": stats
     }), 200
+
+@admin_bp.route("/customer-logs/charts", methods=["GET"])
+@role_required("manager")
+def list_customer_chart_logs():
+    return proxy_customer_api("/api/admin/customer-logs/charts")
+
+@admin_bp.route("/customer-logs/charts/<int:chart_id>", methods=["DELETE"])
+@role_required("manager")
+def delete_customer_chart_log(chart_id):
+    return proxy_customer_api(f"/api/admin/customer-logs/charts/{chart_id}")
+
+@admin_bp.route("/customer-accounts", methods=["GET"])
+@role_required("manager")
+def list_google_customer_accounts():
+    return proxy_customer_api("/api/admin/customer-accounts")
+
+@admin_bp.route("/customer-accounts/<int:account_id>", methods=["DELETE"])
+@role_required("manager")
+def delete_google_customer_account(account_id):
+    return proxy_customer_api(f"/api/admin/customer-accounts/{account_id}")
+
+@admin_bp.route("/customer-logs/charts/<int:chart_id>/image", methods=["GET"])
+@role_required("manager")
+def get_customer_chart_image(chart_id):
+    return proxy_customer_api(f"/api/admin/customer-logs/charts/{chart_id}/image")

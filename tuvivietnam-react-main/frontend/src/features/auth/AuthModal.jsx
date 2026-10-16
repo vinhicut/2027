@@ -59,6 +59,13 @@ function AuthModal({ open, onClose, user, onAuthSuccess, onLogout }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Xác thực Google thất bại');
 
+      const syncResponse = await fetch('/api/auth/customer-accounts/sync', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${data.token}` },
+      });
+      const syncData = await syncResponse.json().catch(() => ({}));
+      if (!syncResponse.ok) throw new Error(syncData.message || 'Đăng nhập Google thành công nhưng chưa lưu được tài khoản khách hàng.');
+
       localStorage.setItem('tuvi_token', data.token);
       localStorage.setItem('tuvi_user', JSON.stringify(data.user));
       onAuthSuccess?.(data.user);

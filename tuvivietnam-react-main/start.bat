@@ -1,7 +1,5 @@
 @echo off
-chcp 65001 > nul
-echo ============================================================
-echo   🚀 KHỞI ĐỘNG NHANH WEBSITE TỬ VI HỒNG ÂN
-echo ============================================================
+title Tu Vi Hong An - Start All Services
+echo Starting all website services...
 python "%~dp0start_local.py"
-pause
+if errorlevel 1 pause

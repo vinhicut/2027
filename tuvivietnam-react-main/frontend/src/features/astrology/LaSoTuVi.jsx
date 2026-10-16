@@ -87,6 +87,7 @@ function LaSoTuVi() {
   const iframeRef = useRef(null);
   const [frameHeight, setFrameHeight] = useState(1040);
   const [activeService, setActiveService] = useState(null);
+  const [logStatus, setLogStatus] = useState('');
 
   const requestHeight = useCallback(() => {
     try {
@@ -115,6 +116,36 @@ function LaSoTuVi() {
       }
     }
 
+    async function handleChartSelected(event) {
+      if (
+        event.origin !== window.location.origin ||
+        event.source !== iframeRef.current?.contentWindow ||
+        event.data?.type !== 'TUVI_CHART_SELECTED'
+      ) return;
+
+      try {
+        const token = localStorage.getItem('tuvi_token');
+        const response = await fetch('/api/customer-logs/charts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: JSON.stringify({
+            input_data: event.data.input_data,
+            chart_code: event.data.chart_code,
+            image_data: event.data.image_data,
+          }),
+        });
+        if (!response.ok) throw new Error('Lưu thông tin lá số thất bại.');
+        setLogStatus('Thông tin lá số đã được gửi đến bộ phận luận giải.');
+      } catch (error) {
+        console.error('Không thể gửi thông tin lá số đến hệ thống quản trị:', error);
+        setLogStatus('Chưa gửi được thông tin lá số. Vui lòng thử lập lại lá số.');
+      }
+      window.setTimeout(() => setLogStatus(''), 6000);
+    }
+
     function handleResizeMessage(e) {
       if (e.data && e.data.type === 'TUVI_IFRAME_RESIZE' && e.data.height) {
         setFrameHeight(Math.max(680, Math.ceil(e.data.height)));
@@ -123,11 +154,13 @@ function LaSoTuVi() {
 
     window.addEventListener('message', handleResizeMessage);
     window.addEventListener('message', handleServiceModalMessage);
+    window.addEventListener('message', handleChartSelected);
     window.addEventListener('resize', requestHeight);
 
     return () => {
       window.removeEventListener('message', handleResizeMessage);
       window.removeEventListener('message', handleServiceModalMessage);
+      window.removeEventListener('message', handleChartSelected);
       window.removeEventListener('resize', requestHeight);
     };
   }, [requestHeight]);
@@ -154,7 +187,7 @@ function LaSoTuVi() {
       <div className="laso-unified-wrap">
         <iframe
           ref={iframeRef}
-          src="/astrology-engine/laso-tuvi.html?v=2409"
+          src="/astrology-engine/laso-tuvi.html?v=2412"
           title="Lá Số Tử Vi Đẩu Số"
           className="laso-unified-iframe"
           style={{ height: `${frameHeight}px` }}
@@ -167,6 +200,7 @@ function LaSoTuVi() {
           }}
         />
       </div>
+      {logStatus && <p role="status" className="laso-log-status">{logStatus}</p>}
       {activeService === 'lifetime' && <LifetimeReadingDialog onClose={() => setActiveService(null)} />}
       {activeService === 'consultation' && <PrivateConsultationDialog onClose={() => setActiveService(null)} />}
     </div>

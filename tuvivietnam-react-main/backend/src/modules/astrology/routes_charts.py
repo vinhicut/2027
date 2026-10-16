@@ -4,9 +4,15 @@ from flask import Blueprint, request, jsonify, g
 
 from modules.auth.auth import login_required
 from core.db import save_user_chart, get_latest_user_chart, get_user_charts_list
+from core.node_api_proxy import proxy_customer_api
 from modules.astrology.tuvi_engine import calculate_tuvi_chart
 
 charts_bp = Blueprint("charts", __name__, url_prefix="/api")
+
+@charts_bp.route("/customer-logs/charts", methods=["POST"])
+def log_selected_chart():
+    """Forward selected chart details to the separate Node/MySQL service."""
+    return proxy_customer_api("/api/customer-logs/charts")
 
 @charts_bp.route("/calculate", methods=["POST"])
 def calculate_chart():

@@ -7,6 +7,8 @@ function AdminModal({ open, onClose }) {
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);
   const [charts, setCharts] = useState([]);
+  const [customerLogs, setCustomerLogs] = useState([]);
+  const [selectedLog, setSelectedLog] = useState(null);
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
 
@@ -39,6 +41,11 @@ function AdminModal({ open, onClose }) {
           if (!res.ok) throw new Error('Không thể tải danh sách lá số');
           const data = await res.json();
           setCharts(data.data || []);
+        } else if (tab === 'leads') {
+          const res = await fetch('/api/admin/customer-logs/charts', { headers });
+          if (!res.ok) throw new Error('Không thể tải danh sách khách lập lá số');
+          const data = await res.json();
+          setCustomerLogs(data.data || []);
         }
       } catch (err) {
         setError(err.message);
@@ -86,6 +93,9 @@ function AdminModal({ open, onClose }) {
             onClick={() => setTab('charts')}
           >
             📜 Toàn Bộ Lá Số Đã Lưu
+          </button>
+          <button type="button" className={tab === 'leads' ? 'active' : ''} onClick={() => setTab('leads')}>
+            {'Kh\u00e1ch l\u1eadp l\u00e1 s\u1ed1'} ({customerLogs.length})
           </button>
         </div>
 
@@ -217,6 +227,37 @@ function AdminModal({ open, onClose }) {
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+
+          {!loading && tab === 'leads' && (
+            <div>
+              <div className="admin-table-wrap">
+                <table className="admin-table">
+                  <thead><tr><th>{'Th\u1eddi gian'}</th><th>{'Kh\u00e1ch h\u00e0ng'}</th><th>{'Email t\u00e0i kho\u1ea3n'}</th><th>{'M\u00e3 l\u00e1 s\u1ed1'}</th><th>{'Ng\u00e0y gi\u1edd sinh'}</th><th></th></tr></thead>
+                  <tbody>
+                    {customerLogs.map((log) => {
+                      const input = log.input_data || {};
+                      return <tr key={log.id}>
+                        <td>{new Date(log.created_at).toLocaleString('vi-VN')}</td>
+                        <td><strong>{log.customer_name}</strong></td>
+                        <td>{log.customer_email || 'Kh\u00e1ch ch\u01b0a \u0111\u0103ng nh\u1eadp'}</td>
+                        <td><code className="chart-code-badge">{log.chart_code}</code></td>
+                        <td>{input.day}/{input.month}/{input.year} - {String(input.hour || 0).padStart(2, '0')}:{String(input.minute || 0).padStart(2, '0')} - {input.gender}</td>
+                        <td><button type="button" className="admin-log-view" onClick={() => setSelectedLog(selectedLog?.id === log.id ? null : log)}>{selectedLog?.id === log.id ? '\u0110\u00f3ng' : 'Xem l\u00e1 s\u1ed1'}</button></td>
+                      </tr>;
+                    })}
+                    {customerLogs.length === 0 && <tr><td colSpan="6" style={{ textAlign: 'center' }}>{'Ch\u01b0a c\u00f3 kh\u00e1ch n\u00e0o l\u1eadp l\u00e1 s\u1ed1.'}</td></tr>}
+                  </tbody>
+                </table>
+              </div>
+              {selectedLog && <section className="admin-chart-detail">
+                <h3>{selectedLog.customer_name} - {selectedLog.chart_code}</h3>
+                <p>Email: {selectedLog.customer_email || 'Ch\u01b0a c\u00f3 email t\u00e0i kho\u1ea3n'}</p>
+                <p>{'Ng\u00e0y l\u1eadp'}: {new Date(selectedLog.created_at).toLocaleString('vi-VN')}</p>
+                <h4>{'Th\u00f4ng tin l\u00e1 s\u1ed1'}</h4>
+                <pre>{JSON.stringify(selectedLog.chart_data, null, 2)}</pre>
+              </section>}
             </div>
           )}
         </div>

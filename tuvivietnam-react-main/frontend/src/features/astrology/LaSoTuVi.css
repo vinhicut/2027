@@ -30,6 +30,16 @@
   min-height: auto;
 }
 
+.laso-log-status {
+  margin: 10px 0 0;
+  padding: 10px 14px;
+  border: 1px solid #d6a64f;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #713f12;
+  font-size: 14px;
+}
+
 .laso-service-backdrop {
   position: fixed;
   inset: 0;

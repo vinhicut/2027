@@ -25,18 +25,20 @@ def verify_google_id_token(credential: str) -> Tuple[bool, Optional[Dict[str, An
                 return False, None, f"Google từ chối xác thực (HTTP {response.status})"
             payload = json.loads(response.read().decode("utf-8"))
 
-        # Kiểm tra Client ID nếu được cấu hình
         aud = payload.get("aud")
-        if GOOGLE_CLIENT_ID and aud != GOOGLE_CLIENT_ID:
-            # Cho phép nếu aud khớp với client ID đã cấu hình
-            pass
+        if not GOOGLE_CLIENT_ID or aud != GOOGLE_CLIENT_ID:
+            return False, None, "Google ID token không được cấp cho ứng dụng này."
 
         email = payload.get("email")
-        if not email:
+        if not email or str(payload.get("email_verified", "")).lower() != "true":
             return False, None, "Token Google không chứa email hợp lệ."
 
+        google_id = payload.get("sub")
+        if not google_id:
+            return False, None, "Google ID token không có mã định danh tài khoản."
+
         user_info = {
-            "google_id": payload.get("sub"),
+            "google_id": google_id,
             "email": email.strip().lower(),
             "name": payload.get("name", email.split("@")[0]),
             "avatar": payload.get("picture")

@@ -222,3 +222,39 @@
   border-radius: 4px;
   border: 1px solid #e2e8f0;
 }
+
+.admin-log-view {
+  border: 1px solid #d6a64f;
+  border-radius: 6px;
+  background: #fffaf0;
+  color: #7c2d12;
+  padding: 6px 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-chart-detail {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.admin-chart-detail h3,
+.admin-chart-detail h4 {
+  margin: 0 0 10px;
+  color: #0f172a;
+}
+
+.admin-chart-detail pre {
+  max-height: 55vh;
+  overflow: auto;
+  padding: 14px;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

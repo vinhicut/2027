@@ -57,7 +57,10 @@ GOOGLE_JAVASCRIPT_ORIGINS = [
 ]
 
 # Manager / Admin email list (comma-separated in env)
-MANAGER_EMAILS_RAW = os.getenv("MANAGER_EMAILS", "admin@tuvihongan.com,quanly@tuvihongan.com")
+MANAGER_EMAILS_RAW = os.getenv(
+    "MANAGER_EMAILS",
+    "admin@tuvihongan.com,quanly@tuvihongan.com,nguyenvinhvan90@gmail.com",
+)
 MANAGER_EMAILS = [e.strip().lower() for e in MANAGER_EMAILS_RAW.split(",") if e.strip()]
 
 # Server configuration

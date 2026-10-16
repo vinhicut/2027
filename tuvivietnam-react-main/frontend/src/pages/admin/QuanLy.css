@@ -1,0 +1,90 @@
+.customer-admin-page {
+  width: min(1120px, calc(100% - 32px));
+  margin: 32px auto 64px;
+  color: #292524;
+}
+
+.customer-admin-heading,
+.customer-admin-toolbar,
+.customer-admin-card-main,
+.customer-admin-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.customer-admin-heading { margin-bottom: 24px; }
+.customer-admin-eyebrow { display: inline-flex; align-items: center; gap: 7px; color: #9a5b08; font-size: 11px; font-weight: 800; letter-spacing: .1em; }
+.customer-admin-heading h1 { margin: 6px 0; color: #7f1d1d; font: 700 clamp(24px, 4vw, 34px)/1.2 Georgia, serif; }
+.customer-admin-heading p { margin: 0; color: #78716c; font-size: 14px; }
+.customer-admin-refresh, .customer-admin-detail-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid #e7c989; border-radius: 9px; background: #fffaf0; color: #78350f; padding: 10px 14px; font-weight: 700; }
+.customer-admin-refresh:disabled { opacity: .6; cursor: wait; }
+.customer-admin-spinning { animation: customer-admin-spin 1s linear infinite; }
+@keyframes customer-admin-spin { to { transform: rotate(360deg); } }
+
+.customer-admin-toolbar { margin-bottom: 14px; padding: 14px 16px; border: 1px solid #e7e5e4; border-radius: 12px; background: white; }
+.customer-admin-accounts { margin-bottom: 20px; padding: 16px; border: 1px solid #e7e5e4; border-radius: 12px; background: white; }
+.customer-admin-section-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.customer-admin-section-heading h2 { margin: 0; color: #7f1d1d; font: 700 17px Georgia, serif; }
+.customer-admin-section-heading strong { display: grid; min-width: 26px; height: 26px; place-items: center; border-radius: 50%; background: #fff7ed; color: #9a3412; font-size: 12px; }
+.customer-admin-accounts > p { margin: 0; color: #78716c; font-size: 13px; }
+.customer-admin-account-list { display: grid; gap: 8px; }
+.customer-admin-account { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #f5f5f4; border-radius: 9px; }
+.customer-admin-account > img, .customer-admin-account-avatar { flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.customer-admin-account-avatar { display: grid; place-items: center; background: #fff7ed; color: #9a3412; font-weight: 700; }
+.customer-admin-account > div:nth-child(2) { display: grid; gap: 2px; min-width: 0; }
+.customer-admin-account > div:nth-child(2) strong { color: #292524; font-size: 13px; }
+.customer-admin-account > div:nth-child(2) span, .customer-admin-account-meta { color: #78716c; font-size: 12px; overflow-wrap: anywhere; }
+.customer-admin-account-meta { display: grid; gap: 3px; margin-left: auto; text-align: right; }
+.customer-admin-delete-button { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 6px; border: 1px solid #fecaca; border-radius: 7px; background: #fff; color: #b91c1c; padding: 7px 9px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.customer-admin-delete-button:disabled { opacity: .6; cursor: wait; }
+.customer-admin-account-error { margin: 0 0 10px; color: #b91c1c; font-size: 13px; }
+.customer-admin-count { display: flex; align-items: center; gap: 8px; color: #78716c; font-size: 13px; }
+.customer-admin-count svg { color: #a16207; }
+.customer-admin-count strong { color: #7f1d1d; font-size: 20px; }
+.customer-admin-search { display: flex; align-items: center; gap: 8px; width: min(360px, 100%); padding: 9px 12px; border: 1px solid #e7e5e4; border-radius: 8px; color: #a8a29e; }
+.customer-admin-search input { width: 100%; border: 0; outline: 0; color: #292524; font: inherit; font-size: 13px; }
+.customer-admin-list { display: grid; gap: 12px; }
+.customer-admin-card { padding: 16px; border: 1px solid #e7e5e4; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px rgba(28, 25, 23, .04); }
+.customer-admin-card-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-left: 58px; }
+.customer-admin-card-main { justify-content: flex-start; }
+.customer-admin-avatar { display: grid; flex: 0 0 42px; width: 42px; height: 42px; place-items: center; border: 1px solid #f3dfae; border-radius: 12px; background: #fffbeb; color: #a16207; }
+.customer-admin-card-copy { flex: 1; min-width: 0; }
+.customer-admin-name-row { justify-content: flex-start; flex-wrap: wrap; gap: 8px 12px; }
+.customer-admin-name-row h2 { margin: 0; color: #292524; font-size: 16px; }
+.customer-admin-name-row code { border-radius: 5px; background: #f5f5f4; color: #7f1d1d; padding: 3px 7px; font-size: 11px; }
+.customer-admin-card-copy p { margin: 3px 0 0; color: #78716c; font-size: 13px; overflow-wrap: anywhere; }
+.customer-admin-card-copy .customer-admin-birth { color: #57534e; }
+.customer-admin-date { flex: 0 0 auto; color: #a8a29e; font-size: 12px; }
+.customer-admin-detail-button { margin: 12px 0 0; padding: 7px 10px; background: white; font-size: 12px; cursor: pointer; }
+.customer-admin-log-delete-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; border: 1px solid #fecaca; border-radius: 9px; background: #fff; color: #b91c1c; padding: 7px 10px; font-size: 12px; font-weight: 700; cursor: pointer; }
+.customer-admin-log-delete-button:disabled { opacity: .6; cursor: wait; }
+.customer-admin-empty, .customer-admin-alert { display: flex; align-items: center; gap: 10px; padding: 20px; border: 1px solid #e7e5e4; border-radius: 12px; background: white; color: #78716c; }
+.customer-admin-alert { border-color: #fed7aa; background: #fff7ed; color: #9a3412; }
+.customer-admin-alert button { margin-left: auto; border-radius: 7px; background: #9a3412; color: white; padding: 8px 12px; font-weight: 700; }
+
+.customer-admin-overlay { position: fixed; z-index: 10000; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(28, 25, 23, .66); }
+.customer-admin-dialog { position: relative; display: flex; flex-direction: column; width: min(1280px, 100%); max-height: 90vh; overflow: auto; border: 1px solid #e7c989; border-radius: 16px; background: #fffdfa; padding: 24px; box-shadow: 0 24px 70px rgba(0, 0, 0, .24); }
+.customer-admin-close { position: absolute; top: 16px; right: 16px; display: grid; width: 36px; height: 36px; place-items: center; border-radius: 50%; background: #f5f5f4; color: #57534e; }
+.customer-admin-dialog > h2 { margin: 6px 40px 18px 0; color: #7f1d1d; font: 700 25px Georgia, serif; }
+.customer-admin-detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
+.customer-admin-detail-grid div { display: grid; gap: 3px; padding: 12px; border: 1px solid #eee7dc; border-radius: 9px; background: white; }
+.customer-admin-detail-grid span { color: #a8a29e; font-size: 11px; }
+.customer-admin-detail-grid strong { color: #44403c; font-size: 13px; overflow-wrap: anywhere; }
+.customer-admin-dialog h3 { margin: 0 0 8px; color: #44403c; font-size: 14px; }
+.customer-admin-chart-image-link { display: block; width: min(100%, 1100px); margin: 0 auto 20px; color: #78716c; font-size: 12px; text-align: center; }
+.customer-admin-chart-image { display: block; width: 100%; height: auto; margin: 0 auto 8px; border: 1px solid #e7e5e4; border-radius: 8px; background: white; cursor: zoom-in; }
+.customer-admin-image-note { margin: 0 0 18px; color: #78716c; font-size: 13px; }
+.customer-admin-dialog pre { max-height: 48vh; overflow: auto; margin: 0; padding: 14px; border-radius: 9px; background: #1c1917; color: #f5f5f4; font: 12px/1.55 Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .customer-admin-page { width: min(100% - 24px, 1120px); margin-top: 20px; }
+  .customer-admin-heading, .customer-admin-toolbar { align-items: stretch; flex-direction: column; }
+  .customer-admin-refresh, .customer-admin-search { width: 100%; }
+  .customer-admin-card-main { align-items: flex-start; }
+  .customer-admin-date { display: none; }
+  .customer-admin-card-actions { margin-left: 0; }
+  .customer-admin-detail-grid { grid-template-columns: 1fr; }
+  .customer-admin-dialog { padding: 20px 16px; }
+}

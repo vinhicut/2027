@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, g
+from core.node_api_proxy import proxy_customer_api
 from modules.auth.auth import (
     verify_google_id_token,
     issue_user_session,
@@ -8,6 +9,11 @@ from modules.auth.auth import (
 )
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
+
+@auth_bp.route("/customer-accounts/sync", methods=["POST"])
+@login_required
+def sync_customer_account():
+    return proxy_customer_api("/api/customer-accounts/sync")
 
 @auth_bp.route("/google", methods=["POST"])
 def auth_google():

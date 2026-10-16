@@ -23,7 +23,7 @@
     <div class="output-panel">
         <div class="tuvi-board-wrapper">
             <!-- LỚP PHỦ MỜ YÊU CẦU LẬP LÁ SỐ (STALE OVERLAY) -->
-            <div id="tuviStaleOverlay" class="tuvi-stale-overlay hidden" onclick="generateTuVi()" title="Bấm vào đây để lập lá số">
+            <div id="tuviStaleOverlay" class="tuvi-stale-overlay hidden" onclick="generateTuVi(true)" title="Bấm vào đây để lập lá số">
                 <div class="tuvi-stale-notice" onclick="generateTuVi()">
                     <svg class="stale-play-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                         <path d="M8 5v14l11-7z" />
@@ -157,7 +157,7 @@
             <div class="form-row">
                 <label for="txtName">Họ tên</label>
                 <div class="field-group">
-                    <input type="text" id="txtName" value="www.tuvihongan.com" placeholder="Họ và tên">
+                        <input type="text" id="txtName" value="" placeholder="Họ và tên">
                 </div>
             </div>
             <div class="form-row">
@@ -217,7 +217,7 @@
         <div class="form-section service-section">
             <div class="section-title">Dịch vụ luận giải:</div>
             <!-- NÚT LẬP LÁ SỐ (MÀU #802722 CHỮ TRẮNG ICON PLAY) -->
-            <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi()">
+            <button type="button" id="btnGenerateTuVi" class="btn-generate-tuvi" onclick="generateTuVi(true)">
                 <svg class="btn-play-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                     <path d="M8 5v14l11-7z" />
                 </svg>
@@ -257,8 +257,8 @@
     <script src="js/geometry.js?v=2409"></script>
     <script src="js/board-renderer.js?v=2409"></script>
     <script src="js/ui-controller.js?v=2409"></script>
-    <script src="js/export-engine.js?v=2409"></script>
-    <script src="js/app.js?v=2409"></script>
+    <script src="js/export-engine.js?v=2412"></script>
+    <script src="js/app.js?v=2412"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
 let currentRequestId = 0;
 const OVERLAY_BUFFER_TIME = 200; // ms
 
-async function generateTuVi() {
+async function generateTuVi(notifyAdmin = false) {
     const requestId = ++currentRequestId;
 
     // Ẩn lớp phủ mờ thông báo
@@ -69,6 +69,22 @@ async function generateTuVi() {
         // BƯỚC 4: RENDER DỮ LIỆU LÁ SỐ MỚI BÊN DƯỚI MÀN CHE
         if (chartData && typeof renderTuViBoard === "function") {
             renderTuViBoard(chartData);
+            if (notifyAdmin && window.parent !== window) {
+                let imageData = "";
+                try {
+                    const canvas = await window.captureTuviBoard(2.5);
+                    imageData = canvas.toDataURL("image/jpeg", 0.92);
+                } catch (captureError) {
+                    console.error("Không thể chụp ảnh lá số:", captureError);
+                }
+                window.parent.postMessage({
+                    type: "TUVI_CHART_SELECTED",
+                    input_data: payload,
+                    chart_code: chartData.idCode || "",
+                    chart_data: chartData,
+                    image_data: imageData
+                }, window.location.origin);
+            }
         }
     } catch (err) {
         console.error("Không thể cập nhật lá số:", err);

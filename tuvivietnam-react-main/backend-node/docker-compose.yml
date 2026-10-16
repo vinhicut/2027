@@ -1,0 +1,58 @@
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-tuvi_hongan}
+      MYSQL_USER: ${DB_USER:-tuvi_app}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in backend-node/.env}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in backend-node/.env}
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - tuvi_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  customer-api:
+    build: .
+    restart: unless-stopped
+    environment:
+      PORT: 3001
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:5173}
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-tuvi_hongan}
+      DB_USER: ${DB_USER:-tuvi_app}
+      DB_PASSWORD: ${DB_PASSWORD}
+      AUTH_ME_URL: ${AUTH_ME_URL:-http://host.docker.internal:2026/api/auth/me}
+      CHART_IMAGE_DIR: /app/storage/chart-images
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - tuvi_chart_images:/app/storage/chart-images
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  phpmyadmin:
+    image: phpmyadmin:5-apache
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 16M
+    ports:
+      - "127.0.0.1:8082:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  tuvi_mysql_data:
+  tuvi_chart_images:

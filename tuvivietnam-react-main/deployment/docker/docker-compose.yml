@@ -13,3 +13,6 @@ services:
       - HOST=0.0.0.0
       - PORT=8080
       - CORS_ORIGIN=*
+      - CUSTOMER_API_URL=http://host.docker.internal:3001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

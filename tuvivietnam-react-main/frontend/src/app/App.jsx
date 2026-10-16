@@ -19,6 +19,7 @@ import ThatSat from '../pages/baiviet/ThatSat';
 import PhaQuan from '../pages/baiviet/PhaQuan';
 import { PhongThuyWidget } from '../phongthuy/PhongThuyWidget';
 import QimenArticles from '../pages/qimen/QimenPage';
+import QuanLy from '../pages/admin/QuanLy';
 function App() {
   const { pathname } = useLocation();
 
@@ -32,6 +33,7 @@ function App() {
 
       <main className="main-content">
         <Routes>
+          <Route path="/quan-ly" element={<QuanLy />} />
           <Route
             path="/la-so-tu-vi"
             element={

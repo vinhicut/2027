@@ -16,12 +16,26 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import Navbar from '../shared/ui/Navbar';
+import { qimenArticles } from './qimen/qimenArticles';
 
 export default function Home() {
   const navigate = useNavigate();
 
   // Navigation & UI state
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [birthGender, setBirthGender] = useState('nam');
+  const [birthYear, setBirthYear] = useState('');
+  const [viewingYear, setViewingYear] = useState(String(new Date().getFullYear() + 1));
+  const nineStarByRemainder = {
+    nam: { 1: 'la-hau', 2: 'tho-tu', 3: 'thuy-dieu', 4: 'thai-bach', 5: 'thai-duong', 6: 'van-hon', 7: 'ke-do', 8: 'thai-am', 0: 'moc-duc' },
+    nu: { 1: 'ke-do', 2: 'van-hon', 3: 'moc-duc', 4: 'thai-am', 5: 'tho-tu', 6: 'la-hau', 7: 'thai-duong', 8: 'thai-bach', 0: 'thuy-dieu' },
+  };
+  const parsedBirthYear = Number(birthYear);
+  const validBirthYear = Number.isInteger(parsedBirthYear) && parsedBirthYear >= 1900 && parsedBirthYear <= new Date().getFullYear();
+  const birthAge = validBirthYear ? Number(viewingYear) - parsedBirthYear + 1 : 0;
+  const selectedStar = birthAge > 0
+    ? qimenArticles.find((article) => article.slug === nineStarByRemainder[birthGender][birthAge % 9])
+    : null;
 
   // Copy phone state
   const [copiedPhone, setCopiedPhone] = useState(null);
@@ -134,7 +148,7 @@ export default function Home() {
             </div> */}
 
             {/* Main Heading */}
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="grid items-start gap-6 lg:grid-cols-2">
               {/* <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-stone-900 mb-4 leading-tight sm:leading-tight">
                 Tử Vi{' '}
                 <span className="bg-gradient-to-r from-red-800 via-amber-700 to-amber-900 bg-clip-text text-transparent">
@@ -146,7 +160,7 @@ export default function Home() {
               </p> */}
 
               {/* Special Promo Highlight Box: 199k & Zalo Booking */}
-              <div className="max-w-5xl mx-auto p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#fffdfa] via-white to-amber-50/50 border-2 border-amber-400/80 shadow-[0_10px_35px_rgba(217,119,6,0.12)] mb-10 text-left">
+              <div className="w-full p-5 sm:p-7 rounded-3xl bg-gradient-to-br from-[#fffdfa] via-white to-amber-50/50 border-2 border-amber-400/80 shadow-[0_10px_35px_rgba(217,119,6,0.12)] text-left">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2">
@@ -177,61 +191,63 @@ export default function Home() {
                       <span className="text-lg sm:text-xl text-red-700 font-extrabold">
                         500k
                       </span>
-                      <span className="block mt-1 text-lg sm:text-xl">
-                        <a
-                          href="https://zalo.me/0924616199"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-amber-800 hover:text-red-700 transition-colors font-bold underline"
-                        >
-                          Đặt lịch qua Zalo <ArrowRight className="w-6 h-5" strokeWidth={2.5} aria-hidden="true" />
-                        </a>
-                      </span>
                     </h2>
                     <p className="text-stone-600 text-xs sm:text-sm leading-relaxed">
                       Bản giải đoán trọn đời 12 cung, 10 năm đại vận, tiểu vận chi tiết, phong thủy tài lộc kích tài tăng phúc.
                     </p>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="w-full lg:w-72 flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0">
-                    <button
-                      type="button"
-                      onClick={() => setShowPaymentModal(true)}
-                      className="w-full px-5 py-3 rounded-xl bg-gradient-to-r from-red-700 via-amber-700 to-red-800 text-white font-bold text-sm hover:brightness-105 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <Crown className="w-4 h-4 text-yellow-300" />
-                      <span>Đăng Ký Luận 199k</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-
-                    <div className="flex items-center gap-2">
-                      <a
-                        href="https://zalo.me/0924616199"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
-                      >
-                        <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Zalo: 0924.616.199</span>
+                    <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap">
+                      <button type="button" onClick={() => setShowPaymentModal(true)} className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-700 via-amber-700 to-red-800 px-4 py-3 text-sm font-bold text-white shadow-md transition hover:brightness-105">
+                        <Crown className="h-4 w-4 text-yellow-300" /> Đăng ký luận 199k <ArrowRight className="h-4 w-4" />
+                      </button>
+                      <a href="https://zalo.me/0924616199" target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-3 text-xs font-bold text-emerald-900 transition-colors hover:bg-emerald-100">
+                        <Phone className="h-4 w-4 text-emerald-700" /> Zalo: 0924.616.199
                       </a>
-                      <a
-                        href="https://zalo.me/0385497085"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 flex items-center justify-center gap-1.5 transition-colors shadow-xs"
-                      >
-                        <Phone className="w-3.5 h-3.5 text-emerald-700" />
-                        <span>Zalo: 0385.497.085</span>
+                      <a href="https://zalo.me/0385497085" target="_blank" rel="noopener noreferrer" className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50 px-3 py-3 text-xs font-bold text-emerald-900 transition-colors hover:bg-emerald-100">
+                        <Phone className="h-4 w-4 text-emerald-700" /> Zalo: 0385.497.085
                       </a>
                     </div>
                   </div>
+
                 </div>
+              </div>
+
+              {/* Module 4: Tra cứu sao hạn */}
+              <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-amber-300/80 bg-gradient-to-br from-[#fffdfa] via-white to-amber-50 p-5 shadow-sm">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full border border-amber-300/30" />
+                <div className="relative">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-200 bg-amber-50 text-amber-800"><Compass className="h-6 w-6" /></div>
+                    <span className="rounded-full border border-emerald-200 bg-emerald-100 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-emerald-800">Miễn phí</span>
+                  </div>
+                  <h3 className="mb-2 mt-1 font-display text-xl font-bold text-red-700">Tra cứu sao hạn</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-stone-600">Xem sao giải hạn, cát hung trong năm, cách hóa giải và cúng sao giải hạn như thế nào</p>
+                  <div className="mb-3 grid grid-cols-2 gap-2" role="group" aria-label="Chọn giới tính">
+                    {[['nam', 'Nam'], ['nu', 'Nữ']].map(([value, label]) => <button key={value} type="button" onClick={() => setBirthGender(value)} aria-pressed={birthGender === value} className={`rounded-xl border px-3 py-2 text-sm font-semibold transition-colors ${birthGender === value ? 'border-amber-400 bg-amber-100 text-red-800' : 'border-stone-200 text-stone-600 hover:bg-amber-50'}`}>{label}</button>)}
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="qimen-birth-year" className="mb-1 block text-xs font-semibold text-stone-600">Năm sinh</label>
+                      <input id="qimen-birth-year" type="number" inputMode="numeric" min="1900" max={new Date().getFullYear()} step="1" value={birthYear} onChange={(event) => setBirthYear(event.target.value)} placeholder="Nhập năm sinh" className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-800 outline-none focus:border-amber-400" />
+                    </div>
+                    <div>
+                      <label htmlFor="qimen-viewing-year" className="mb-1 block text-xs font-semibold text-stone-600">Năm xem</label>
+                      <select id="qimen-viewing-year" value={viewingYear} onChange={(event) => setViewingYear(event.target.value)} className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-800 outline-none focus:border-amber-400">
+                        {Array.from({ length: 31 }, (_, index) => new Date().getFullYear() + 1 + index).map((year) => <option key={year} value={year}>{year}</option>)}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                {selectedStar && <div className="relative mt-4 border-t border-amber-100 pt-4">
+                  <p className="text-xs text-stone-500">Sao chiếu mệnh năm {viewingYear}</p>
+                  <p className="mt-1 font-display text-lg font-bold text-red-700">{selectedStar.name}</p>
+                  <p className="mt-1 text-sm font-semibold text-amber-800">Tính chất: {selectedStar.type.split(' · ')[0]}</p>
+                  <button type="button" onClick={() => navigate(`/ky-mon-don-giap/${selectedStar.slug}`)} className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-amber-700 px-3 py-2.5 text-sm font-bold text-white transition hover:bg-red-800">Xem luận giải <ArrowRight className="h-4 w-4" /></button>
+                </div>}
               </div>
             </div>
 
             {/* 3 Core Content Blocks */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 pt-2">
               {/* Module 1: LẬP LÁ SỐ TỬ VI */}
               <div
                 id="card-tuvi-intro"
@@ -366,6 +382,7 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
+
             </div>
           </div>
         </section>
